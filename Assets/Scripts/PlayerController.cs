@@ -7,8 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     private Vector2 move, mouseLook, joystickLook;
-    private Vector3 rotationTarget;
+    private Vector3 rotationTarget, playerVelocity;
     public bool isPc;
+    public CharacterController controller;
+    public float gravity = -9.8f;
+
 
 
     public void OnMove(InputAction.CallbackContext context)
@@ -35,6 +38,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Gravitace
+        playerVelocity.y += gravity * Time.deltaTime;
+
+        if (controller.isGrounded && playerVelocity.y < 0)
+        {
+            playerVelocity.y = -2f;
+        }
+
+        controller.Move(playerVelocity * Time.deltaTime);
+
+
         if (isPc)
         {
             RaycastHit hit;
@@ -70,9 +84,10 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
         }
-        
 
-        transform.Translate(movement * speed * Time.deltaTime, Space.World);
+
+        controller.Move(movement * speed * Time.deltaTime);
+
     }
 
     public void movePlayerWithAim()
@@ -102,7 +117,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(move.x, 0f, move.y);
 
-        transform.Translate(movement * speed * Time.deltaTime, Space.World);
+        controller.Move(movement * speed * Time.deltaTime);
+
 
     }
 
