@@ -1131,7 +1131,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 11.03
   m_Radius: 1.93
-  m_SlopeLimit: 0
+  m_SlopeLimit: 1
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -1149,9 +1149,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  gravity: -9.81
+  jumpSpeed: 2
   isPc: 1
   controller: {fileID: 1847591109}
-  gravity: -9.8
+  rotationSmoothTime: 0.15
+  dashSpeed: 10
+  dashDuration: 0.2
+  dashCooldown: 1
 --- !u!114 &1847591111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1225,6 +1230,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0ef1d8a1-4b3b-45c4-8242-4125c2a5d326
     m_ActionName: Player/JoystickLook
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1847591110}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7bfbf170-1bfa-40f6-9dbd-721e7858d8ef
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1847591110}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 409ab930-7424-4961-8d21-448c0f88353e
+    m_ActionName: Player/Dash
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
