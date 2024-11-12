@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 rotationTarget, playerVelocity;
     private bool isJumping;
     private Camera mainCamera;
+    private float rotationVelocity;
 
     private void Awake()
     {
-        // Cache main camera for performance
         mainCamera = Camera.main;
     }
 
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         if (controller.isGrounded && playerVelocity.y < 0)
         {
-            playerVelocity.y = -2f; // Small downward force for consistent grounded detection
+            playerVelocity.y = -2f;
         }
         else
         {
@@ -65,12 +65,28 @@ public class PlayerController : MonoBehaviour
     {
         if (mainCamera == null) return;
 
-        Ray ray = mainCamera.ScreenPointToRay(mouseLook);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        // Ray from the camera towards the mouse position
+        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        // Check if the ray hits a surface in the game world
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
-            rotationTarget = hit.point;
+            // Get the point where the ray hit the ground
+            Vector3 targetPosition = hitInfo.point;
+            targetPosition.y = transform.position.y; // Keep the target at the player's level
+
+            // Calculate the direction to look at
+            Vector3 directionToLook = targetPosition - transform.position;
+
+            if (directionToLook.sqrMagnitude > 0.01f)
+            {
+                // Smoothly rotate the player to look at the target direction
+                Quaternion targetRotation = Quaternion.LookRotation(directionToLook);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothTime);
+            }
         }
-        MoveWithAim(rotationTarget);
+
+        MoveWithDirection();
     }
 
     private void HandleJoystickLook()
@@ -81,8 +97,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Vector3 aimDirection = transform.position + new Vector3(joystickLook.x, 0, joystickLook.y);
-            MoveWithAim(aimDirection);
+            Vector3 aimDirection = new Vector3(joystickLook.x, 0, joystickLook.y);
+            Quaternion targetRotation = Quaternion.LookRotation(aimDirection, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothTime);
+            MoveWithDirection();
         }
     }
 
@@ -97,18 +115,17 @@ public class PlayerController : MonoBehaviour
         ApplyMovement(movement);
     }
 
-    private void MoveWithAim(Vector3 aimPoint)
+    private void MoveWithDirection()
     {
-        Vector3 lookDirection = aimPoint - transform.position;
-        lookDirection.y = 0;
+        Vector3 forward = mainCamera.transform.forward;
+        forward.y = 0;
+        forward.Normalize();
 
-        if (lookDirection.sqrMagnitude > 0.01f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothTime);
-        }
+        Vector3 right = mainCamera.transform.right;
+        right.y = 0;
+        right.Normalize();
 
-        Vector3 movement = new Vector3(move.x, 0, move.y);
+        Vector3 movement = forward * move.y + right * move.x;
         ApplyMovement(movement);
     }
 
