@@ -496,6 +496,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ddb8e2b5622e4f42b90593d3cde94ff, type: 3}
   m_PrefabInstance: {fileID: 529292302}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2125753040 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7262523317295138099, guid: cc42ab48097863747bf11f500502a327, type: 3}
+  m_PrefabInstance: {fileID: 8979721431826356134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9e209849caf1347b43e4d0387468d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3798551168575465696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -588,7 +599,7 @@ PrefabInstance:
     - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8979721431826356136}
+      objectReference: {fileID: 2125753040}
     - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -648,32 +659,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7551966278407313553, guid: cc42ab48097863747bf11f500502a327, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8979721431826356136}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc42ab48097863747bf11f500502a327, type: 3}
---- !u!1 &8979721431826356135 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7551966278407313553, guid: cc42ab48097863747bf11f500502a327, type: 3}
-  m_PrefabInstance: {fileID: 8979721431826356134}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8979721431826356136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8979721431826356135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9e209849caf1347b43e4d0387468d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 8334517916396679245, guid: 37630904aee44e34585348e9fb826d1a, type: 3}
-  bulletLife: 20
-  bulletSpeed: 20
-  firingRate: 0.04
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

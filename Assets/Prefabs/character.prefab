@@ -65,6 +65,34 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[5].m_ActionName
       value: Player/Shoot[/Mouse/leftButton]
       objectReference: {fileID: 0}
+    - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7262523317295138099}
+    - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnShoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerShoot, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2745542525342927142, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_SlopeLimit
       value: 30
@@ -147,6 +175,7 @@ MonoBehaviour:
   bulletLife: 20
   bulletSpeed: 20
   firingRate: 0.04
+  spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &4988613294921315342
 PrefabInstance:
   m_ObjectHideFlags: 0

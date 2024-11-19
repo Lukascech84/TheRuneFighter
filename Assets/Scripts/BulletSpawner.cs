@@ -15,6 +15,7 @@ public class BulletSpawner : MonoBehaviour
     [Header("Spawner Attributes")]
     [SerializeField] private SpawnerType spawnerType;
     [SerializeField] private float firingRate = 0.04f;
+    [SerializeField] private Vector3 spawnOffset = Vector3.zero; // Offset pro spawn støely
 
     private GameObject spawnedBullet;
     private float timer = 0f;
@@ -37,12 +38,24 @@ public class BulletSpawner : MonoBehaviour
 
     private void Fire()
     {
-        if (bullet)
+        if (bullet) // Zkontroluj, zda je pøiøazen prefab støely
         {
-            spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+            // Otoèení smìru o 90 stupòù kolem osy Y
+            Quaternion adjustedRotation = transform.rotation * Quaternion.Euler(0, 0, 0);
+
+            // Vypoèítání pøesné pozice pro spawn støely s offsetem
+            Vector3 spawnPosition = transform.position + transform.rotation * spawnOffset;
+
+            // Vytvoøení støely na posunuté pozici s upravenou rotací
+            GameObject spawnedBullet = Instantiate(bullet, spawnPosition, adjustedRotation);
+
+            // Vypoèítáme nový smìr støely
+            Vector3 bulletDirection = adjustedRotation * Vector3.forward;
+
+            // Pøedáme smìr a rychlost støely do komponenty Bullet
             spawnedBullet.GetComponent<Bullet>().speed = speed;
             spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
-            spawnedBullet.transform.rotation = transform.rotation;
+            spawnedBullet.GetComponent<Bullet>().SetDirection(bulletDirection);
         }
     }
 }

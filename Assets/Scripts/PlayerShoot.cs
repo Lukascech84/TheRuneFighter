@@ -10,6 +10,8 @@ public class PlayerShoot : MonoBehaviour
     public float bulletSpeed = 6.5f; // Rychlost støely
     [SerializeField] private float firingRate = 0.04f; // Interval mezi støelami
 
+    [SerializeField] private Vector3 spawnOffset = Vector3.zero; // Offset pro spawn støely
+
     private bool isShooting; // Indikátor, zda hráè støílí
     private float timer = 0f; // Èasovaè pro støelbu
 
@@ -36,16 +38,19 @@ public class PlayerShoot : MonoBehaviour
     {
         if (bullet) // Zkontroluj, zda je pøiøazen prefab støely
         {
-            // Vypoèítáme rotaci støely otoèenou o 90 stupòù kolem osy Y
+            // Otoèení smìru o 90 stupòù kolem osy Y
             Quaternion adjustedRotation = transform.rotation * Quaternion.Euler(0, 0, 0);
 
-            // Vytvoøení støely na pozici hráèe s upravenou rotací
-            GameObject spawnedBullet = Instantiate(bullet, transform.position, adjustedRotation);
+            // Vypoèítání pøesné pozice pro spawn støely s offsetem
+            Vector3 spawnPosition = transform.position + transform.rotation * spawnOffset;
 
-            // Nastavení rychlosti støely a smìru podle rotace
+            // Vytvoøení støely na posunuté pozici s upravenou rotací
+            GameObject spawnedBullet = Instantiate(bullet, spawnPosition, adjustedRotation);
+
+            // Vypoèítáme nový smìr støely
             Vector3 bulletDirection = adjustedRotation * Vector3.forward;
 
-            // Pøedání smìru a rychlosti støely do skriptu Bullet
+            // Pøedáme smìr a rychlost støely do komponenty Bullet
             spawnedBullet.GetComponent<Bullet>().speed = bulletSpeed;
             spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
             spawnedBullet.GetComponent<Bullet>().SetDirection(bulletDirection);
