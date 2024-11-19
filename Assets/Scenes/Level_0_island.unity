@@ -565,6 +565,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: CHARACTER
       objectReference: {fileID: 0}
+    - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: a086d132-638b-43e6-93cd-48743f325360
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Player/Shoot[/Mouse/leftButton]
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8979721431826356136}
+    - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnShoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerShoot, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978137795100845403, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5953651122107393588, guid: cc42ab48097863747bf11f500502a327, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.7989907
@@ -608,8 +648,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7551966278407313553, guid: cc42ab48097863747bf11f500502a327, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8979721431826356136}
   m_SourcePrefab: {fileID: 100100000, guid: cc42ab48097863747bf11f500502a327, type: 3}
+--- !u!1 &8979721431826356135 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7551966278407313553, guid: cc42ab48097863747bf11f500502a327, type: 3}
+  m_PrefabInstance: {fileID: 8979721431826356134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8979721431826356136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8979721431826356135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9e209849caf1347b43e4d0387468d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 8334517916396679245, guid: 37630904aee44e34585348e9fb826d1a, type: 3}
+  bulletLife: 20
+  bulletSpeed: 20
+  firingRate: 0.04
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

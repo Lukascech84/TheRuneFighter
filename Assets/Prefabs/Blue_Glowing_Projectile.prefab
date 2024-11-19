@@ -97,5 +97,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletLife: 100
-  rotation: 2.08
+  rotation: 0
   speed: 1

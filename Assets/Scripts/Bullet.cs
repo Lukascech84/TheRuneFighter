@@ -4,29 +4,42 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float bulletLife = 1f;
-    public float rotation = 0f;
-    public float speed = 1f;
+    public float bulletLife = 1f; // Doba životnosti støely
+    public float speed = 1f; // Rychlost støely
 
-    private Vector3 spawnPoint;
+    private Vector3 direction; // Smìr støely
+    private Vector3 spawnPoint; // Poèáteèní bod støely
     private float timer = 0f;
 
     void Start()
     {
-        spawnPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        // Uložíme poèáteèní bod støely
+        spawnPoint = transform.position;
     }
 
     void Update()
     {
+        // Znièíme støelu po uplynutí životnosti
         if (timer > bulletLife) Destroy(this.gameObject);
+
+        // Aktualizujeme èasovaè
         timer += Time.deltaTime;
+
+        // Posuneme støelu ve smìru jejího pohybu
         transform.position = Movement(timer);
+    }
+
+    public void SetDirection(Vector3 dir)
+    {
+        // Nastavíme smìr støely (normalizovaný)
+        direction = dir.normalized;
     }
 
     private Vector3 Movement(float timer)
     {
-        float x = timer * speed * transform.right.x;
-        float z = timer * speed * transform.right.z;
-        return new Vector3(x + spawnPoint.x, spawnPoint.y,z + spawnPoint.z);
+        // Vypoèítáme novou pozici støely na základì smìru a rychlosti
+        float x = timer * speed * direction.x;
+        float z = timer * speed * direction.z;
+        return new Vector3(x + spawnPoint.x, spawnPoint.y, z + spawnPoint.z);
     }
 }

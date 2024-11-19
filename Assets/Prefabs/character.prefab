@@ -53,6 +53,18 @@ PrefabInstance:
       propertyPath: dashDistance
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: a086d132-638b-43e6-93cd-48743f325360
+      objectReference: {fileID: 0}
+    - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Player/Shoot[/Mouse/leftButton]
+      objectReference: {fileID: 0}
     - target: {fileID: 2745542525342927142, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_SlopeLimit
       value: 30
@@ -104,13 +116,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5931450177873448222, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7262523317295138099}
   m_SourcePrefab: {fileID: 100100000, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
 --- !u!4 &7171465627239055915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6420846838360004516, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
   m_PrefabInstance: {fileID: 4223611000380806543}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7551966278407313553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5931450177873448222, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+  m_PrefabInstance: {fileID: 4223611000380806543}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7262523317295138099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551966278407313553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9e209849caf1347b43e4d0387468d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 8334517916396679245, guid: 37630904aee44e34585348e9fb826d1a, type: 3}
+  bulletLife: 20
+  bulletSpeed: 20
+  firingRate: 0.04
 --- !u!1001 &4988613294921315342
 PrefabInstance:
   m_ObjectHideFlags: 0
