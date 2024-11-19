@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotationSmoothTime = 0.15f;
 
     [Header("Dash Settings")]
-    public float dashDistance = 5f;    // Distance of the dash
-    public float dashCooldown = 1f;   // Cooldown in seconds
+    public float dashDistance = 2f;    // Distance of the dash
+    public float dashCooldown = 2.5f;   // Cooldown in seconds
     public float dashDuration = 0.2f; // Time it takes to dash
 
     private Vector2 move, mouseLook, joystickLook;
