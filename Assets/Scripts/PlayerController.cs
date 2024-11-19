@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,9 +14,17 @@ public class PlayerController : MonoBehaviour
     [Header("Rotation Settings")]
     [SerializeField] private float rotationSmoothTime = 0.15f;
 
+    [Header("Dash Settings")]
+    public float dashDistance = 5f;    // Distance of the dash
+    public float dashCooldown = 1f;   // Cooldown in seconds
+    public float dashDuration = 0.2f; // Time it takes to dash
+
     private Vector2 move, mouseLook, joystickLook;
     private Vector3 rotationTarget, playerVelocity;
     private bool isJumping;
+    private bool isDashing = false;
+    private float dashCooldownTimer = 0f;
+    private Vector3 dashDirection;
     private Camera mainCamera;
     private float rotationVelocity;
 
@@ -41,11 +50,60 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed && dashCooldownTimer <= 0f && !isDashing)
+        {
+            PerformDash();
+        }
+    }
+
     private void Update()
     {
+        if (isDashing)
+            return; // Skip regular movement updates during dash
+
+        dashCooldownTimer -= Time.deltaTime;
+
         ApplyGravity();
         if (isPc) HandleMouseLook();
         else HandleJoystickLook();
+    }
+
+    private void PerformDash()
+    {
+        // Smìr dashu podle pohybu z klávesnice
+        Vector3 movementDirection = new Vector3(move.x, 0, move.y);
+
+        if (movementDirection.sqrMagnitude > 0.01f)
+        {
+            dashDirection = movementDirection.normalized;
+        }
+        else
+        {
+            // Pokud není pohyb, dash je ve smìru pohledu postavy
+            dashDirection = transform.forward;
+        }
+
+        StartCoroutine(DashCoroutine());
+    }
+
+    private IEnumerator DashCoroutine()
+    {
+        isDashing = true;
+        dashCooldownTimer = dashCooldown;
+
+        float dashElapsedTime = 0f;
+
+        while (dashElapsedTime < dashDuration)
+        {
+            Vector3 dashVelocity = dashDirection * (dashDistance / dashDuration);
+            controller.Move(dashVelocity * Time.deltaTime);
+            dashElapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        isDashing = false;
     }
 
     private void ApplyGravity()
@@ -58,29 +116,26 @@ public class PlayerController : MonoBehaviour
         {
             playerVelocity.y += gravity * Time.deltaTime;
         }
-        controller.Move(playerVelocity * Time.deltaTime);
+
+        if (!isDashing) // Avoid gravity influence during dash
+        {
+            controller.Move(playerVelocity * Time.deltaTime);
+        }
     }
 
     private void HandleMouseLook()
     {
         if (mainCamera == null) return;
 
-        // Ray from the camera towards the mouse position
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-        // Check if the ray hits a surface in the game world
         if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
-            // Get the point where the ray hit the ground
             Vector3 targetPosition = hitInfo.point;
-            targetPosition.y = transform.position.y; // Keep the target at the player's level
-
-            // Calculate the direction to look at
+            targetPosition.y = transform.position.y;
             Vector3 directionToLook = targetPosition - transform.position;
 
             if (directionToLook.sqrMagnitude > 0.01f)
             {
-                // Smoothly rotate the player to look at the target direction
                 Quaternion targetRotation = Quaternion.LookRotation(directionToLook);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothTime);
             }
@@ -138,7 +193,7 @@ public class PlayerController : MonoBehaviour
         }
 
         movement *= speed;
-        movement.y = playerVelocity.y;  // Maintain vertical velocity from gravity or jump
+        movement.y = playerVelocity.y;
         controller.Move(movement * Time.deltaTime);
     }
 }
