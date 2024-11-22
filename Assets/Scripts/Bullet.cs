@@ -64,11 +64,11 @@ public class Bullet : MonoBehaviour
                 if (enemyAtm.health > 0f)
                 {
                     playerAtm.DealDamage(enemyAtm.gameObject);
-                    Debug.Log(playerAtm.gameObject + " Udìlil damage " + playerAtm.attack + " objektu " + enemyAtm.gameObject);
+                    //Debug.Log(playerAtm.gameObject + " Udìlil damage " + playerAtm.attack + " objektu " + enemyAtm.gameObject);
                 }
-                // Znièíme kulku po zásahu
-                Destroy(gameObject);
             }
         }
+        // Znièíme kulku po zásahu
+        Destroy(gameObject);
     }
 }

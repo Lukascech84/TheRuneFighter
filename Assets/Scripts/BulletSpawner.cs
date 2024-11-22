@@ -21,7 +21,7 @@ public class BulletSpawner : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -56,7 +56,7 @@ public class BulletSpawner : MonoBehaviour
             spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
             spawnedBullet.GetComponent<Bullet>().SetDirection(bulletDirection);
             Bullet bulletScript = spawnedBullet.GetComponent<Bullet>();
-            if(bulletScript != null)
+            if (bulletScript != null)
             {
                 bulletScript.spawner = gameObject;
             }

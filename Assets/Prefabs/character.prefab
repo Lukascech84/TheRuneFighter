@@ -41,18 +41,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5953651122107393588}
     m_Modifications:
-    - target: {fileID: 591668043541367426, guid: a58a7b5dac21ce643859c1b242c44d2d, type: 3}
-      propertyPath: isPc
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 591668043541367426, guid: a58a7b5dac21ce643859c1b242c44d2d, type: 3}
-      propertyPath: dashCooldown
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 591668043541367426, guid: a58a7b5dac21ce643859c1b242c44d2d, type: 3}
-      propertyPath: dashDistance
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 6
@@ -141,6 +129,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 591668043541367426, guid: a58a7b5dac21ce643859c1b242c44d2d, type: 3}
+      propertyPath: isPc
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 591668043541367426, guid: a58a7b5dac21ce643859c1b242c44d2d, type: 3}
+      propertyPath: dashCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 591668043541367426, guid: a58a7b5dac21ce643859c1b242c44d2d, type: 3}
+      propertyPath: dashDistance
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -148,6 +148,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5931450177873448222, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7262523317295138099}
+    - targetCorrespondingSourceObject: {fileID: 5931450177873448222, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 266005503424876255}
   m_SourcePrefab: {fileID: 100100000, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
 --- !u!4 &7171465627239055915 stripped
 Transform:
@@ -176,6 +179,20 @@ MonoBehaviour:
   bulletSpeed: 20
   firingRate: 0.04
   spawnOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &266005503424876255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551966278407313553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da332bc7934643429f8afbd7fc5880c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  attack: 20
 --- !u!1001 &4988613294921315342
 PrefabInstance:
   m_ObjectHideFlags: 0

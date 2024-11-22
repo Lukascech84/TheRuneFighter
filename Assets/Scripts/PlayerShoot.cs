@@ -29,8 +29,8 @@ public class PlayerShoot : MonoBehaviour
         // Pokud je èas na další støelu a hráè støílí
         if (timer >= firingRate && isShooting)
         {
-            Fire(); // Vystøel støelu
-            timer = 0f; // Resetuj èasovaè
+            Fire();
+            timer = 0f;
         }
     }
 
