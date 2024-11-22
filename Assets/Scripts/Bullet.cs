@@ -10,6 +10,9 @@ public class Bullet : MonoBehaviour
     private Vector3 direction; // Smìr støely
     private Vector3 spawnPoint; // Poèáteèní bod støely
     private float timer = 0f;
+    public GameObject spawner;
+    public AttributeManager playerAtm;
+    public AttributeManager enemyAtm;
 
     void Start()
     {
@@ -41,5 +44,31 @@ public class Bullet : MonoBehaviour
         float x = timer * speed * direction.x;
         float z = timer * speed * direction.z;
         return new Vector3(x + spawnPoint.x, spawnPoint.y, z + spawnPoint.z);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (spawner != null)
+        {
+            playerAtm = spawner.GetComponent<AttributeManager>();
+            enemyAtm = other.GetComponent<AttributeManager>();
+            // Pokud kulka zasáhne svùj pùvodce, ignorujeme kolizi
+            if (other.gameObject == spawner)
+            {
+                return;
+            }
+
+            // Zkontrolujeme, zda zasažený objekt má komponentu Health
+            if (enemyAtm != null)
+            {
+                if (enemyAtm.health > 0f)
+                {
+                    playerAtm.DealDamage(enemyAtm.gameObject);
+                    Debug.Log(playerAtm.gameObject + " Udìlil damage " + playerAtm.attack + " objektu " + enemyAtm.gameObject);
+                }
+                // Znièíme kulku po zásahu
+                Destroy(gameObject);
+            }
+        }
     }
 }

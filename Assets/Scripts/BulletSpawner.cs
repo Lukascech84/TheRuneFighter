@@ -17,7 +17,6 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] private float firingRate = 0.04f;
     [SerializeField] private Vector3 spawnOffset = Vector3.zero; // Offset pro spawn støely
 
-    private GameObject spawnedBullet;
     private float timer = 0f;
 
     void Start()
@@ -56,6 +55,11 @@ public class BulletSpawner : MonoBehaviour
             spawnedBullet.GetComponent<Bullet>().speed = speed;
             spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
             spawnedBullet.GetComponent<Bullet>().SetDirection(bulletDirection);
+            Bullet bulletScript = spawnedBullet.GetComponent<Bullet>();
+            if(bulletScript != null)
+            {
+                bulletScript.spawner = gameObject;
+            }
         }
     }
 }

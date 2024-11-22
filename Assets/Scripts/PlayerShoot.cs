@@ -54,6 +54,11 @@ public class PlayerShoot : MonoBehaviour
             spawnedBullet.GetComponent<Bullet>().speed = bulletSpeed;
             spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
             spawnedBullet.GetComponent<Bullet>().SetDirection(bulletDirection);
+            Bullet bulletScript = spawnedBullet.GetComponent<Bullet>();
+            if (bulletScript != null)
+            {
+                bulletScript.spawner = gameObject;
+            }
         }
     }
 }
