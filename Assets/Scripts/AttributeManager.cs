@@ -6,6 +6,11 @@ public class AttributeManager : MonoBehaviour
 {
     public float health;
     public float attack;
+    public float dashCurrentCoolDown;
+    public float dashDistance = 2f;
+    public float dashCooldown = 2.5f;
+    public float dashDuration = 0.2f;
+
 
     public void TakeDamage(float amount)
     {

@@ -14,11 +14,6 @@ public class PlayerController : MonoBehaviour
     [Header("Rotation Settings")]
     [SerializeField] private float rotationSmoothTime = 0.15f;
 
-    [Header("Dash Settings")]
-    public float dashDistance = 2f;    // Distance of the dash
-    public float dashCooldown = 2.5f;   // Cooldown in seconds
-    public float dashDuration = 0.2f; // Time it takes to dash
-
     private Vector2 move, mouseLook, joystickLook;
     private Vector3 rotationTarget, playerVelocity;
     private bool isJumping;
@@ -27,11 +22,19 @@ public class PlayerController : MonoBehaviour
     private Vector3 dashDirection;
     private Camera mainCamera;
     private float rotationVelocity;
+    private AttributeManager atm;
+    private float dashDistance;
+    private float dashCooldown;
+    private float dashDuration;
 
     private void Awake()
     {
         mainCamera = Camera.main;
-    }
+        atm = gameObject.GetComponent<AttributeManager>();
+        dashDistance = atm.dashDistance;
+        dashCooldown = atm.dashCooldown;
+        dashDuration = atm.dashDuration;
+}
 
     // Input callbacks
     public void OnMove(InputAction.CallbackContext context) => move = context.ReadValue<Vector2>().normalized;
@@ -63,7 +66,8 @@ public class PlayerController : MonoBehaviour
         if (isDashing)
             return; // Skip regular movement updates during dash
 
-        dashCooldownTimer -= Time.deltaTime;
+        if(dashCooldownTimer >= 0) dashCooldownTimer -= Time.deltaTime;
+        atm.dashCurrentCoolDown = dashCooldownTimer;
 
         ApplyGravity();
         if (isPc) HandleMouseLook();
@@ -99,7 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 dashVelocity = dashDirection * (dashDistance / dashDuration);
             controller.Move(dashVelocity * Time.deltaTime);
-            dashElapsedTime += Time.deltaTime;
+            dashElapsedTime += Time.deltaTime;;
             yield return null;
         }
 
