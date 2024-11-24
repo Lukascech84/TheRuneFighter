@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.AI;
+﻿
 using UnityEngine;
+using UnityEngine.AI;
 
-public class enemy : MonoBehaviour
+public class EnemyAiTutorial : MonoBehaviour
 {
     public NavMeshAgent agent;
 
@@ -11,8 +10,7 @@ public class enemy : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public float health;
-
+    private float health;
 
     //Patroling
     public Vector3 walkPoint;
@@ -22,21 +20,28 @@ public class enemy : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public GameObject projectile;
 
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    private AttributeManager atm;
+    public GameObject bullet;
+    public float bulletLife = 1.5f;
+    public float speed = 6.5f;
+    [SerializeField] private float firingRate = 0.04f;
+    [SerializeField] private Vector3 spawnOffset = Vector3.zero; // Offset pro spawn střely
+    private float timer = 0f;
 
     private void Awake()
     {
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
+        health = atm.health;
     }
-
 
     private void Update()
     {
+        //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
@@ -58,7 +63,7 @@ public class enemy : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
     }
-    private void SearchWalkPoint() 
+    private void SearchWalkPoint()
     {
         //Calculate random point in range
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
@@ -68,7 +73,6 @@ public class enemy : MonoBehaviour
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
-
     }
 
     private void ChasePlayer()
@@ -78,39 +82,28 @@ public class enemy : MonoBehaviour
 
     private void AttackPlayer()
     {
-        //Make sure enemy doesnt move
+        //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
 
+        timer += Time.deltaTime;
+
         if (!alreadyAttacked)
         {
-            ///Attack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            if (timer >= firingRate)
+            {
+                Fire();
+                timer = 0;
+            }
 
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            ///
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-
     }
     private void ResetAttack()
     {
         alreadyAttacked = false;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if (health <= 0) Invoke(nameof(DestroyEnemy), .5f);
-    }
-
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()
@@ -118,6 +111,33 @@ public class enemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);  
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+    private void Fire()
+    {
+        if (bullet) // Zkontroluj, zda je přiřazen prefab střely
+        {
+            // Otočení směru o 90 stupňů kolem osy Y
+            Quaternion adjustedRotation = transform.rotation * Quaternion.Euler(0, 0, 0);
+
+            // Vypočítání přesné pozice pro spawn střely s offsetem
+            Vector3 spawnPosition = transform.position + transform.rotation * spawnOffset;
+
+            // Vytvoření střely na posunuté pozici s upravenou rotací
+            GameObject spawnedBullet = Instantiate(bullet, spawnPosition, adjustedRotation);
+
+            // Vypočítáme nový směr střely
+            Vector3 bulletDirection = adjustedRotation * Vector3.forward;
+
+            // Předáme směr a rychlost střely do komponenty Bullet
+            spawnedBullet.GetComponent<Bullet>().speed = speed;
+            spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
+            spawnedBullet.GetComponent<Bullet>().SetDirection(bulletDirection);
+            Bullet bulletScript = spawnedBullet.GetComponent<Bullet>();
+            if (bulletScript != null)
+            {
+                bulletScript.spawner = gameObject;
+            }
+        }
     }
 }

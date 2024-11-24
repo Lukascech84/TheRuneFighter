@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5953651122107393588}
   m_Layer: 0
-  m_Name: CHARACTER
+  m_Name: character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,6 +88,10 @@ PrefabInstance:
     - target: {fileID: 5931450177873448222, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_Name
       value: character
+      objectReference: {fileID: 0}
+    - target: {fileID: 5931450177873448222, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6420846838360004516, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -193,6 +197,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   attack: 20
+  dashCurrentCoolDown: 0
+  dashDistance: 2
+  dashCooldown: 2.5
+  dashDuration: 0.2
 --- !u!1001 &4988613294921315342
 PrefabInstance:
   m_ObjectHideFlags: 0
