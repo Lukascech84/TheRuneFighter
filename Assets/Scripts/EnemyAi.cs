@@ -1,8 +1,7 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAiTutorial : MonoBehaviour
+public class EnemyAi : MonoBehaviour
 {
     public NavMeshAgent agent;
 
@@ -14,16 +13,16 @@ public class EnemyAiTutorial : MonoBehaviour
 
     //Patroling
     public Vector3 walkPoint;
-    bool walkPointSet;
+    private bool walkPointSet;
     public float walkPointRange;
 
     //Attacking
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    private bool alreadyAttacked;
 
     //States
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    private bool playerInSightRange, playerInAttackRange;
     private AttributeManager atm;
     public GameObject bullet;
     public float bulletLife = 1.5f;
@@ -32,11 +31,10 @@ public class EnemyAiTutorial : MonoBehaviour
     [SerializeField] private Vector3 spawnOffset = Vector3.zero; // Offset pro spawn střely
     private float timer = 0f;
 
-    private void Awake()
+    private void Start()
     {
-        player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
-        health = atm.health;
+        if (atm != null) health = atm.health;
     }
 
     private void Update()

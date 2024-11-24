@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6347336833339529848}
   - component: {fileID: 5307900345519794845}
   - component: {fileID: 1131754378094682184}
+  - component: {fileID: 8875976307051250285}
   - component: {fileID: 5575740032603012279}
   - component: {fileID: 775697071100425360}
   - component: {fileID: 2122370520830276643}
-  - component: {fileID: 8875976307051250285}
   m_Layer: 0
   m_Name: ENEMY
   m_TagString: Untagged
@@ -87,6 +87,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8875976307051250285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816611346168151137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da332bc7934643429f8afbd7fc5880c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 500
+  attack: 30
+  dashCurrentCoolDown: 0
+  dashDistance: 0
+  dashCooldown: 0
+  dashDuration: 0
 --- !u!65 &5575740032603012279
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118,7 +136,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 11
+  m_Speed: 10
   m_Acceleration: 12
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -154,29 +172,9 @@ MonoBehaviour:
   walkPointRange: 5
   timeBetweenAttacks: 0.2
   sightRange: 20
-  attackRange: 10
-  playerInSightRange: 0
-  playerInAttackRange: 0
+  attackRange: 15
   bullet: {fileID: 8334517916396679245, guid: 37630904aee44e34585348e9fb826d1a, type: 3}
-  bulletLife: 1.5
-  speed: 6.5
-  firingRate: 0.04
+  bulletLife: 5
+  speed: 10
+  firingRate: 0.02
   spawnOffset: {x: 0, y: 0, z: 0}
---- !u!114 &8875976307051250285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8816611346168151137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7da332bc7934643429f8afbd7fc5880c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  attack: 10
-  dashCurrentCoolDown: 0
-  dashDistance: 0
-  dashCooldown: 0
-  dashDuration: 0
