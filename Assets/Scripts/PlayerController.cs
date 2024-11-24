@@ -14,14 +14,15 @@ public class PlayerController : MonoBehaviour
     [Header("Rotation Settings")]
     [SerializeField] private float rotationSmoothTime = 0.15f;
 
-    private Vector2 move, mouseLook, joystickLook;
+    private Vector2 move;
+    private Vector2 mouseLook;
+    private Vector2 joystickLook;
     private Vector3 rotationTarget, playerVelocity;
     private bool isJumping;
     private bool isDashing = false;
     private float dashCooldownTimer = 0f;
     private Vector3 dashDirection;
     private Camera mainCamera;
-    private float rotationVelocity;
     private AttributeManager atm;
     private float dashDistance;
     private float dashCooldown;
@@ -37,7 +38,8 @@ public class PlayerController : MonoBehaviour
 }
 
     // Input callbacks
-    public void OnMove(InputAction.CallbackContext context) => move = context.ReadValue<Vector2>().normalized;
+    public void OnMove(InputAction.CallbackContext context)
+        => move = context.ReadValue<Vector2>().normalized;
 
     public void OnMouseLook(InputAction.CallbackContext context)
         => mouseLook = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
