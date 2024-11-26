@@ -12,9 +12,11 @@ public class RaycastTransparency : MonoBehaviour
     void Update()
     {
         // Vzdálenost a smìr paprsku
-        Vector3 direction = (target.position - origin.position).normalized;
-        float distance = Vector3.Distance(origin.position, target.position);
-
+        if (target != null)
+        {
+            Vector3 direction = (target.position - origin.position).normalized;
+            float distance = Vector3.Distance(origin.position, target.position);
+        
         // Provádíme Raycast
         RaycastHit[] hits = Physics.RaycastAll(origin.position, direction, distance);
 
@@ -62,7 +64,8 @@ public class RaycastTransparency : MonoBehaviour
         affectedObjects = currentHits;
 
         // Debug vizualizace
-        Debug.DrawLine(origin.position, target.position, Color.red);
+        //Debug.DrawLine(origin.position, target.position, Color.red);
+        }
     }
 
     void ResetMaterialVisibility(Material material)
