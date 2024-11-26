@@ -26,12 +26,8 @@ public class RoomLoader : MonoBehaviour
         {
             // Deaktivace aktuální místnosti, pokud hráè opustí
             currentRoom.SetActive(false);
-
-            // Deaktivace sousedních místností
-            foreach (GameObject room in adjacentRooms)
-            {
-                room.SetActive(false);
-            }
         }
     }
+
+
 }
