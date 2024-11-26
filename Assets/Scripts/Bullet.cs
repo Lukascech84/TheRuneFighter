@@ -69,6 +69,7 @@ public class Bullet : MonoBehaviour
             }
         }
         // Znièíme kulku po zásahu
+        if (other.CompareTag("Player") || other.CompareTag("room")) return;
         Destroy(gameObject);
     }
 }

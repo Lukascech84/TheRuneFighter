@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         if (mainCamera == null) return;
 
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             Vector3 targetPosition = hitInfo.point;
             targetPosition.y = transform.position.y;
