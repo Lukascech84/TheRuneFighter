@@ -4,6 +4,36 @@
 - Vytvořit 3D hru, která bude zezačátku obsahovat alespoň 15 minut herní doby.
 - Zlepšit své znalosti game designu, programování v C#, modelování v Blenderu, atd.
 
+## Pokrok:
+
+- [x] Vytvoření základního testovacího levelu
+- [x] Základní pohyb pomocí WASD
+- [x] Skákání 
+- [x] Systém pro Dash
+- [x] Systém střelby hráče
+- [x] Systém pro poškození cílů/hráče
+- [x] základní GUI pro player health, dash
+- [x] Attribute Manager
+- [x] Druhý level, dungeon
+- [x] Základní AI pro Enemy
+- [x] Střelba pro Enemy AI
+- [x] Systém pro rendering pouze aktuálních místností v levelu
+- [x] Systém který nastaví materiál objektu na průhledný pokud se nachází mezi kamerou a hráčem
+- [x] Lepší VFX pro střelbu hráče
+- [ ] červený záblesk nepřítele po zásahu
+- [ ] Hlavní menu hry
+- [ ] Menu nastavení
+- [ ] Vylepšené rozhraní
+- [ ] Hotový model postavy
+- [ ] Hotové modely enemy
+- [ ] Combat systém s mečem
+    - [ ] Přepínání na meč
+    - [ ] Hitboxy
+    - [ ] Scripty
+- [ ] Více druhů enemy, long-range, close-range
+- [ ] Dokončit level0
+- [ ] Dokončit level1
+
 ## Použité technologie:
 - Unity
 - Blender
