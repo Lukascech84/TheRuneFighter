@@ -13,11 +13,19 @@ public class Bullet : MonoBehaviour
     public GameObject spawner;
     public AttributeManager playerAtm;
     public AttributeManager enemyAtm;
+    public GameObject muzzlePrefab;
+    public GameObject hitPrefab;
 
     void Start()
     {
         // Uložíme poèáteèní bod støely
         spawnPoint = transform.position;
+
+        if(muzzlePrefab != null)
+        {
+            var muzzleVFX = Instantiate(muzzlePrefab, transform.position, Quaternion.identity);
+            muzzleVFX.transform.forward = gameObject.transform.forward;
+        }
     }
 
     void Update()
@@ -52,6 +60,7 @@ public class Bullet : MonoBehaviour
         {
             playerAtm = spawner.GetComponent<AttributeManager>();
             enemyAtm = other.GetComponent<AttributeManager>();
+
             // Pokud kulka zasáhne svùj pùvodce, ignorujeme kolizi
             if (other.gameObject == spawner)
             {
@@ -64,12 +73,18 @@ public class Bullet : MonoBehaviour
                 if (enemyAtm.health > 0f)
                 {
                     playerAtm.DealDamage(enemyAtm.gameObject);
-                    //Debug.Log(playerAtm.gameObject + " Udìlil damage " + playerAtm.attack + " objektu " + enemyAtm.gameObject);
                 }
             }
         }
+
         // Znièíme kulku po zásahu
         if (other.CompareTag("Player") || other.CompareTag("room")) return;
+
+        if (hitPrefab != null)
+        {
+            var hitVFX = Instantiate(hitPrefab, transform.position, Quaternion.identity);
+            Destroy(hitVFX, 2f); // Optional: Znièíme efekt po 2 vteøinách
+        }
         Destroy(gameObject);
     }
 }
