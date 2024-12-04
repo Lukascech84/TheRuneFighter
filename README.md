@@ -20,7 +20,7 @@
 - [x] Systém pro rendering pouze aktuálních místností v levelu
 - [x] Systém který nastaví materiál objektu na průhledný pokud se nachází mezi kamerou a hráčem
 - [x] Lepší VFX pro střelbu hráče
-- [ ] červený záblesk nepřítele po zásahu
+- [x] červený záblesk nepřítele po zásahu
 - [ ] Hlavní menu hry
 - [ ] Menu nastavení
 - [ ] Vylepšené rozhraní
