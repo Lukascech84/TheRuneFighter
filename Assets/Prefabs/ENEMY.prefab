@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5575740032603012279}
   - component: {fileID: 775697071100425360}
   - component: {fileID: 2122370520830276643}
+  - component: {fileID: 3428117549324715483}
   m_Layer: 0
   m_Name: ENEMY
   m_TagString: Untagged
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 47c5c93ed9dc5c545b9bdd4214cb94cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da332bc7934643429f8afbd7fc5880c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
+  health: 150
   attack: 30
   dashCurrentCoolDown: 0
   dashDistance: 0
@@ -144,8 +145,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.99999994
-  m_BaseOffset: 0.49999997
+  m_Height: 1
+  m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &2122370520830276643
@@ -171,10 +172,24 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.2
-  sightRange: 20
-  attackRange: 15
+  sightRange: 10
+  attackRange: 5
   bullet: {fileID: 8334517916396679245, guid: 37630904aee44e34585348e9fb826d1a, type: 3}
   bulletLife: 5
   speed: 10
-  firingRate: 0.02
+  firingRate: 0.08
   spawnOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &3428117549324715483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816611346168151137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aee0ba913e3ee842b9242970bda4dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashRedMaterial: {fileID: 2100000, guid: fe154a1ae8b8d384883e8ee464eefc90, type: 2}
+  flashDuration: 0.05

@@ -322,7 +322,7 @@ MonoBehaviour:
   attack: 20
   dashCurrentCoolDown: 0
   dashDistance: 2
-  dashCooldown: 2.5
+  dashCooldown: 1
   dashDuration: 0.2
 --- !u!1001 &4988613294921315342
 PrefabInstance:
