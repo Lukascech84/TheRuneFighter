@@ -250,6 +250,8 @@ MonoBehaviour:
   enemyAtm: {fileID: 0}
   muzzlePrefab: {fileID: 7317980745708335596, guid: 19ab81416e19b1c4c93cfa307105aec8, type: 3}
   hitPrefab: {fileID: 320921190554142508, guid: b005e3306d68363429278c3031be2046, type: 3}
+  flashRedMaterial: {fileID: 2100000, guid: fe154a1ae8b8d384883e8ee464eefc90, type: 2}
+  flashDuration: 0.05
 --- !u!1 &3441148672493603554
 GameObject:
   m_ObjectHideFlags: 0
