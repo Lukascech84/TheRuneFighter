@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Rotation Settings")]
     [SerializeField] private float rotationSmoothTime = 0.15f;
+    [SerializeField] private LayerMask layersToInclude; // Pøidáno pole pro definici vrstev, které chcete zahrnout do raycastu.
 
     private Vector2 move;
     private Vector2 mouseLook;
@@ -134,7 +135,8 @@ public class PlayerController : MonoBehaviour
         if (mainCamera == null) return;
 
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+        // Použití layersToInclude namísto Physics.DefaultRaycastLayers
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, layersToInclude, QueryTriggerInteraction.Ignore))
         {
             Vector3 targetPosition = hitInfo.point;
             targetPosition.y = transform.position.y;

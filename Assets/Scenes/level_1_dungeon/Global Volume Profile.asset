@@ -105,14 +105,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   lift:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.99577034, y: 0.9968277, z: 1, w: -0.000000004249032}
   gamma:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.9866272, y: 0.9940789, z: 1, w: -0.000000117717455}
   gain:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.98389333, y: 1, z: 0.99414843, w: 0}
 --- !u!114 &3676046774564914244
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -137,7 +137,7 @@ MonoBehaviour:
     m_Value: 0.425
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.252
+    m_Value: 0.225
   rounded:
     m_OverrideState: 0
     m_Value: 0
