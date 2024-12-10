@@ -22,7 +22,7 @@
 - [x] Lepší VFX pro střelbu hráče
 - [x] červený záblesk nepřítele po zásahu
 - [x] zásobník, přebíjení, pro hlavní zbraň
-- [ ] Hlavní menu hry
+- [x] Hlavní menu hry
 - [ ] Menu nastavení
 - [ ] Vylepšené rozhraní
 - [ ] Hotový model postavy
