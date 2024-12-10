@@ -969,6 +969,17 @@ Transform:
   - {fileID: 1968302981}
   m_Father: {fileID: 1560723490}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &552279713 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1598920250263780788, guid: 6d966c15d8d4c7740a7a44347769dd10, type: 3}
+  m_PrefabInstance: {fileID: 4656086745448772984}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!64 &615705927
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -991,6 +1002,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2212009239438826721, guid: 82eb5a768fc4e4446a0aa1a57ae31d52, type: 3}
+--- !u!114 &657670711 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2606286173447522947, guid: 6d966c15d8d4c7740a7a44347769dd10, type: 3}
+  m_PrefabInstance: {fileID: 4656086745448772984}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!64 &682365757
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2422,10 +2444,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 266005503424876255, guid: cc42ab48097863747bf11f500502a327, type: 3}
-      propertyPath: dashCooldown
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2877495549337465463, guid: cc42ab48097863747bf11f500502a327, type: 3}
       propertyPath: m_Name
       value: CHARACTER
@@ -6683,6 +6701,18 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 779426655}
+    - target: {fileID: 6404572761849191742, guid: e6b621094ba6f4f449b694231f8d122a, type: 3}
+      propertyPath: max
+      value: 
+      objectReference: {fileID: 552279713}
+    - target: {fileID: 6404572761849191742, guid: e6b621094ba6f4f449b694231f8d122a, type: 3}
+      propertyPath: current
+      value: 
+      objectReference: {fileID: 657670711}
+    - target: {fileID: 6404572761849191742, guid: e6b621094ba6f4f449b694231f8d122a, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 290454133}
     - target: {fileID: 6670187508757557108, guid: e6b621094ba6f4f449b694231f8d122a, type: 3}
       propertyPath: dashBar
       value: 
