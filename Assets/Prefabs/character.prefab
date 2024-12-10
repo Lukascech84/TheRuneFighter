@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -186,7 +186,7 @@ PrefabInstance:
     - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7262523317295138099}
+      objectReference: {fileID: 8614477241766350696}
     - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerShoot, Assembly-CSharp
+      value: PlayerShootWithMagazine, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 984151884147978452, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -298,9 +298,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5931450177873448222, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7262523317295138099}
-    - targetCorrespondingSourceObject: {fileID: 5931450177873448222, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8614477241766350696}
     - targetCorrespondingSourceObject: {fileID: 5931450177873448222, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
       insertIndex: -1
@@ -316,23 +313,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5931450177873448222, guid: c2b1768eaa62f794599f71bb4a4684c5, type: 3}
   m_PrefabInstance: {fileID: 4223611000380806543}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7262523317295138099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7551966278407313553}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9e209849caf1347b43e4d0387468d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 3400661835652928387, guid: cbd8419e9ae554249a861165a4ddb2f5, type: 3}
-  bulletLife: 20
-  bulletSpeed: 25
-  firingRate: 0.08
-  spawnOffset: {x: 0, y: 0, z: 0.5}
 --- !u!114 &8614477241766350696
 MonoBehaviour:
   m_ObjectHideFlags: 0
