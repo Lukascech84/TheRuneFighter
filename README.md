@@ -21,6 +21,7 @@
 - [x] Systém který nastaví materiál objektu na průhledný pokud se nachází mezi kamerou a hráčem
 - [x] Lepší VFX pro střelbu hráče
 - [x] červený záblesk nepřítele po zásahu
+- [x] zásobník, přebíjení, pro hlavní zbraň
 - [ ] Hlavní menu hry
 - [ ] Menu nastavení
 - [ ] Vylepšené rozhraní
