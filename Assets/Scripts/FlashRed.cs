@@ -7,7 +7,7 @@ public class FlashRed : MonoBehaviour
 
     public Material flashRedMaterial;
     public float flashDuration = 0.05f;
-    private Renderer renderer;
+    private new Renderer renderer;
     private Material originalMat;
 
     private GameObject spawner;
