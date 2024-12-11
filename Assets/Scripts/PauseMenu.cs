@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pausemenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
@@ -22,14 +22,14 @@ public class pausemenu : MonoBehaviour
         
     }
 
-    void Resume ()
+    void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
-    void Pause ();
+    void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
