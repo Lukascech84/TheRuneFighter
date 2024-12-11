@@ -36,7 +36,7 @@ public class PlayerShootWithMagazine: MonoBehaviour
 
     private void Update()
     {
-        if (isReloading) return; // Pokud pøebíjíme, zastavíme všechny ostatní akce
+        if (isReloading || Time.timeScale == 0) return; // Pokud pøebíjíme, zastavíme všechny ostatní akce
 
         timer += Time.deltaTime;
 

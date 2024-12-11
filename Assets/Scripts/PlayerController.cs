@@ -66,6 +66,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0) return;
+
         if (isDashing)
             return; // Skip regular movement updates during dash
 
