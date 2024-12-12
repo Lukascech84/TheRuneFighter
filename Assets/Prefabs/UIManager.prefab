@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5912332413179727861}
   - component: {fileID: 6670187508757557108}
   - component: {fileID: 6404572761849191742}
+  - component: {fileID: 331003069243547434}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  easeHealthBar: {fileID: 0}
   character: {fileID: 0}
 --- !u!114 &6670187508757557108
 MonoBehaviour:
@@ -77,3 +79,16 @@ MonoBehaviour:
   current: {fileID: 0}
   max: {fileID: 0}
   character: {fileID: 0}
+--- !u!114 &331003069243547434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5774434804029684343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ded5f59bbe748b1a7ece5f43891f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 0}

@@ -7,9 +7,11 @@ public class HealthManager : MonoBehaviour
 {
 
     public Image healthBar;
+    public Image easeHealthBar;
     private float healthAmount;
     public GameObject character;
     private AttributeManager player;
+    private float lerpSpeed = 0.025f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +22,19 @@ public class HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthAmount = player.health / 100f;
         if (player == null)
         {
             healthBar.fillAmount = 0;
         }
-        else
+        else if(healthBar.fillAmount != healthAmount)
         {
-            healthAmount = player.health;
-            healthBar.fillAmount = healthAmount / 100f;
+            healthBar.fillAmount = healthAmount;
+        }
+
+        if(healthBar.fillAmount != easeHealthBar.fillAmount)
+        {
+            easeHealthBar.fillAmount = Mathf.Lerp(easeHealthBar.fillAmount, healthAmount, lerpSpeed);
         }
         
         
