@@ -9,12 +9,12 @@ public class AmmoManager : MonoBehaviour
     public TextMeshProUGUI current;
     public TextMeshProUGUI max;
     public GameObject character;
-    private PlayerShootWithMagazine atm;
+    private PlayerCombatRanged atm;
 
     // Start is called before the first frame update
     void Start()
     {
-        atm = character.GetComponent<PlayerShootWithMagazine>();
+        atm = character.GetComponent<PlayerCombatRanged>();
     }
 
     // Update is called once per frame
