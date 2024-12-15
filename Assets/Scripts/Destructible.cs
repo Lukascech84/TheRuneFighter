@@ -3,7 +3,6 @@ using UnityEngine;
 public class Destructible : MonoBehaviour
 {
     public GameObject destroyedVersion;
-    private GameObject spawner;
 
     void Start()
     {

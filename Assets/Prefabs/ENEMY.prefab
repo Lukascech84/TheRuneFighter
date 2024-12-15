@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 775697071100425360}
   - component: {fileID: 2122370520830276643}
   - component: {fileID: 3428117549324715483}
-  m_Layer: 0
+  - component: {fileID: 5925614258558555699}
+  m_Layer: 8
   m_Name: ENEMY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 150
-  attack: 30
+  RangeDamage: 20
+  MeleeDamage: 0
   dashCurrentCoolDown: 0
   dashDistance: 0
   dashCooldown: 0
@@ -180,6 +182,20 @@ MonoBehaviour:
   firingRate: 0.08
   spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &3428117549324715483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816611346168151137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aee0ba913e3ee842b9242970bda4dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashRedMaterial: {fileID: 2100000, guid: fe154a1ae8b8d384883e8ee464eefc90, type: 2}
+  flashDuration: 0.05
+--- !u!114 &5925614258558555699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

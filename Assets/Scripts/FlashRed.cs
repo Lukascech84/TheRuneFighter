@@ -21,7 +21,8 @@ public class FlashRed : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         spawner = other.GetComponent<Bullet>().spawner;
-        if (spawner != null) {
+
+        if (other.GetComponent<Bullet>() != null) {
             if (spawner == gameObject) return;
             StartCoroutine(Flash(flashDuration));
             }
@@ -30,12 +31,8 @@ public class FlashRed : MonoBehaviour
 
     private IEnumerator Flash(float duration)
     {
-        
-
         if (renderer != null)
         {
-            
-
             renderer.material = flashRedMaterial;
             yield return new WaitForSeconds(duration);
             renderer.material = originalMat;

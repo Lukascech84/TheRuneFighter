@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour
             {
                 if (enemyAtm.health > 0f)
                 {
-                    playerAtm.DealDamage(enemyAtm.gameObject);
+                    playerAtm.DealDamage(enemyAtm.gameObject, playerAtm.RangeDamage);
                 }
             }
         }

@@ -30,7 +30,7 @@ public class PlayerMainCombatScript : MonoBehaviour
     {
         //RangedWeapon.SetActive(true);
         RangedScript.enabled = true;
-        //MeleeWeapon.SetActive(false);
+        MeleeWeapon.SetActive(false);
         MeleeScript.enabled = false;
     }
 
@@ -38,7 +38,7 @@ public class PlayerMainCombatScript : MonoBehaviour
     {
         //RangedWeapon.SetActive(false);
         RangedScript.enabled = false;
-        //MeleeWeapon.SetActive(true);
+        MeleeWeapon.SetActive(true);
         MeleeScript.enabled = true;
     }
 }

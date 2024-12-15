@@ -21,7 +21,7 @@ public class PlayerCombatRanged: MonoBehaviour
     private float timer = 0f; // Èasovaè pro støelbu
 
 
-    public void OnShoot(InputAction.CallbackContext context)
+    public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed) isShooting = true;
         else isShooting = false;
