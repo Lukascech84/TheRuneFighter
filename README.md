@@ -28,7 +28,7 @@
 - [ ] Hotový model postavy
 - [ ] Hotové modely enemy
 - [ ] Combat systém s mečem
-    - [ ] Přepínání na meč
+    - [x] Přepínání na meč
     - [ ] Hitboxy
     - [ ] Scripty
 - [ ] Více druhů enemy, long-range, close-range
