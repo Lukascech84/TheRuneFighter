@@ -23,9 +23,11 @@
 - [x] červený záblesk nepřítele po zásahu
 - [x] zásobník, přebíjení, pro hlavní zbraň
 - [x] Hlavní menu hry
-- [ ] Menu nastavení
-- [ ] Vylepšené rozhraní
+- [x] Menu nastavení
+- [W.I.P] Vylepšené rozhraní
 - [ ] Hotový model postavy
+    - [x] Hotový model postavy
+    - [ ] Animace
 - [ ] Hotové modely enemy
 - [ ] Combat systém s mečem
     - [x] Přepínání na meč
