@@ -1164,6 +1164,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 593459445487405467, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 821378287947904735, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1039275300419288860, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: offset.y
       value: 6.3
@@ -1184,10 +1192,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5526772123112412590, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6729535443014101755, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7667582997056791607, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: attackPoint
       value: 
       objectReference: {fileID: 868523700}
+    - target: {fileID: 8768842500050687311, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9143811347310892753, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.99
