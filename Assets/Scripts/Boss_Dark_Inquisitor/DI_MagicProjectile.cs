@@ -2,24 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class DI_MagicProjectile : MonoBehaviour
 {
-    public float bulletLife = 1f; // Doba životnosti støely
-    public float speed = 1f; // Rychlost støely
+    public float bulletLife;
+    public float speed;
 
-    private Vector3 direction; // Smìr støely
-    private Vector3 spawnPoint; // Poèáteèní bod støely
+    private Vector3 direction;
+    private Vector3 spawnPoint;
     private float timer = 0f;
-    public GameObject spawner;
+
     public AttributeManager playerAtm;
-    public AttributeManager enemyAtm;
-    public DI_BossAttributeManager DIAtm;
+    public DI_BossAttributeManager bossAtm;
+
+    public GameObject Spawner;
+    public GameObject Player;
 
     public GameObject muzzlePrefab;
     public GameObject hitPrefab;
 
     void Start()
     {
+        bossAtm = Spawner.GetComponent<DI_BossAttributeManager>();
+        playerAtm = Player.GetComponent<AttributeManager>();
+
+        bulletLife = bossAtm.ProjectileDamage;
+        speed = bossAtm.ProjectileSpeed;
+
         spawnPoint = transform.position;
 
         if (muzzlePrefab != null)
@@ -52,36 +60,18 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (spawner != null)
+        if (Spawner != null)
         {
-            playerAtm = spawner.GetComponent<AttributeManager>();
+            if (other.gameObject == Spawner) return;
 
-            if (other.GetComponent<AttributeManager>() != null)
+
+            if (other.gameObject == Player)
             {
-                
-                enemyAtm = other.GetComponent<AttributeManager>();
-
-                if (other.gameObject == spawner) return;
-
-                if (enemyAtm != null)
+                if (playerAtm != null)
                 {
-                    if (enemyAtm.health > 0f)
+                    if (playerAtm.health > 0f)
                     {
-                        playerAtm.DealDamage(enemyAtm.gameObject, playerAtm.RangeDamage);
-                    }
-                }
-            }
-            else if(other.GetComponent<DI_BossAttributeManager>() != null)
-            {
-                DIAtm = other.GetComponent<DI_BossAttributeManager>();
-
-                if (other.gameObject == spawner) return;
-
-                if (DIAtm != null)
-                {
-                    if (DIAtm.CurrentHealth > 0f)
-                    {
-                        DIAtm.TakeDamage(playerAtm.RangeDamage);
+                        bossAtm.DealDamage(playerAtm.gameObject, bossAtm.ProjectileDamage);
                     }
                 }
             }

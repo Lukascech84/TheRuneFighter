@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashRed : MonoBehaviour
+public class DI_FlashRed : MonoBehaviour
 {
 
     public Material flashRedMaterial;
@@ -21,12 +21,10 @@ public class FlashRed : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Bullet bullet = other.GetComponent<Bullet>();
-        if (bullet != null) // Ovìøí, zda objekt má komponentu Bullet
+        if (bullet != null)
         {
-            spawner = bullet.spawner; // Pøistupuje k vlastnosti spawner pouze, pokud Bullet existuje
-
-            if (spawner == gameObject) return; // Pokud je spawner totožný s tímto objektem, nic nedìlej
-
+            spawner = bullet.spawner;
+            if (spawner == gameObject) return;
             StartCoroutine(Flash(flashDuration));
         }
     }
