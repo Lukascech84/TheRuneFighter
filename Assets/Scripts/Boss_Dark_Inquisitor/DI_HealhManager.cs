@@ -16,7 +16,8 @@ public class DI_HealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       BossAtm =  Boss.GetComponent<DI_BossAttributeManager>();
+        if (Boss == null) enabled = false;
+        BossAtm =  Boss.GetComponent<DI_BossAttributeManager>();
     }
 
     // Update is called once per frame

@@ -180,7 +180,7 @@ public class DI_MainScript : MonoBehaviour
             Vector3 spawnPosition = GetRandomPositionInArena(ArenaBounds.bounds);
             GameObject minion = Instantiate(MinionPrefab, spawnPosition, Quaternion.identity);
             activeMinions.Add(minion);
-            MinionPrefab.GetComponent<EnemyAi>().player = Player.transform;
+            minion.GetComponent<EnemyAi>().player = Player.transform;
         }
     }
 

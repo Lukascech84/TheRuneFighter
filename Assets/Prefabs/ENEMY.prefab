@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 150
-  RangeDamage: 20
+  RangeDamage: 0
   MeleeDamage: 0
   dashCurrentCoolDown: 0
   dashDistance: 0
