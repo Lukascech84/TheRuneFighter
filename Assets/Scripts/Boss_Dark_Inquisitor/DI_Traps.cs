@@ -8,7 +8,6 @@ public class DI_Traps : MonoBehaviour
     private float explosionRadius;
     private float damage;
 
-    private AttributeManager playerAtm;
     private DI_BossAttributeManager bossAtm;
     private AttributeManager hitAtm;
 
@@ -23,7 +22,6 @@ public class DI_Traps : MonoBehaviour
         if (Spawner == null || Player == null) return;
 
         bossAtm = Spawner.GetComponent<DI_BossAttributeManager>();
-        playerAtm = Player.GetComponent<AttributeManager>();
 
         delay = bossAtm.TrapDelayWhenSpawned;
         explosionRadius = bossAtm.TrapExplosionRadius;

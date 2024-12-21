@@ -16,7 +16,7 @@ public class DI_MainScript : MonoBehaviour
     private bool isShooting;
     private float FireRateTimer = 0f;
 
-    private float TrapSpawnRate = 2f;
+    private float TrapSpawnRate;
     private float TrapRateTimer = 0f;
     private bool isTrapping;
 
@@ -24,6 +24,10 @@ public class DI_MainScript : MonoBehaviour
     private bool hasMinionsSpawned = false;
     private bool hasAllMinionsDied = true;
     private List<GameObject> activeMinions = new List<GameObject>();
+
+    private int RunesNumber;
+    private GameObject RunePrefab;
+    private bool hasRunesBeenActive = false;
 
     private int CurrentPhase;
     private float MaxHealth;
@@ -42,6 +46,9 @@ public class DI_MainScript : MonoBehaviour
         MagicProjectilePrefab = BossAtm.MagicProjectilePrefab;
         TrapPrefab = BossAtm.TrapPrefab;
         MinionPrefab = BossAtm.MinionPrefab;
+        RunesNumber = BossAtm.RunesNumber;
+        RunePrefab = BossAtm.RunesPrefab;
+        TrapSpawnRate = BossAtm.TrapSpawnRate;
         Player = BossAtm.Player;
         MaxHealth = BossAtm.Health;
     }
@@ -113,7 +120,6 @@ public class DI_MainScript : MonoBehaviour
         CurrentPhase = 3;
 
         FireRateTimer += Time.deltaTime;
-        TrapRateTimer += Time.deltaTime;
 
         if (FireRateTimer >= firingRate && isShooting)
         {
@@ -122,12 +128,7 @@ public class DI_MainScript : MonoBehaviour
             FireRateTimer = 0f;
         }
 
-        if (TrapRateTimer >= TrapSpawnRate && isTrapping)
-        {
-            if (!Player) return;
-            PlaceTrap();
-            TrapRateTimer = 0f;
-        }
+        RuneStorm();
     }
 
     private Vector3 GetRandomPositionInArena(Bounds bounds)
@@ -202,6 +203,26 @@ public class DI_MainScript : MonoBehaviour
             CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
 
             BossAtm.CurrentHealth = CurrentHealth;
+        }
+    }
+
+    private void RuneStorm()
+    {
+        if (!hasRunesBeenActive)
+        {
+            hasRunesBeenActive = true;
+            for (int i = 0; i < RunesNumber; i++) // 10 run
+            {
+                Vector3 randomPosition = GetRandomPositionInArena(ArenaBounds.bounds);
+                GameObject spawnedRune = Instantiate(RunePrefab, randomPosition, Quaternion.identity);
+
+                DI_Runes runesScript = spawnedRune.GetComponent<DI_Runes>();
+
+                if (runesScript != null)
+                {
+                    runesScript.Spawner = gameObject;
+                }
+            }
         }
     }
 

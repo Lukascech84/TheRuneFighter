@@ -12,6 +12,7 @@ public class DI_BossAttributeManager : MonoBehaviour
     public GameObject MagicProjectilePrefab;
     public GameObject MinionPrefab;
     public GameObject TrapPrefab;
+    public GameObject RunesPrefab;
     public GameObject Player;
 
     public float ProjectileLife;
@@ -21,10 +22,17 @@ public class DI_BossAttributeManager : MonoBehaviour
     public float ProjectileFiringRate;
 
     public float TrapDamage;
+    public float TrapSpawnRate;
     public float TrapExplosionRadius;
     public float TrapDelayWhenSpawned;
 
     public int MinionsNumber;
+
+    public float RuneActivationDelay;
+    public float RuneExplosionRadius;
+    public float RuneDamage;
+    public int RunesNumber;
+
 
     public void TakeDamage(float dmg)
     {
