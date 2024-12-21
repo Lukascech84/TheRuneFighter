@@ -83,7 +83,7 @@ public class DI_MainScript : MonoBehaviour
         {
             isShooting = true;
             isTrapping = true;
-            EnterPhase3();
+            StartCoroutine(EnterPhase3());
         }
     }
 
@@ -130,20 +130,17 @@ public class DI_MainScript : MonoBehaviour
         CurrentPhase = 2;
     }
 
-    private void EnterPhase3()
+    private IEnumerator EnterPhase3()
     {
         CurrentPhase = 3;
 
-        FireRateTimer += Time.deltaTime;
-
-        if (FireRateTimer >= firingRate && isShooting)
-        {
-            if (!Player) return;
-            Fire();
-            FireRateTimer = 0f;
-        }
-
         RuneStorm();
+
+        yield return new WaitForSeconds(5);
+
+        hasRunesBeenActive = false;
+
+        Teleport();
     }
 
     private Vector3 GetRandomPositionInArena(Bounds bounds)
@@ -240,6 +237,12 @@ public class DI_MainScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    void Teleport()
+    {
+        Vector3 randomPosition = GetRandomPositionInArena(ArenaBounds.bounds);
+        transform.position = randomPosition;
     }
 
 
