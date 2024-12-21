@@ -309,6 +309,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7176658974953953295, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 629438688}
+    - target: {fileID: 7176658974953953295, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnJump
+      objectReference: {fileID: 0}
     - target: {fileID: 9143811347310892753, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.37
@@ -359,6 +367,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 867107071085053675, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
   m_PrefabInstance: {fileID: 629438680}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &629438688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1612666170241352201, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+  m_PrefabInstance: {fileID: 629438680}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629438681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11cfb28c7cb54d246807ce8da3d2eefa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &678710934
 GameObject:
   m_ObjectHideFlags: 0

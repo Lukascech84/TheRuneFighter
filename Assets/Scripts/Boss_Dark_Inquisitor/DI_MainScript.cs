@@ -57,23 +57,29 @@ public class DI_MainScript : MonoBehaviour
     {
         if (Time.timeScale == 0) return;
         CurrentHealth = BossAtm.CurrentHealth;
-        CheckMinionStatus();
+        if (!hasAllMinionsDied)
+        {
+            CheckMinionStatus();
+        }
+      
         HealBoss();
 
-        if (CurrentHealth >= 100 || CurrentPhase == 1)
+        //Debug.Log(CurrentPhase + " + " + CurrentHealth);
+
+        if (CurrentHealth >= 100 && (CurrentPhase == 1 || CurrentPhase == 2))
         {
             isShooting = true;
             isTrapping = true;
             EnterPhase1();
         }
-        if (CurrentHealth <= 100 || (CurrentPhase == 1 && CurrentPhase == 2))
+        if (CurrentHealth < 100 && (CurrentPhase == 1 || CurrentPhase == 2))
         {
-            isShooting = false;
+            isShooting = true;
             isTrapping = false;
             hasAllMinionsDied = false;
             EnterPhase2();
         }
-        if (CurrentHealth <= 20 || (CurrentPhase == 2 && CurrentPhase == 3))
+        if (CurrentHealth <= 50 && (CurrentPhase == 2 || CurrentPhase == 3))
         {
             isShooting = true;
             isTrapping = true;
@@ -111,6 +117,15 @@ public class DI_MainScript : MonoBehaviour
             BossAtm.isInvincible = true;
         }
         hasMinionsSpawned = true;
+
+        FireRateTimer += Time.deltaTime;
+
+        if (FireRateTimer >= firingRate && isShooting)
+        {
+            if (!Player) return;
+            Fire();
+            FireRateTimer = 0f;
+        }
 
         CurrentPhase = 2;
     }
@@ -221,6 +236,7 @@ public class DI_MainScript : MonoBehaviour
                 if (runesScript != null)
                 {
                     runesScript.Spawner = gameObject;
+                    runesScript.activationDelay = Random.Range(BossAtm.RuneActivationDelay - 2, BossAtm.RuneActivationDelay + 2); 
                 }
             }
         }

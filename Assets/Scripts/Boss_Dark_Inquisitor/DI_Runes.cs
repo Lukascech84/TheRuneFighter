@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DI_Runes : MonoBehaviour
 {
-    private float activationDelay;
+    public float activationDelay;
     private float explosionRadius;
     private float runeDamage;
 
@@ -16,7 +16,6 @@ public class DI_Runes : MonoBehaviour
     {
         bossAtm = Spawner.GetComponent<DI_BossAttributeManager>();
 
-        activationDelay = bossAtm.RuneActivationDelay;
         explosionRadius = bossAtm.RuneExplosionRadius;
         runeDamage = bossAtm.RuneDamage;
 
