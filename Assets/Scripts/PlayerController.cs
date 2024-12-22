@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 dashDirection;
     private Camera mainCamera;
     private AttributeManager atm;
+    private Animator animator;
+    private float velocityZ = 0f;
+    private float velocityX = 0f;
     private float dashDistance;
     private float dashCooldown;
     private float dashDuration;
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         mainCamera = Camera.main;
         atm = gameObject.GetComponent<AttributeManager>();
+        animator = gameObject.GetComponent<Animator>();
         dashDistance = atm.dashDistance;
         dashCooldown = atm.dashCooldown;
         dashDuration = atm.dashDuration;
@@ -53,6 +57,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed && controller.isGrounded)
         {
             isJumping = true;
+            animator.SetTrigger("jump");
         }
     }
 
@@ -77,6 +82,15 @@ public class PlayerController : MonoBehaviour
         ApplyGravity();
         if (isPc) HandleMouseLook();
         else HandleJoystickLook();
+
+
+        UpdateBlendTreeValues();
+
+        // Nastavení hodnot v Animatoru
+        animator.SetFloat("VelocityZ", Mathf.Lerp(-1.5f, 1.5f, Mathf.InverseLerp(-speed, speed, velocityZ)));
+        animator.SetFloat("VelocityX", Mathf.Lerp(-1.5f, 1.5f, Mathf.InverseLerp(-speed, speed, velocityX)));
+        Debug.Log(velocityX+"        "+velocityZ);
+
     }
 
     private void PerformDash()
@@ -194,16 +208,62 @@ public class PlayerController : MonoBehaviour
         ApplyMovement(movement);
     }
 
+
     private void ApplyMovement(Vector3 movement)
     {
         if (isJumping && controller.isGrounded)
         {
             playerVelocity.y = jumpSpeed;
             isJumping = false;
+           
         }
+
+
+        // Nastavujeme rychlost pohybu
+        Vector3 movementWithoutY = new Vector3(movement.x, 0, movement.z);
+        playerVelocity.z = movementWithoutY.z * speed;
+        playerVelocity.x = movementWithoutY.x * speed;
 
         movement *= speed;
         movement.y = playerVelocity.y;
+        PlayerCombatRanged rangeScript = gameObject.GetComponent<PlayerCombatRanged>();
+        //rangeScript.spawnOffset.y += movement.y;
         controller.Move(movement * Time.deltaTime);
     }
+
+    private void UpdateBlendTreeValues()
+    {
+        // Pozice kurzoru ve svìtových souøadnicích
+        Vector3 mouseWorldPosition = GetMouseWorldPosition();
+
+        // Smìr od postavy ke kurzoru (v rovinì XZ)
+        Vector3 directionToCursor = (mouseWorldPosition - transform.position);
+        directionToCursor.y = 0; // Zajistíme, že smìr je v rovinì XZ
+        directionToCursor.Normalize();
+
+        // Rychlost postavy v rovinì XZ
+        Vector3 playerVelocityFlat = new Vector3(playerVelocity.x, 0, playerVelocity.z);
+
+        // Projekce rychlosti na smìr ke kurzoru (velocityZ)
+        velocityZ = Vector3.Dot(playerVelocityFlat, directionToCursor);
+
+        // Kolmý smìr ke kurzoru (otoèení o 90° kolem osy Y)
+        Vector3 perpendicularDirection = Vector3.Cross(Vector3.up, directionToCursor);
+
+        // Projekce rychlosti na kolmý smìr (velocityX)
+        velocityX = Vector3.Dot(playerVelocityFlat, perpendicularDirection);
+    }
+
+    // Získání pozice kurzoru ve svìtových souøadnicích
+    private Vector3 GetMouseWorldPosition()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, layersToInclude, QueryTriggerInteraction.Ignore))
+        {
+            return hitInfo.point;
+        }
+        return transform.position; // Pokud raycast nezasáhne, vrátí pozici postavy
+    }
+
 }
+

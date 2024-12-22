@@ -82,7 +82,7 @@ public class DI_Traps : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
 
     void OnDrawGizmosSelected()

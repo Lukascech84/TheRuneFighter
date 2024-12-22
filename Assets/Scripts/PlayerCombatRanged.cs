@@ -9,7 +9,7 @@ public class PlayerCombatRanged: MonoBehaviour
     public float bulletLife = 1.5f; // Doba životnosti støely
     public float bulletSpeed = 6.5f; // Rychlost støely
     [SerializeField] private float firingRate = 0.04f; // Interval mezi støelami
-    [SerializeField] private Vector3 spawnOffset = Vector3.zero; // Offset pro spawn støely
+    public Vector3 spawnOffset = Vector3.zero; // Offset pro spawn støely
 
     // Zásobník
     [SerializeField] public int magazineSize = 30; // Kapacita zásobníku
