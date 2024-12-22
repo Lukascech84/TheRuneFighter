@@ -15,6 +15,8 @@ public class DI_MainScript : MonoBehaviour
     private float firingRate;
     private bool isShooting;
     private float FireRateTimer = 0f;
+    private float phase3FireRate;
+    private float phase3FireRateTimer = 0f;
 
     private float TrapSpawnRate;
     private bool isTrapping;
@@ -55,6 +57,7 @@ public class DI_MainScript : MonoBehaviour
         MaxHealth = BossAtm.Health;
         timeBetweenTeleports = BossAtm.timeBetweenTeleports;
         minTeleportDistance = BossAtm.TeleportDistanceFromPlayer;
+        phase3FireRate = BossAtm.phase3FireRate;
     }
 
     private void Update()
@@ -70,24 +73,33 @@ public class DI_MainScript : MonoBehaviour
 
         //Debug.Log(CurrentPhase + " + " + CurrentHealth);
 
-        if (CurrentHealth >= 1000 && (CurrentPhase == 1 || CurrentPhase == 2))
+        if (CurrentHealth >= (BossAtm.Health / 100 * BossAtm.PhaseTwoHpPercentage) && (CurrentPhase == 1 || CurrentPhase == 2))
         {
             isShooting = true;
             isTrapping = true;
             EnterPhase1();
         }
-        if (CurrentHealth < 1000 && (CurrentPhase == 1 || CurrentPhase == 2))
+        if (CurrentHealth < (BossAtm.Health / 100 * BossAtm.PhaseTwoHpPercentage) && (CurrentPhase == 1 || CurrentPhase == 2))
         {
             isShooting = true;
             isTrapping = false;
             hasAllMinionsDied = false;
             EnterPhase2();
         }
-        if (CurrentHealth <= 500 && (CurrentPhase == 2 || CurrentPhase == 3))
+        if (CurrentHealth <= (BossAtm.Health / 100 * BossAtm.PhaseThreeHpPercentage) && (CurrentPhase == 2 || CurrentPhase == 3))
         {
             isShooting = true;
             isTrapping = true;
             EnterPhase3();
+            if (isShooting)
+            {
+                phase3FireRateTimer += Time.deltaTime;
+                if (phase3FireRateTimer >= phase3FireRate)
+                {
+                    Fire();
+                    phase3FireRateTimer = 0f;
+                }
+            }
         }
     }
 
@@ -143,10 +155,12 @@ public class DI_MainScript : MonoBehaviour
             if (!hasRunesBeenActive) // Zkontroluj, zda runy už nejsou aktivní
             {
                 hasRunesBeenActive = true;
-                StartCoroutine(TeleportAndSpawnRunes());
+                StartCoroutine(Phase3());
             }
         }
     }
+
+
 
     private Vector3 GetRandomPositionInArena(Bounds bounds)
     {
@@ -157,7 +171,7 @@ public class DI_MainScript : MonoBehaviour
 
     private void Fire()
     {
-        if (MagicProjectilePrefab)
+        if (MagicProjectilePrefab && Player)
         {
             transform.LookAt(Player.transform);
             Quaternion adjustedRotation = transform.rotation * Quaternion.Euler(0, 0, 0);
@@ -216,7 +230,7 @@ public class DI_MainScript : MonoBehaviour
     {
         if (!hasAllMinionsDied)
         {
-            CurrentHealth += 5f * Time.deltaTime; // Léèí se 10 HP za sekundu
+            CurrentHealth += BossAtm.HealingPerSecond * Time.deltaTime;
             CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
 
             BossAtm.CurrentHealth = CurrentHealth;
@@ -236,7 +250,7 @@ public class DI_MainScript : MonoBehaviour
         // Použij raycast k detekci povrchu pod novou pozicí
         if (Physics.Raycast(newPosition + Vector3.up * 10f, Vector3.down, out RaycastHit hit, 20f))
         {
-            newPosition.y = hit.point.y; // Nastav výšku podle povrchu
+            newPosition.y = hit.point.y + GetComponent<CapsuleCollider>().height/2; // Nastav výšku podle povrchu
         }
         else
         {
@@ -246,7 +260,7 @@ public class DI_MainScript : MonoBehaviour
         transform.position = newPosition;
     }
 
-    private IEnumerator TeleportAndSpawnRunes()
+    private IEnumerator Phase3()
     {
         while (hasRunesBeenActive)
         {
@@ -268,7 +282,7 @@ public class DI_MainScript : MonoBehaviour
                 }
             }
 
-            // Poèkej 5 sekund
+            // Poèkej mezi teleporty
             yield return new WaitForSeconds(timeBetweenTeleports);
         }
     }

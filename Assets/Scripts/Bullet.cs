@@ -26,6 +26,7 @@ public class Bullet : MonoBehaviour
         {
             var muzzleVFX = Instantiate(muzzlePrefab, transform.position, Quaternion.identity);
             muzzleVFX.transform.forward = gameObject.transform.forward;
+            Destroy(muzzleVFX, 2);
         }
     }
 

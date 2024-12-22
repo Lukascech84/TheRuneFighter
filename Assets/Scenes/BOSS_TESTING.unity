@@ -482,7 +482,7 @@ Transform:
   m_GameObject: {fileID: 678710934}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.82, y: 1.06, z: -14.72}
+  m_LocalPosition: {x: -0.82, y: 1.5, z: -14.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -513,7 +513,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ArenaBounds: {fileID: 1314225091}
-  Health: 200
+  Health: 2000
+  PhaseTwoHpPercentage: 66.66
+  PhaseThreeHpPercentage: 33.33
   CurrentHealth: 200
   isInvincible: 0
   MagicProjectilePrefab: {fileID: 8334517916396679245, guid: fe0b7dec3f3b8c44ea984297a6399298, type: 3}
@@ -531,12 +533,14 @@ MonoBehaviour:
   TrapExplosionRadius: 1.75
   TrapDelayWhenSpawned: 1
   MinionsNumber: 2
+  HealingPerSecond: 100
   RuneActivationDelay: 2
   RuneExplosionRadius: 2
   RuneDamage: 30
   RunesNumber: 10
   timeBetweenTeleports: 2
   TeleportDistanceFromPlayer: 10
+  phase3FireRate: 0.2
 --- !u!114 &678710941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -834,7 +838,7 @@ PrefabInstance:
     - target: {fileID: 5887045054036689207, guid: 14f326fa924590548a7a2dd535a89b46, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 2737f319362eb2a46ab28cf5d6fe53e0, type: 2}
+      objectReference: {fileID: 23800000, guid: 92c2ee03fe5a08944ad9bf9acbea5936, type: 2}
     - target: {fileID: 7985051301683345849, guid: 14f326fa924590548a7a2dd535a89b46, type: 3}
       propertyPath: m_Name
       value: NavMesh Surface

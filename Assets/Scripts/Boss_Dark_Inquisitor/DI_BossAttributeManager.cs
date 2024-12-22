@@ -6,6 +6,8 @@ public class DI_BossAttributeManager : MonoBehaviour
 {
     public Collider ArenaBounds;
     public float Health;
+    public float PhaseTwoHpPercentage;
+    public float PhaseThreeHpPercentage;
     [HideInInspector] public float CurrentHealth;
     [HideInInspector] public bool isInvincible = false;
 
@@ -27,6 +29,7 @@ public class DI_BossAttributeManager : MonoBehaviour
     public float TrapDelayWhenSpawned;
 
     public int MinionsNumber;
+    public float HealingPerSecond;
 
     public float RuneActivationDelay;
     public float RuneExplosionRadius;
@@ -34,8 +37,13 @@ public class DI_BossAttributeManager : MonoBehaviour
     public int RunesNumber;
     public float timeBetweenTeleports;
     public float TeleportDistanceFromPlayer;
+    public float phase3FireRate;
 
 
+    private void Start()
+    {
+        CurrentHealth = Health;
+    }
 
     public void TakeDamage(float dmg)
     {
