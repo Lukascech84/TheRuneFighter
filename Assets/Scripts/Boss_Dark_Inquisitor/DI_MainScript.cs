@@ -17,8 +17,8 @@ public class DI_MainScript : MonoBehaviour
     private float FireRateTimer = 0f;
 
     private float TrapSpawnRate;
-    private float TrapRateTimer = 0f;
     private bool isTrapping;
+    private float TrapRateTimer = 0f;
 
     private int MinionsNumber;
     private bool hasMinionsSpawned = false;
@@ -28,6 +28,8 @@ public class DI_MainScript : MonoBehaviour
     private int RunesNumber;
     private GameObject RunePrefab;
     private bool hasRunesBeenActive = false;
+    private float timeBetweenTeleports;
+    private float minTeleportDistance;
 
     private int CurrentPhase;
     private float MaxHealth;
@@ -51,6 +53,8 @@ public class DI_MainScript : MonoBehaviour
         TrapSpawnRate = BossAtm.TrapSpawnRate;
         Player = BossAtm.Player;
         MaxHealth = BossAtm.Health;
+        timeBetweenTeleports = BossAtm.timeBetweenTeleports;
+        minTeleportDistance = BossAtm.TeleportDistanceFromPlayer;
     }
 
     private void Update()
@@ -66,24 +70,24 @@ public class DI_MainScript : MonoBehaviour
 
         //Debug.Log(CurrentPhase + " + " + CurrentHealth);
 
-        if (CurrentHealth >= 100 && (CurrentPhase == 1 || CurrentPhase == 2))
+        if (CurrentHealth >= 1000 && (CurrentPhase == 1 || CurrentPhase == 2))
         {
             isShooting = true;
             isTrapping = true;
             EnterPhase1();
         }
-        if (CurrentHealth < 100 && (CurrentPhase == 1 || CurrentPhase == 2))
+        if (CurrentHealth < 1000 && (CurrentPhase == 1 || CurrentPhase == 2))
         {
             isShooting = true;
             isTrapping = false;
             hasAllMinionsDied = false;
             EnterPhase2();
         }
-        if (CurrentHealth <= 50 && (CurrentPhase == 2 || CurrentPhase == 3))
+        if (CurrentHealth <= 500 && (CurrentPhase == 2 || CurrentPhase == 3))
         {
             isShooting = true;
             isTrapping = true;
-            StartCoroutine(EnterPhase3());
+            EnterPhase3();
         }
     }
 
@@ -130,17 +134,18 @@ public class DI_MainScript : MonoBehaviour
         CurrentPhase = 2;
     }
 
-    private IEnumerator EnterPhase3()
+    private void EnterPhase3()
     {
-        CurrentPhase = 3;
+        if (CurrentPhase != 3) // Zajistí, že se fáze spustí pouze jednou
+        {
+            CurrentPhase = 3;
 
-        RuneStorm();
-
-        yield return new WaitForSeconds(5);
-
-        hasRunesBeenActive = false;
-
-        Teleport();
+            if (!hasRunesBeenActive) // Zkontroluj, zda runy už nejsou aktivní
+            {
+                hasRunesBeenActive = true;
+                StartCoroutine(TeleportAndSpawnRunes());
+            }
+        }
     }
 
     private Vector3 GetRandomPositionInArena(Bounds bounds)
@@ -218,31 +223,54 @@ public class DI_MainScript : MonoBehaviour
         }
     }
 
-    private void RuneStorm()
+    void Teleport()
     {
-        if (!hasRunesBeenActive)
+        Vector3 newPosition;
+
+        do
         {
-            hasRunesBeenActive = true;
-            for (int i = 0; i < RunesNumber; i++) // 10 run
+            newPosition = GetRandomPositionInArena(ArenaBounds.bounds);
+        }
+        while (Vector3.Distance(transform.position, newPosition) < minTeleportDistance);
+
+        // Použij raycast k detekci povrchu pod novou pozicí
+        if (Physics.Raycast(newPosition + Vector3.up * 10f, Vector3.down, out RaycastHit hit, 20f))
+        {
+            newPosition.y = hit.point.y; // Nastav výšku podle povrchu
+        }
+        else
+        {
+            newPosition.y = transform.position.y; // Fallback, pokud raycast nic nenajde
+        }
+
+        transform.position = newPosition;
+    }
+
+    private IEnumerator TeleportAndSpawnRunes()
+    {
+        while (hasRunesBeenActive)
+        {
+            // Teleport na náhodné místo
+            Teleport();
+
+            // Spawn 10 run pøi teleportu
+            for (int i = 0; i < RunesNumber; i++)
             {
                 Vector3 randomPosition = GetRandomPositionInArena(ArenaBounds.bounds);
                 GameObject spawnedRune = Instantiate(RunePrefab, randomPosition, Quaternion.identity);
 
+                // Inicializace run
                 DI_Runes runesScript = spawnedRune.GetComponent<DI_Runes>();
-
                 if (runesScript != null)
                 {
                     runesScript.Spawner = gameObject;
-                    runesScript.activationDelay = Random.Range(BossAtm.RuneActivationDelay - 2, BossAtm.RuneActivationDelay + 2); 
+                    runesScript.activationDelay = Random.Range(BossAtm.RuneActivationDelay - 2, BossAtm.RuneActivationDelay + 2);
                 }
             }
-        }
-    }
 
-    void Teleport()
-    {
-        Vector3 randomPosition = GetRandomPositionInArena(ArenaBounds.bounds);
-        transform.position = randomPosition;
+            // Poèkej 5 sekund
+            yield return new WaitForSeconds(timeBetweenTeleports);
+        }
     }
 
 

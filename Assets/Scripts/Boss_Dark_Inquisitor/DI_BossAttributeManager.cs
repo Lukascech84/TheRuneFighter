@@ -32,6 +32,9 @@ public class DI_BossAttributeManager : MonoBehaviour
     public float RuneExplosionRadius;
     public float RuneDamage;
     public int RunesNumber;
+    public float timeBetweenTeleports;
+    public float TeleportDistanceFromPlayer;
+
 
 
     public void TakeDamage(float dmg)
