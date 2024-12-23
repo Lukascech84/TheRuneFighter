@@ -173,14 +173,22 @@ public class DI_MainScript : MonoBehaviour
     {
         if (MagicProjectilePrefab && Player)
         {
-            transform.LookAt(Player.transform);
-            Quaternion adjustedRotation = transform.rotation * Quaternion.Euler(0, 0, 0);
-            Vector3 spawnPosition = transform.position + transform.rotation * ProjectileSpawnOffset;
+            // Spoèítání smìru støely
+            Vector3 bulletDirection = (Player.transform.position - transform.position).normalized;
 
-            GameObject spawnedProjectile = Instantiate(MagicProjectilePrefab, spawnPosition, adjustedRotation);
+            // Výpoèet pozice pro spawn
+            Vector3 spawnPosition = transform.position + transform.forward * ProjectileSpawnOffset.z
+                                    + transform.up * ProjectileSpawnOffset.y
+                                    + transform.right * ProjectileSpawnOffset.x;
 
-            Vector3 bulletDirection = adjustedRotation * Vector3.forward;
+            // Spawn projektilu
+            GameObject spawnedProjectile = Instantiate(MagicProjectilePrefab, spawnPosition, Quaternion.identity);
 
+            // Manuální nastavení rotace projektilu
+            Quaternion customRotation = Quaternion.LookRotation(bulletDirection) * Quaternion.Euler(-90, 0, 90);
+            spawnedProjectile.transform.rotation = customRotation;
+
+            // Nastavení smìru støely
             DI_MagicProjectile projectileScript = spawnedProjectile.GetComponent<DI_MagicProjectile>();
             if (projectileScript != null)
             {
@@ -188,6 +196,8 @@ public class DI_MainScript : MonoBehaviour
                 projectileScript.Spawner = gameObject;
                 projectileScript.Player = Player;
             }
+
+            Debug.DrawRay(spawnPosition, bulletDirection * 5f, Color.green, 2f);
         }
     }
 

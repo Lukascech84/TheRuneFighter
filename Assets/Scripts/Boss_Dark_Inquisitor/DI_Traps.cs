@@ -42,22 +42,24 @@ public class DI_Traps : MonoBehaviour
         Vector3 initialScale = Vector3.zero;
         Vector3 targetScale = Vector3.one;
 
-        if (warning != null) // Zajisti, že objekt stále existuje
+        while (elapsedTime < duration)
         {
-            while (elapsedTime < duration)
+            if (warning == null) // Check if the warning object still exists
             {
-                // Interpolace mezi velikostí 0 a 1
-                float progress = elapsedTime / duration;
-                warning.transform.localScale = Vector3.Lerp(initialScale, targetScale, progress);
-
-                elapsedTime += Time.deltaTime;
-                yield return null; // Poèkej jeden frame
+                yield break; // Exit the coroutine if the warning has been destroyed
             }
 
-            // Zajisti koneènou velikost
-            warning.transform.localScale = targetScale;
+            // Interpolate between the initial and target scale
+            float progress = elapsedTime / duration;
+            warning.transform.localScale = Vector3.Lerp(initialScale, targetScale, progress);
 
-            Destroy(warning, delay - duration);
+            elapsedTime += Time.deltaTime;
+            yield return null; // Wait for the next frame
+        }
+
+        if (warning != null) // Final check before setting the scale
+        {
+            warning.transform.localScale = targetScale;
         }
     }
 

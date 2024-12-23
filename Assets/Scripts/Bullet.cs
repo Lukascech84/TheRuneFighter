@@ -73,6 +73,7 @@ public class Bullet : MonoBehaviour
         }
 
         if (other.CompareTag("room")) return;
+        if (other.gameObject.GetComponent<DI_MagicProjectile>() != null) return;
 
         if (hitPrefab != null)
         {
