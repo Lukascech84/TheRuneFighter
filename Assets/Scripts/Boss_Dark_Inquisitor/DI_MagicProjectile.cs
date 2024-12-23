@@ -11,7 +11,7 @@ public class DI_MagicProjectile : MonoBehaviour
     private Vector3 spawnPoint;
     private float timer = 0f;
 
-    public AttributeManager playerAtm;
+    public PlayerAttributeManager playerAtm;
     public DI_BossAttributeManager bossAtm;
 
     public GameObject Spawner;
@@ -23,7 +23,7 @@ public class DI_MagicProjectile : MonoBehaviour
     void Start()
     {
         bossAtm = Spawner.GetComponent<DI_BossAttributeManager>();
-        playerAtm = Player.GetComponent<AttributeManager>();
+        playerAtm = Player.GetComponent<PlayerAttributeManager>();
 
         bulletLife = bossAtm.ProjectileDamage;
         speed = bossAtm.ProjectileSpeed;
@@ -69,7 +69,7 @@ public class DI_MagicProjectile : MonoBehaviour
             {
                 if (playerAtm != null)
                 {
-                    if (playerAtm.health > 0f)
+                    if (playerAtm.CurrentHealth > 0f)
                     {
                         bossAtm.DealDamage(playerAtm.gameObject, bossAtm.ProjectileDamage);
                     }

@@ -13,8 +13,8 @@ public class PlayerCombatMelee : MonoBehaviour
     private bool canAttack = true; // Kontrola, zda mùže hráè útoèit
     public float attackCooldown = 1f; // Èas mezi útoky
 
-    public AttributeManager playerAtm;
-    public AttributeManager enemyAtm;
+    public PlayerAttributeManager playerAtm;
+    public BaseAttributeManager enemyAtm;
 
 
     public void Attack(InputAction.CallbackContext context)
@@ -43,11 +43,11 @@ public class PlayerCombatMelee : MonoBehaviour
         {
             //Debug.Log("Nepøítel zasažen: " + enemy.name);
             // Zpùsob poškození nepøátelùm
-            playerAtm = GetComponent<AttributeManager>();
-            enemyAtm = enemy.GetComponent<AttributeManager>();
+            playerAtm = GetComponent<PlayerAttributeManager>();
+            enemyAtm = enemy.GetComponent<BaseAttributeManager>();
             if (enemyAtm != null)
             {
-                if (enemyAtm.health > 0f)
+                if (enemyAtm.CurrentHealth > 0f)
                 {
                     playerAtm.DealDamage(enemyAtm.gameObject, playerAtm.MeleeDamage);
                 }

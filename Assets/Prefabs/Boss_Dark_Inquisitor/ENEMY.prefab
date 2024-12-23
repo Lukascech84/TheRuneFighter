@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 775697071100425360}
   - component: {fileID: 2122370520830276643}
   - component: {fileID: 3428117549324715483}
-  - component: {fileID: 5925614258558555699}
   m_Layer: 8
   m_Name: ENEMY
   m_TagString: Untagged
@@ -33,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 8816611346168151137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.76, y: 2.19, z: -9.49}
+  m_LocalPosition: {x: -0.87, y: 1.34, z: -6.7}
   m_LocalScale: {x: 0.47236073, y: 1.1951201, z: 0.38640437}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,13 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da332bc7934643429f8afbd7fc5880c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 150
-  RangeDamage: 20
-  MeleeDamage: 0
-  dashCurrentCoolDown: 0
-  dashDistance: 0
-  dashCooldown: 0
-  dashDuration: 0
+  BaseHealth: 100
+  Damage: 5
+  CurrentHealth: 0
+  damage: 5
 --- !u!65 &5575740032603012279
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -182,20 +178,6 @@ MonoBehaviour:
   firingRate: 0.08
   spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &3428117549324715483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8816611346168151137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aee0ba913e3ee842b9242970bda4dfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashRedMaterial: {fileID: 2100000, guid: fe154a1ae8b8d384883e8ee464eefc90, type: 2}
-  flashDuration: 0.05
---- !u!114 &5925614258558555699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

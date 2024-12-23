@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private float dashCooldownTimer = 0f;
     private Vector3 dashDirection;
     private Camera mainCamera;
-    private AttributeManager atm;
+    private PlayerAttributeManager PlayerAtm;
     private Animator animator;
     private float velocityZ = 0f;
     private float velocityX = 0f;
@@ -35,11 +35,11 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
-        atm = gameObject.GetComponent<AttributeManager>();
+        PlayerAtm = gameObject.GetComponent<PlayerAttributeManager>();
         animator = gameObject.GetComponent<Animator>();
-        dashDistance = atm.dashDistance;
-        dashCooldown = atm.dashCooldown;
-        dashDuration = atm.dashDuration;
+        dashDistance = PlayerAtm.dashDistance;
+        dashCooldown = PlayerAtm.dashCooldown;
+        dashDuration = PlayerAtm.dashDuration;
 }
 
     // Input callbacks
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
             return; // Skip regular movement updates during dash
 
         if(dashCooldownTimer >= 0) dashCooldownTimer -= Time.deltaTime;
-        atm.dashCurrentCoolDown = dashCooldownTimer;
+        PlayerAtm.dashCurrentCoolDown = dashCooldownTimer;
 
         ApplyGravity();
         if (isPc) HandleMouseLook();
@@ -89,8 +89,6 @@ public class PlayerController : MonoBehaviour
         // Nastavení hodnot v Animatoru
         animator.SetFloat("VelocityZ", Mathf.Lerp(-1.5f, 1.5f, Mathf.InverseLerp(-speed, speed, velocityZ)));
         animator.SetFloat("VelocityX", Mathf.Lerp(-1.5f, 1.5f, Mathf.InverseLerp(-speed, speed, velocityX)));
-        Debug.Log(velocityX+"        "+velocityZ);
-
     }
 
     private void PerformDash()

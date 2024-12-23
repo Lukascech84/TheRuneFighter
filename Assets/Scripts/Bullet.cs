@@ -11,9 +11,8 @@ public class Bullet : MonoBehaviour
     private Vector3 spawnPoint; // Poèáteèní bod støely
     private float timer = 0f;
     public GameObject spawner;
-    public AttributeManager playerAtm;
-    public AttributeManager enemyAtm;
-    public DI_BossAttributeManager DIAtm;
+    public BaseAttributeManager spawnerAtm;
+    public BaseAttributeManager enemyAtm;
 
     public GameObject muzzlePrefab;
     public GameObject hitPrefab;
@@ -55,34 +54,19 @@ public class Bullet : MonoBehaviour
     {
         if (spawner != null)
         {
-            playerAtm = spawner.GetComponent<AttributeManager>();
+            spawnerAtm = spawner.GetComponent<BaseAttributeManager>();
 
-            if (other.GetComponent<AttributeManager>() != null)
-            {
-                
-                enemyAtm = other.GetComponent<AttributeManager>();
+            if (other.GetComponent<BaseAttributeManager>() != null)
+            {   
+                enemyAtm = other.GetComponent<BaseAttributeManager>();
 
                 if (other.gameObject == spawner) return;
 
                 if (enemyAtm != null)
                 {
-                    if (enemyAtm.health > 0f)
+                    if (enemyAtm.CurrentHealth > 0f)
                     {
-                        playerAtm.DealDamage(enemyAtm.gameObject, playerAtm.RangeDamage);
-                    }
-                }
-            }
-            else if(other.GetComponent<DI_BossAttributeManager>() != null)
-            {
-                DIAtm = other.GetComponent<DI_BossAttributeManager>();
-
-                if (other.gameObject == spawner) return;
-
-                if (DIAtm != null)
-                {
-                    if (DIAtm.CurrentHealth > 0f)
-                    {
-                        DIAtm.TakeDamage(playerAtm.RangeDamage);
+                        spawnerAtm.DealDamage(enemyAtm.gameObject, spawnerAtm.Damage);
                     }
                 }
             }

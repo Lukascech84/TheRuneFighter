@@ -9,25 +9,25 @@ public class DashManager : MonoBehaviour
     public Image dashBar;
     private float dashAmount;
     public GameObject character;
-    private AttributeManager atm;
+    private PlayerAttributeManager PlayerAtm;
 
     // Start is called before the first frame update
     void Start()
     {
-        atm = character.GetComponent<AttributeManager>();
+        PlayerAtm = character.GetComponent<PlayerAttributeManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (atm == null)
+        if (PlayerAtm == null)
         {
             dashBar.fillAmount = 0;
         }
         else
         {
-            dashAmount = atm.dashCurrentCoolDown;
-            dashBar.fillAmount = Mathf.Lerp(0, 1, Mathf.InverseLerp(atm.dashCooldown, 0, dashAmount)); ;
+            dashAmount = PlayerAtm.dashCurrentCoolDown;
+            dashBar.fillAmount = Mathf.Lerp(0, 1, Mathf.InverseLerp(PlayerAtm.dashCooldown, 0, dashAmount)); ;
         }
     }
 }

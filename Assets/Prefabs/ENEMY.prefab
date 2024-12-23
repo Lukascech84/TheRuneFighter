@@ -100,13 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da332bc7934643429f8afbd7fc5880c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 150
-  RangeDamage: 0
-  MeleeDamage: 0
-  dashCurrentCoolDown: 0
-  dashDistance: 0
-  dashCooldown: 0
-  dashDuration: 0
+  BaseHealth: 100
+  Damage: 5
+  CurrentHealth: 0
+  damage: 5
 --- !u!65 &5575740032603012279
 BoxCollider:
   m_ObjectHideFlags: 0

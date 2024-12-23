@@ -54,7 +54,7 @@ public class DI_MainScript : MonoBehaviour
         RunePrefab = BossAtm.RunesPrefab;
         TrapSpawnRate = BossAtm.TrapSpawnRate;
         Player = BossAtm.Player;
-        MaxHealth = BossAtm.Health;
+        MaxHealth = BossAtm.BaseHealth;
         timeBetweenTeleports = BossAtm.timeBetweenTeleports;
         minTeleportDistance = BossAtm.TeleportDistanceFromPlayer;
         phase3FireRate = BossAtm.phase3FireRate;
@@ -73,20 +73,20 @@ public class DI_MainScript : MonoBehaviour
 
         //Debug.Log(CurrentPhase + " + " + CurrentHealth);
 
-        if (CurrentHealth >= (BossAtm.Health / 100 * BossAtm.PhaseTwoHpPercentage) && (CurrentPhase == 1 || CurrentPhase == 2))
+        if (CurrentHealth >= (MaxHealth / 100 * BossAtm.PhaseTwoHpPercentage) && (CurrentPhase == 1 || CurrentPhase == 2))
         {
             isShooting = true;
             isTrapping = true;
             EnterPhase1();
         }
-        if (CurrentHealth < (BossAtm.Health / 100 * BossAtm.PhaseTwoHpPercentage) && (CurrentPhase == 1 || CurrentPhase == 2))
+        if (CurrentHealth < (MaxHealth / 100 * BossAtm.PhaseTwoHpPercentage) && (CurrentPhase == 1 || CurrentPhase == 2))
         {
             isShooting = true;
             isTrapping = false;
             hasAllMinionsDied = false;
             EnterPhase2();
         }
-        if (CurrentHealth <= (BossAtm.Health / 100 * BossAtm.PhaseThreeHpPercentage) && (CurrentPhase == 2 || CurrentPhase == 3))
+        if (CurrentHealth <= (MaxHealth / 100 * BossAtm.PhaseThreeHpPercentage) && (CurrentPhase == 2 || CurrentPhase == 3))
         {
             isShooting = true;
             isTrapping = true;

@@ -9,7 +9,7 @@ public class DI_Traps : MonoBehaviour
     private float damage;
 
     private DI_BossAttributeManager bossAtm;
-    private AttributeManager hitAtm;
+    private BaseAttributeManager hitAtm;
 
     public GameObject WarningPrefab;
     public GameObject Spawner;
@@ -42,22 +42,21 @@ public class DI_Traps : MonoBehaviour
         Vector3 initialScale = Vector3.zero;
         Vector3 targetScale = Vector3.one;
 
-        while (elapsedTime < duration)
-        {
-            // Interpolace mezi velikostí 0 a 1
-            float progress = elapsedTime / duration;
-            warning.transform.localScale = Vector3.Lerp(initialScale, targetScale, progress);
-
-            elapsedTime += Time.deltaTime;
-            yield return null; // Poèkej jeden frame
-        }
-
-        // Zajisti koneènou velikost
-        warning.transform.localScale = targetScale;
-
         if (warning != null) // Zajisti, že objekt stále existuje
         {
+            while (elapsedTime < duration)
+            {
+                // Interpolace mezi velikostí 0 a 1
+                float progress = elapsedTime / duration;
+                warning.transform.localScale = Vector3.Lerp(initialScale, targetScale, progress);
+
+                elapsedTime += Time.deltaTime;
+                yield return null; // Poèkej jeden frame
+            }
+
+            // Zajisti koneènou velikost
             warning.transform.localScale = targetScale;
+
             Destroy(warning, delay - duration);
         }
     }
@@ -75,8 +74,8 @@ public class DI_Traps : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider enemy in hitColliders)
         {
-            hitAtm = enemy.GetComponent<AttributeManager>();
-            if (hitAtm != null && hitAtm.health > 0f)
+            hitAtm = enemy.GetComponent<BaseAttributeManager>();
+            if (hitAtm != null && hitAtm.CurrentHealth > 0f)
             {
                 bossAtm.DealDamage(hitAtm.gameObject, damage);
             }
