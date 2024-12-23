@@ -23,7 +23,7 @@ public class DI_HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthAmount = BossAtm.CurrentHealth / BossAtm.Health;
+        healthAmount = BossAtm.CurrentHealth / BossAtm.BaseHealth;
         if (BossAtm == null)
         {
             healthBar.fillAmount = 0;

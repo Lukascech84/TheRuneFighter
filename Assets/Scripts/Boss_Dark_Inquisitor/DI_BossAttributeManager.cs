@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DI_BossAttributeManager : MonoBehaviour
+public class DI_BossAttributeManager : BaseAttributeManager
 {
     public Collider ArenaBounds;
-    public float Health;
     public float PhaseTwoHpPercentage;
     public float PhaseThreeHpPercentage;
-    [HideInInspector] public float CurrentHealth;
     [HideInInspector] public bool isInvincible = false;
 
     public GameObject MagicProjectilePrefab;
@@ -39,32 +37,9 @@ public class DI_BossAttributeManager : MonoBehaviour
     public float TeleportDistanceFromPlayer;
     public float phase3FireRate;
 
-
-    private void Start()
-    {
-        CurrentHealth = Health;
-    }
-
-    public void TakeDamage(float dmg)
+    public override void TakeDamage(float dmg)
     {
         if (isInvincible) return;
-        CurrentHealth -= dmg;
-
-        if (CurrentHealth <= 0f)
-        {
-            Destroy(gameObject);
-        }
+        base.TakeDamage(dmg);
     }
-
-    public void DealDamage(GameObject target, float dmg)
-    {
-        var atm = target.GetComponent<AttributeManager>();
-        if (atm != null)
-        {
-            atm.TakeDamage(dmg);
-        }
-    }
-
-    
-
 }

@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMainCombatScript : MonoBehaviour
 {
+    private PlayerAttributeManager PlayerAtm;
+
     public PlayerCombatRanged RangedScript;
     public GameObject RangedWeapon;
 
@@ -21,6 +23,8 @@ public class PlayerMainCombatScript : MonoBehaviour
 
     void Start()
     {
+        PlayerAtm = GetComponent<PlayerAttributeManager>();
+
         MeleeScript = GetComponent<PlayerCombatMelee>();
         RangedScript = GetComponent<PlayerCombatRanged>();
         SwitchToRanged();
@@ -29,6 +33,7 @@ public class PlayerMainCombatScript : MonoBehaviour
     void SwitchToRanged()
     {
         //RangedWeapon.SetActive(true);
+        PlayerAtm.Damage = PlayerAtm.RangeDamage;
         RangedScript.enabled = true;
         MeleeWeapon.SetActive(false);
         MeleeScript.enabled = false;
@@ -37,6 +42,7 @@ public class PlayerMainCombatScript : MonoBehaviour
     void SwitchToMelee()
     {
         //RangedWeapon.SetActive(false);
+        PlayerAtm.Damage = PlayerAtm.MeleeDamage;
         RangedScript.enabled = false;
         MeleeWeapon.SetActive(true);
         MeleeScript.enabled = true;

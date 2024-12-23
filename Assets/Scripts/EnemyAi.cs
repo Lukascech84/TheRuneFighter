@@ -23,7 +23,7 @@ public class EnemyAi : MonoBehaviour
     //States
     public float sightRange, attackRange;
     private bool playerInSightRange, playerInAttackRange;
-    private AttributeManager atm;
+    private EnemyAttributeManager atm;
     public GameObject bullet;
     public float bulletLife = 1.5f;
     public float speed = 6.5f;
@@ -34,7 +34,7 @@ public class EnemyAi : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        if (atm != null) health = atm.health;
+        if (atm != null) health = atm.BaseHealth;
     }
 
     private void Update()

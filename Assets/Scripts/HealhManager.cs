@@ -10,20 +10,20 @@ public class HealthManager : MonoBehaviour
     public Image easeHealthBar;
     private float healthAmount;
     public GameObject character;
-    private AttributeManager player;
+    private PlayerAttributeManager PlayerAtm;
     private float lerpSpeed = 0.025f;
 
     // Start is called before the first frame update
     void Start()
     {
-       player =  character.GetComponent<AttributeManager>();
+        PlayerAtm =  character.GetComponent<PlayerAttributeManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthAmount = player.health / 100f;
-        if (player == null)
+        healthAmount = PlayerAtm.CurrentHealth / 100f;
+        if (PlayerAtm == null)
         {
             healthBar.fillAmount = 0;
         }
