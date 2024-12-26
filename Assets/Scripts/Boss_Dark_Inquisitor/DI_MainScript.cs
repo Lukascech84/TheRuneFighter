@@ -8,6 +8,7 @@ public class DI_MainScript : MonoBehaviour
     private GameObject TrapPrefab;
     private GameObject MinionPrefab;
     private GameObject Player;
+    private Animator Animator;
 
     private Collider ArenaBounds;
 
@@ -58,6 +59,7 @@ public class DI_MainScript : MonoBehaviour
         timeBetweenTeleports = BossAtm.timeBetweenTeleports;
         minTeleportDistance = BossAtm.TeleportDistanceFromPlayer;
         phase3FireRate = BossAtm.phase3FireRate;
+        Animator = gameObject.GetComponent<Animator>();
     }
 
     private void Update()
@@ -185,7 +187,7 @@ public class DI_MainScript : MonoBehaviour
             GameObject spawnedProjectile = Instantiate(MagicProjectilePrefab, spawnPosition, Quaternion.identity);
 
             // Manuální nastavení rotace projektilu
-            Quaternion customRotation = Quaternion.LookRotation(bulletDirection) * Quaternion.Euler(-90, 0, 90);
+            Quaternion customRotation = Quaternion.LookRotation(bulletDirection) * Quaternion.Euler(90, 0, -90);
             spawnedProjectile.transform.rotation = customRotation;
 
             // Nastavení smìru støely
@@ -195,6 +197,7 @@ public class DI_MainScript : MonoBehaviour
                 projectileScript.SetDirection(bulletDirection);
                 projectileScript.Spawner = gameObject;
                 projectileScript.Player = Player;
+                Animator.SetTrigger("attack");
             }
 
             Debug.DrawRay(spawnPosition, bulletDirection * 5f, Color.green, 2f);
@@ -223,6 +226,7 @@ public class DI_MainScript : MonoBehaviour
             activeMinions.Add(minion);
             minion.GetComponent<EnemyAi>().player = Player.transform;
         }
+        Animator.SetTrigger("mimon");
     }
 
     private void CheckMinionStatus()

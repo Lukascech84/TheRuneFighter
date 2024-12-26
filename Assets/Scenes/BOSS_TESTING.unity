@@ -378,6 +378,123 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cfb28c7cb54d246807ce8da3d2eefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &660475729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+  m_PrefabInstance: {fileID: 938054372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &660475730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660475729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a34cd39e7e1ce44ca47389d083f5b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashRedMaterial: {fileID: 2100000, guid: fe154a1ae8b8d384883e8ee464eefc90, type: 2}
+  flashDuration: 0.05
+--- !u!114 &660475731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660475729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d0118364c4adc43bc78ac125edb308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &660475732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660475729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75cedd442acdc34ba8b9298965cc43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseHealth: 2000
+  Damage: 0
+  CurrentHealth: 200
+  ArenaBounds: {fileID: 1314225091}
+  PhaseTwoHpPercentage: 66.66
+  PhaseThreeHpPercentage: 33.33
+  isInvincible: 0
+  MagicProjectilePrefab: {fileID: 6714285455482728804, guid: dcd08b7741a847a419aa7a509a09435a, type: 3}
+  MinionPrefab: {fileID: 8816611346168151137, guid: a7bd75d6d950b1544a48a79a89b0d250, type: 3}
+  TrapPrefab: {fileID: 6439320459069795321, guid: 672bd57f2ba3a1740bc677f84ffe6abb, type: 3}
+  RunesPrefab: {fileID: 4064807564835227385, guid: 73d4fa0f027fd6e4f8fcebb589c1d39c, type: 3}
+  Player: {fileID: 629438681}
+  ProjectileLife: 20
+  ProjectileSpeed: 15
+  ProjectileDamage: 20
+  ProjectileSpawnOffset: {x: 0, y: 0.57, z: 0}
+  ProjectileFiringRate: 0.4
+  TrapDamage: 50
+  TrapSpawnRate: 2
+  TrapExplosionRadius: 1.75
+  TrapDelayWhenSpawned: 1
+  MinionsNumber: 2
+  HealingPerSecond: 100
+  RuneActivationDelay: 2
+  RuneExplosionRadius: 2
+  RuneDamage: 30
+  RunesNumber: 10
+  timeBetweenTeleports: 2
+  TeleportDistanceFromPlayer: 10
+  phase3FireRate: 0.2
+--- !u!136 &660475733
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660475729}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.6600888
+  m_Height: 10.287806
+  m_Direction: 1
+  m_Center: {x: 0, y: 5.605727, z: 2.1600885}
+--- !u!95 &660475736
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660475729}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f74fd789902769849b4a203bd34003ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &678710934
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &678710935
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -556,6 +673,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashRedMaterial: {fileID: 2100000, guid: fe154a1ae8b8d384883e8ee464eefc90, type: 2}
   flashDuration: 0.05
+--- !u!1001 &938054372
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.24165712
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.24165712
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.24165712
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.3798816
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.045759
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      propertyPath: m_Name
+      value: Dark_Inquisitor
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 660475736}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 660475733}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 660475732}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 660475731}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 660475730}
+  m_SourcePrefab: {fileID: 100100000, guid: e43ef334bcaa40941a72fbad6a0a3dd6, type: 3}
 --- !u!1 &1314225090
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +821,7 @@ PrefabInstance:
     - target: {fileID: 634932348318117456, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
       propertyPath: Boss
       value: 
-      objectReference: {fileID: 678710934}
+      objectReference: {fileID: 660475729}
     - target: {fileID: 895862188921432987, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
       propertyPath: m_Name
       value: UI
@@ -873,3 +1074,4 @@ SceneRoots:
   - {fileID: 678710938}
   - {fileID: 629438680}
   - {fileID: 1314225092}
+  - {fileID: 938054372}
