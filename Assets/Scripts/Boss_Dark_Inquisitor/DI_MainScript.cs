@@ -184,30 +184,31 @@ public class DI_MainScript : MonoBehaviour
             Animator.SetTrigger("attack");
             yield return new WaitForSeconds(0.2f);
             // Spoèítání smìru støely
-            Vector3 bulletDirection = (Player.transform.position - transform.position).normalized;
-
-            // Výpoèet pozice pro spawn
-            Vector3 spawnPosition = transform.position + transform.forward * ProjectileSpawnOffset.z
-                                    + transform.up * ProjectileSpawnOffset.y
-                                    + transform.right * ProjectileSpawnOffset.x;
-
-            // Spawn projektilu
-            GameObject spawnedProjectile = Instantiate(MagicProjectilePrefab, spawnPosition, Quaternion.identity);
-
-            // Manuální nastavení rotace projektilu
-            Quaternion customRotation = Quaternion.LookRotation(bulletDirection) * Quaternion.Euler(90, 0, -90);
-            spawnedProjectile.transform.rotation = customRotation;
-
-            // Nastavení smìru støely
-            DI_MagicProjectile projectileScript = spawnedProjectile.GetComponent<DI_MagicProjectile>();
-            if (projectileScript != null)
+            if (Player != null)
             {
-                projectileScript.SetDirection(bulletDirection);
-                projectileScript.Spawner = gameObject;
-                projectileScript.Player = Player;
-            }
+                Vector3 bulletDirection = (Player.transform.position - transform.position).normalized;
 
-            Debug.DrawRay(spawnPosition, bulletDirection * 5f, Color.green, 2f);
+                // Výpoèet pozice pro spawn
+                Vector3 spawnPosition = transform.position + transform.forward * ProjectileSpawnOffset.z
+                                        + transform.up * ProjectileSpawnOffset.y
+                                        + transform.right * ProjectileSpawnOffset.x;
+
+                // Spawn projektilu
+                GameObject spawnedProjectile = Instantiate(MagicProjectilePrefab, spawnPosition, Quaternion.identity);
+
+                // Manuální nastavení rotace projektilu
+                Quaternion customRotation = Quaternion.LookRotation(bulletDirection) * Quaternion.Euler(90, 0, -90);
+                spawnedProjectile.transform.rotation = customRotation;
+
+                // Nastavení smìru støely
+                DI_MagicProjectile projectileScript = spawnedProjectile.GetComponent<DI_MagicProjectile>();
+                if (projectileScript != null)
+                {
+                    projectileScript.SetDirection(bulletDirection);
+                    projectileScript.Spawner = gameObject;
+                    projectileScript.Player = Player;
+                }
+            }
         }
     }
 
