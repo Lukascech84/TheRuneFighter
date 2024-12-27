@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class DI_FlashRed : MonoBehaviour
 {
-
     public Material flashRedMaterial;
     public float flashDuration = 0.05f;
-    private new Renderer renderer;
-    private Material originalMat;
 
+    private List<Renderer> renderers = new List<Renderer>();
+    private Dictionary<Renderer, Material> originalMaterials = new Dictionary<Renderer, Material>();
     private GameObject spawner;
 
     private void Start()
     {
-        renderer = GetComponent<Renderer>();
-        originalMat = renderer.material;
+        // Najde všechny renderery vèetnì tìch z podobjektù
+        renderers.AddRange(GetComponentsInChildren<Renderer>());
+
+        // Uloží originální materiály každého rendereru
+        foreach (var rend in renderers)
+        {
+            originalMaterials[rend] = rend.material;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,14 +34,26 @@ public class DI_FlashRed : MonoBehaviour
         }
     }
 
-
     private IEnumerator Flash(float duration)
     {
-        if (renderer != null)
+        if (renderers.Count > 0)
         {
-            renderer.material = flashRedMaterial;
+            // Nastaví èervený materiál na všechny renderery
+            foreach (var rend in renderers)
+            {
+                rend.material = flashRedMaterial;
+            }
+
             yield return new WaitForSeconds(duration);
-            renderer.material = originalMat;
+
+            // Obnoví pùvodní materiál pro všechny renderery
+            foreach (var rend in renderers)
+            {
+                if (originalMaterials.ContainsKey(rend))
+                {
+                    rend.material = originalMaterials[rend];
+                }
+            }
         }
     }
 }

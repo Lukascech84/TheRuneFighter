@@ -40,6 +40,10 @@ public class DI_BossAttributeManager : BaseAttributeManager
     public override void TakeDamage(float dmg)
     {
         if (isInvincible) return;
-        base.TakeDamage(dmg);
+            CurrentHealth -= dmg;
+            if (CurrentHealth <= 0f)
+            {
+                Die();
+            }
     }
 }
