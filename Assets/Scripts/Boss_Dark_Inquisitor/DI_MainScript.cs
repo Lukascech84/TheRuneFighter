@@ -70,10 +70,12 @@ public class DI_MainScript : MonoBehaviour
         {
             CheckMinionStatus();
         }
-      
-        HealBoss();
+        if (Player != null)
+        {
+            transform.LookAt(Player.transform);
+        }
 
-        //Debug.Log(CurrentPhase + " + " + CurrentHealth);
+        HealBoss();
 
         if (CurrentHealth >= (MaxHealth / 100 * BossAtm.PhaseTwoHpPercentage) && (CurrentPhase == 1 || CurrentPhase == 2))
         {
@@ -84,7 +86,12 @@ public class DI_MainScript : MonoBehaviour
         if (CurrentHealth < (MaxHealth / 100 * BossAtm.PhaseTwoHpPercentage) && (CurrentPhase == 1 || CurrentPhase == 2))
         {
             isShooting = true;
-            isTrapping = false;
+            if (hasAllMinionsDied)
+            {
+                isTrapping = true;
+            }
+            else isTrapping = false;
+
             hasAllMinionsDied = false;
             EnterPhase2();
         }
@@ -98,7 +105,7 @@ public class DI_MainScript : MonoBehaviour
                 phase3FireRateTimer += Time.deltaTime;
                 if (phase3FireRateTimer >= phase3FireRate)
                 {
-                    Fire();
+                    StartCoroutine(FireBurst(3, 45f)); // Burst støelba ve tøetí fázi
                     phase3FireRateTimer = 0f;
                 }
             }
@@ -115,7 +122,7 @@ public class DI_MainScript : MonoBehaviour
         if (FireRateTimer >= firingRate && isShooting)
         {
             if (!Player) return;
-            Fire();
+            StartCoroutine(Fire());
             FireRateTimer = 0f;
         }
 
@@ -137,12 +144,20 @@ public class DI_MainScript : MonoBehaviour
         hasMinionsSpawned = true;
 
         FireRateTimer += Time.deltaTime;
+        TrapRateTimer += Time.deltaTime;
 
         if (FireRateTimer >= firingRate && isShooting)
         {
             if (!Player) return;
-            Fire();
+            StartCoroutine(Fire());
             FireRateTimer = 0f;
+        }
+
+        if (TrapRateTimer >= TrapSpawnRate && isTrapping)
+        {
+            if (!Player) return;
+            PlaceTrap();
+            TrapRateTimer = 0f;
         }
 
         CurrentPhase = 2;
@@ -150,11 +165,11 @@ public class DI_MainScript : MonoBehaviour
 
     private void EnterPhase3()
     {
-        if (CurrentPhase != 3) // Zajistí, že se fáze spustí pouze jednou
+        if (CurrentPhase != 3)
         {
             CurrentPhase = 3;
 
-            if (!hasRunesBeenActive) // Zkontroluj, zda runy už nejsou aktivní
+            if (!hasRunesBeenActive)
             {
                 hasRunesBeenActive = true;
                 StartCoroutine(Phase3());
@@ -162,19 +177,12 @@ public class DI_MainScript : MonoBehaviour
         }
     }
 
-
-
-    private Vector3 GetRandomPositionInArena(Bounds bounds)
-    {
-        return new Vector3(
-            Random.Range(bounds.min.x, bounds.max.x), 0, Random.Range(bounds.min.z, bounds.max.z)
-        );
-    }
-
-    private void Fire()
+    private IEnumerator Fire()
     {
         if (MagicProjectilePrefab && Player)
         {
+            Animator.SetTrigger("attack");
+            yield return new WaitForSeconds(0.2f);
             // Spoèítání smìru støely
             Vector3 bulletDirection = (Player.transform.position - transform.position).normalized;
 
@@ -197,20 +205,54 @@ public class DI_MainScript : MonoBehaviour
                 projectileScript.SetDirection(bulletDirection);
                 projectileScript.Spawner = gameObject;
                 projectileScript.Player = Player;
-                Animator.SetTrigger("attack");
             }
 
             Debug.DrawRay(spawnPosition, bulletDirection * 5f, Color.green, 2f);
         }
     }
 
+
+    private IEnumerator FireBurst(int projectileCount, float spreadAngle)
+    {
+        if (MagicProjectilePrefab && Player)
+        {
+            Animator.SetTrigger("attack");
+            yield return new WaitForSeconds(0.2f);
+
+            Vector3 baseDirection = (Player.transform.position - transform.position).normalized;
+            Vector3 spawnPosition = transform.position + transform.forward * ProjectileSpawnOffset.z
+                                    + transform.up * ProjectileSpawnOffset.y
+                                    + transform.right * ProjectileSpawnOffset.x;
+
+            for (int i = 0; i < projectileCount; i++)
+            {
+                float angleOffset = spreadAngle * ((float)i / (projectileCount - 1) - 0.5f);
+                Vector3 bulletDirection = Quaternion.Euler(0, angleOffset, 0) * baseDirection;
+
+                GameObject spawnedProjectile = Instantiate(MagicProjectilePrefab, spawnPosition, Quaternion.identity);
+
+                Quaternion customRotation = Quaternion.LookRotation(bulletDirection) * Quaternion.Euler(90, 0, -90);
+                spawnedProjectile.transform.rotation = customRotation;
+
+                DI_MagicProjectile projectileScript = spawnedProjectile.GetComponent<DI_MagicProjectile>();
+                if (projectileScript != null)
+                {
+                    projectileScript.SetDirection(bulletDirection);
+                    projectileScript.Spawner = gameObject;
+                    projectileScript.Player = Player;
+                }
+
+                Debug.DrawRay(spawnPosition, bulletDirection * 5f, Color.green, 2f);
+            }
+        }
+    }
+
     private void PlaceTrap()
     {
         GameObject spawnedTrap = Instantiate(TrapPrefab, Player.transform.position, Quaternion.identity);
-
         DI_Traps trapScript = spawnedTrap.GetComponent<DI_Traps>();
 
-        if(trapScript != null)
+        if (trapScript != null)
         {
             trapScript.Spawner = gameObject;
             trapScript.Player = Player;
@@ -219,21 +261,21 @@ public class DI_MainScript : MonoBehaviour
 
     private void SummonMinions()
     {
-        for (int i = 0; i < MinionsNumber; i++) // Pøivolá tøi pøisluhovaèe
+        Animator.SetTrigger("mimon");
+        for (int i = 0; i < MinionsNumber; i++)
         {
             Vector3 spawnPosition = GetRandomPositionInArena(ArenaBounds.bounds);
             GameObject minion = Instantiate(MinionPrefab, spawnPosition, Quaternion.identity);
             activeMinions.Add(minion);
             minion.GetComponent<EnemyAi>().player = Player.transform;
         }
-        Animator.SetTrigger("mimon");
     }
 
     private void CheckMinionStatus()
     {
         activeMinions.RemoveAll(minion => minion == null);
 
-        if(activeMinions.Count == 0)
+        if (activeMinions.Count == 0)
         {
             hasAllMinionsDied = true;
             BossAtm.isInvincible = false;
@@ -246,29 +288,33 @@ public class DI_MainScript : MonoBehaviour
         {
             CurrentHealth += BossAtm.HealingPerSecond * Time.deltaTime;
             CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
-
             BossAtm.CurrentHealth = CurrentHealth;
         }
     }
 
-    void Teleport()
+    private Vector3 GetRandomPositionInArena(Bounds bounds)
+    {
+        return new Vector3(
+            Random.Range(bounds.min.x, bounds.max.x), 0, Random.Range(bounds.min.z, bounds.max.z)
+        );
+    }
+
+    private void Teleport()
     {
         Vector3 newPosition;
-
         do
         {
             newPosition = GetRandomPositionInArena(ArenaBounds.bounds);
         }
         while (Vector3.Distance(transform.position, newPosition) < minTeleportDistance);
 
-        // Použij raycast k detekci povrchu pod novou pozicí
         if (Physics.Raycast(newPosition + Vector3.up * 10f, Vector3.down, out RaycastHit hit, 20f))
         {
-            newPosition.y = hit.point.y + GetComponent<CapsuleCollider>().height/2; // Nastav výšku podle povrchu
+            newPosition.y = hit.point.y;
         }
         else
         {
-            newPosition.y = transform.position.y; // Fallback, pokud raycast nic nenajde
+            newPosition.y = ArenaBounds.bounds.min.y;
         }
 
         transform.position = newPosition;
@@ -278,16 +324,13 @@ public class DI_MainScript : MonoBehaviour
     {
         while (hasRunesBeenActive)
         {
-            // Teleport na náhodné místo
             Teleport();
 
-            // Spawn 10 run pøi teleportu
             for (int i = 0; i < RunesNumber; i++)
             {
                 Vector3 randomPosition = GetRandomPositionInArena(ArenaBounds.bounds);
                 GameObject spawnedRune = Instantiate(RunePrefab, randomPosition, Quaternion.identity);
 
-                // Inicializace run
                 DI_Runes runesScript = spawnedRune.GetComponent<DI_Runes>();
                 if (runesScript != null)
                 {
@@ -296,10 +339,7 @@ public class DI_MainScript : MonoBehaviour
                 }
             }
 
-            // Poèkej mezi teleporty
             yield return new WaitForSeconds(timeBetweenTeleports);
         }
     }
-
-
 }

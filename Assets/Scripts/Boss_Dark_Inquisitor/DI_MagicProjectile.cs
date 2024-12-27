@@ -63,7 +63,7 @@ public class DI_MagicProjectile : MonoBehaviour
         if (Spawner != null)
         {
             if (other.gameObject == Spawner) return;
-            if (other.gameObject.GetComponent<Bullet>() != null) return;
+            if (other.gameObject.GetComponent<Bullet>() != null || other.gameObject.GetComponent<DI_MagicProjectile>() != null) return;
 
             if (other.gameObject == Player)
             {
