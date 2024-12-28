@@ -7,16 +7,18 @@ public class BaseAttributeManager : MonoBehaviour
     public float BaseHealth;
     [HideInInspector] public float Damage;
     [HideInInspector] public float CurrentHealth;
+    [HideInInspector] public bool isInvincible = false;
 
     public virtual void Start()
     {
         CurrentHealth = BaseHealth;
     }
 
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float dmg)
     {
-        CurrentHealth -= damage;
-        if(CurrentHealth <= 0f)
+        if (isInvincible) return;
+        CurrentHealth -= dmg;
+        if (CurrentHealth <= 0f)
         {
             Die();
         }

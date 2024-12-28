@@ -112,6 +112,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DashCoroutine()
     {
         isDashing = true;
+        PlayerAtm.isInvincible = true;
         dashCooldownTimer = dashCooldown;
 
         float dashElapsedTime = 0f;
@@ -124,6 +125,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
+        PlayerAtm.isInvincible = false;
         isDashing = false;
     }
 

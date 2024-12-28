@@ -309,10 +309,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2703880665491035975, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
-      propertyPath: mouseInfluence
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3829762454755875631, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: m_VolumeTrigger
       value: 
@@ -933,10 +929,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Global Volume
       objectReference: {fileID: 0}
-    - target: {fileID: 1656700587776219416, guid: 806e8bfe72276ce449942faa0304654f, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 3377822598538313307, guid: 806e8bfe72276ce449942faa0304654f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 342.90298
@@ -982,33 +974,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 806e8bfe72276ce449942faa0304654f, type: 3}
---- !u!224 &1253002846 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 72984538960705994, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
-  m_PrefabInstance: {fileID: 2049162471}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1256425005 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7460794520565846099, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
-  m_PrefabInstance: {fileID: 2049162471}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1256425013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256425005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1073ed4f6647e4aa31b99850dabf13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 629438696}
-  mainCamera: {fileID: 1393696406}
-  canvasRect: {fileID: 1253002846}
-  enemyIndicatorPrefab: {fileID: 1169572331231929579, guid: b70cd82a8206d864ab1a76ffc9ed5c75, type: 3}
-  bossIndicatorPrefab: {fileID: 1169572331231929579, guid: b70cd82a8206d864ab1a76ffc9ed5c75, type: 3}
 --- !u!1 &1314225090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,22 +1073,6 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3073612920441829198, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3836996054702155873, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4130008389866087088, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 34e990bc80ac173489fb52270587d509, type: 3}
-    - target: {fileID: 5180342746556196642, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ec22739b20cb0254ebef14b0bf8faab8, type: 3}
     - target: {fileID: 7121109523667350960, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.98764
@@ -1168,6 +1117,14 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 629438681}
+    - target: {fileID: 7468490632732998671, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 629438696}
+    - target: {fileID: 7468490632732998671, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1393696406}
     - target: {fileID: 7726414412170954064, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
       propertyPath: character
       value: 
@@ -1179,10 +1136,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7460794520565846099, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1256425013}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
 --- !u!1 &2128390523
 GameObject:
@@ -1341,7 +1295,7 @@ PrefabInstance:
     - target: {fileID: 5887045054036689207, guid: 14f326fa924590548a7a2dd535a89b46, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 92c2ee03fe5a08944ad9bf9acbea5936, type: 2}
+      objectReference: {fileID: 23800000, guid: df525d656691e744bbfdf59c96a81693, type: 2}
     - target: {fileID: 7985051301683345849, guid: 14f326fa924590548a7a2dd535a89b46, type: 3}
       propertyPath: m_Name
       value: NavMesh Surface

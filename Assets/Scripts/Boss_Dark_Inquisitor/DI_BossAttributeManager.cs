@@ -7,7 +7,6 @@ public class DI_BossAttributeManager : BaseAttributeManager
     public Collider ArenaBounds;
     public float PhaseTwoHpPercentage;
     public float PhaseThreeHpPercentage;
-    [HideInInspector] public bool isInvincible = false;
 
     public GameObject MagicProjectilePrefab;
     public GameObject MinionPrefab;
@@ -36,14 +35,4 @@ public class DI_BossAttributeManager : BaseAttributeManager
     public float timeBetweenTeleports;
     public float TeleportDistanceFromPlayer;
     public float phase3FireRate;
-
-    public override void TakeDamage(float dmg)
-    {
-        if (isInvincible) return;
-            CurrentHealth -= dmg;
-            if (CurrentHealth <= 0f)
-            {
-                Die();
-            }
-    }
 }

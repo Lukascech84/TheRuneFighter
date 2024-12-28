@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level_1_dungeon.unity
     guid: d39c578b49e68f145a4c2e1779d8bddf
+  - enabled: 1
+    path: Assets/Scenes/BOSS_TESTING.unity
+    guid: cd0ce9519f510d943b873a46e5a1f448
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 778540683ea951e418797312db20d387, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: cd51ba7c948bd8144b96eb43cf1eea33, type: 3}
