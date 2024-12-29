@@ -5,65 +5,64 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombatMelee : MonoBehaviour
 {
-    //public Animator animator; // Odkaz na animátor postavy
-    public Transform attackPoint; // Bod útoku (napø. na konci meèe)
-    public float attackRange = 1f; // Dosah útoku
-    public LayerMask enemyLayers; // Masková vrstva nepøátel
-
-    private bool canAttack = true; // Kontrola, zda mùže hráè útoèit
-    public float attackCooldown = 1f; // Èas mezi útoky
-
-    public PlayerAttributeManager playerAtm;
-    public BaseAttributeManager enemyAtm;
+    private float Damage;
+    private float attackCooldown;
+    private bool canAttack = true;
+    private bool isAttacking = false;
+    private Animator animator;
+    private BaseAttributeManager enemyAtm;
+    private PlayerAttributeManager PlayerAtm;
 
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed && canAttack) StartCoroutine(Attack());
+        if (context.performed) isAttacking = true;
+        else isAttacking = false;
     }
 
-    private IEnumerator Attack()
+    void Start()
     {
-        canAttack = false; // Zablokuj další útok
+        animator = GetComponent<Animator>();
+        PlayerAtm = GetComponent<PlayerAttributeManager>();
 
-        /* Spuštìní animace útoku
-        if (animator != null)
-        {
-            animator.SetTrigger("Attack");
-        }
-        */
+        Damage = PlayerAtm.MeleeDamage;
+        attackCooldown = PlayerAtm.MeleeAttackCooldown;
+    }
 
-        // Zpoždìní na základì animace (èas na provedení damage)
-        yield return new WaitForSeconds(0.2f); // Upravit podle animace
+    private void Update()
+    {
+        if (isAttacking && canAttack) Attack();
+    }
 
-        // Detekce zásahù v dosahu
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
-
-        foreach (Collider enemy in hitEnemies)
-        {
-            //Debug.Log("Nepøítel zasažen: " + enemy.name);
-            // Zpùsob poškození nepøátelùm
-            playerAtm = GetComponent<PlayerAttributeManager>();
-            enemyAtm = enemy.GetComponent<BaseAttributeManager>();
-            if (enemyAtm != null)
+    void OnTriggerEnter(Collider other)
+    {
+            if (other.GetComponent<BaseAttributeManager>() != null)
             {
-                if (enemyAtm.CurrentHealth > 0f)
+                enemyAtm = other.GetComponent<BaseAttributeManager>();
+
+                if (other.gameObject == this) return;
+
+                if (enemyAtm != null)
                 {
-                    playerAtm.DealDamage(enemyAtm.gameObject, playerAtm.MeleeDamage);
+                    if (enemyAtm.CurrentHealth > 0f)
+                    {
+                        PlayerAtm.DealDamage(enemyAtm.gameObject, Damage);
+                    }
                 }
             }
-        }
-
-        // Poèkej na cooldown
-        yield return new WaitForSeconds(attackCooldown - 0.2f);
-        canAttack = true;
     }
 
-    void OnDrawGizmosSelected()
+    public void Attack()
     {
-        // Vizualizace dosahu útoku v editoru
-        if (attackPoint == null) return;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+            animator.SetTrigger("Attack");
+            StartCoroutine(AttackCooldown());
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        canAttack = false;
+        // Zde mùžeš aktivovat Collider pro detekci zásahu
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 }

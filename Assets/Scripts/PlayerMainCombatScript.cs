@@ -9,7 +9,8 @@ public class PlayerMainCombatScript : MonoBehaviour
     public GameObject RangedWeapon;
 
     public PlayerCombatMelee MeleeScript;
-    public GameObject MeleeWeapon;
+    public GameObject MeleeWeaponHolster;
+    public GameObject MeleeWeaponOut;
 
     public void SwitchToRanged(InputAction.CallbackContext context)
     {
@@ -35,7 +36,8 @@ public class PlayerMainCombatScript : MonoBehaviour
         //RangedWeapon.SetActive(true);
         PlayerAtm.Damage = PlayerAtm.RangeDamage;
         RangedScript.enabled = true;
-        MeleeWeapon.SetActive(false);
+        MeleeWeaponHolster.SetActive(true);
+        MeleeWeaponOut.SetActive(false);
         MeleeScript.enabled = false;
     }
 
@@ -44,7 +46,8 @@ public class PlayerMainCombatScript : MonoBehaviour
         //RangedWeapon.SetActive(false);
         PlayerAtm.Damage = PlayerAtm.MeleeDamage;
         RangedScript.enabled = false;
-        MeleeWeapon.SetActive(true);
+        MeleeWeaponHolster.SetActive(false);
+        MeleeWeaponOut.SetActive(true);
         MeleeScript.enabled = true;
     }
 }
