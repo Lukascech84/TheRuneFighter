@@ -9,7 +9,7 @@ public class PlayerCombatMelee : MonoBehaviour
     private bool canAttack = true;
     private int comboLevel = 0;
     private float comboTimer = 0f;
-    private const float ComboMaxTime = 2f; // Maximální èas na pokraèování v kombu
+    private const float ComboMaxTime = 1f; // Maximální èas na pokraèování v kombu
 
     private Animator animator;
     private BaseAttributeManager enemyAttributes;
