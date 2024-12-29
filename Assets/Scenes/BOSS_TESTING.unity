@@ -335,8 +335,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2108382657781044975, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: MeleeDamage
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108382657781044975, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: TrailDestroyDelay
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108382657781044975, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: MeleeAttackCooldown
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2108382657781044975, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: dashTrailRefreshRate
@@ -448,7 +456,7 @@ PrefabInstance:
       objectReference: {fileID: 1039629807}
     - target: {fileID: 7176658974953953295, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Attack
+      value: OnAttack
       objectReference: {fileID: 0}
     - target: {fileID: 7545408404188148777, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: m_Layer
@@ -619,8 +627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845a150acacc59744bc0555b13db7451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SwordCollider: {fileID: 1039629806}
-  Player: {fileID: 629438681}
+  weaponHitbox: {fileID: 1039629806}
+  playerObject: {fileID: 629438681}
 --- !u!54 &1039629808
 Rigidbody:
   m_ObjectHideFlags: 0

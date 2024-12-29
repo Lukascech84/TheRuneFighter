@@ -1,81 +1,101 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCombatMelee : MonoBehaviour
 {
-    private float Damage;
+    private float damage;
     private float attackCooldown;
     private bool canAttack = true;
-    private bool isAttacking = false;
-    private Animator Animator;
-    private BaseAttributeManager enemyAtm;
-    private PlayerAttributeManager PlayerAtm;
-    public BoxCollider SwordCollider;
-    public GameObject Player;
+    private int comboLevel = 0;
+    private float comboTimer = 0f;
+    private const float ComboMaxTime = 2f; // Maximální èas na pokraèování v kombu
 
+    private Animator animator;
+    private BaseAttributeManager enemyAttributes;
+    private PlayerAttributeManager playerAttributes;
 
-    public void Attack(InputAction.CallbackContext context)
+    public BoxCollider weaponHitbox;
+    public GameObject playerObject;
+
+    private void Start()
     {
-        if (context.performed) isAttacking = true;
-        else isAttacking = false;
+        animator = playerObject.GetComponent<Animator>();
+        playerAttributes = playerObject.GetComponent<PlayerAttributeManager>();
+
+        damage = playerAttributes.MeleeDamage;
+        attackCooldown = playerAttributes.MeleeAttackCooldown;
+
+        weaponHitbox.enabled = false;
     }
 
-    void Start()
+    public void OnAttack(InputAction.CallbackContext context)
     {
-        Animator = Player.GetComponent<Animator>();
-        PlayerAtm = Player.GetComponent<PlayerAttributeManager>();
-
-        Damage = PlayerAtm.MeleeDamage;
-        attackCooldown = PlayerAtm.MeleeAttackCooldown;
-
-        SwordCollider.enabled = false;
+        if (context.performed && canAttack)
+        {
+            ExecuteAttack();
+        }
     }
 
     private void Update()
     {
-        if (PlayerAtm.isDead) return;
-        if (isAttacking && canAttack) Attack();
-    }
+        if (playerAttributes.isDead) return;
 
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.name);
-        if (other.GetComponent<BaseAttributeManager>() != null)
+        // Správa èasu pro reset komba
+        if (comboLevel > 0)
+        {
+            comboTimer -= Time.deltaTime;
+            if (comboTimer <= 0f)
             {
-                enemyAtm = other.GetComponent<BaseAttributeManager>();
-
-                if (other.gameObject == Player) return;
-
-                if (enemyAtm != null)
-                {
-                    if (enemyAtm.CurrentHealth > 0f)
-                    {
-                        PlayerAtm.DealDamage(enemyAtm.gameObject, Damage);
-                    }
-                }
+                ResetCombo();
             }
+        }
     }
 
-    public void Attack()
+    private void ExecuteAttack()
     {
-        Animator.SetInteger("Attack", Animator.GetInteger("Attack") + 1);
-        StartCoroutine(AttackCooldown());
+        comboLevel++;
+        comboLevel = Mathf.Clamp(comboLevel, 1, 3); // Limit komba na max. 3 úrovnì
+
+        animator.SetTrigger("Attack");
+        animator.SetInteger("AttackLevel", comboLevel);
+
+        comboTimer = ComboMaxTime; // Reset èasovaèe komba
+
+        StartCoroutine(HandleAttackCooldown());
     }
 
-    private IEnumerator AttackCooldown()
+    private IEnumerator HandleAttackCooldown()
     {
         canAttack = false;
-
-        SwordCollider.enabled = true;
+        weaponHitbox.enabled = true;
 
         yield return new WaitForSeconds(attackCooldown);
 
-        SwordCollider.enabled = false;
-
-        Animator.SetInteger("Attack", 0);
-
+        weaponHitbox.enabled = false;
         canAttack = true;
+    }
+
+    private void ResetCombo()
+    {
+        comboLevel = 0;
+        animator.SetInteger("AttackLevel", 0);
+        comboTimer = 0f;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<BaseAttributeManager>() != null)
+        {
+            enemyAttributes = other.GetComponent<BaseAttributeManager>();
+
+            if (enemyAttributes == null || other.gameObject == playerObject) return;
+
+            if (enemyAttributes.CurrentHealth > 0f)
+            {
+                playerAttributes.DealDamage(enemyAttributes.gameObject, damage);
+                // Optionálnì: Pøidat vizuální/akustickou zpìtnou vazbu
+            }
+        }
     }
 }
