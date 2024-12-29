@@ -72,6 +72,7 @@ public class Bullet : MonoBehaviour
             }
         }
 
+        if (other.CompareTag("Weapon_Player")) return;
         if (other.CompareTag("room")) return;
         if (other.gameObject.GetComponent<DI_MagicProjectile>() != null) return;
 

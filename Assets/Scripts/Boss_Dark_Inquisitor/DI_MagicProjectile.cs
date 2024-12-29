@@ -77,6 +77,7 @@ public class DI_MagicProjectile : MonoBehaviour
             }
         }
 
+        if (other.CompareTag("Weapon_Player")) return;
         if (other.CompareTag("room")) return;
 
         if (hitPrefab != null)

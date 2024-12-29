@@ -9,9 +9,11 @@ public class PlayerCombatMelee : MonoBehaviour
     private float attackCooldown;
     private bool canAttack = true;
     private bool isAttacking = false;
-    private Animator animator;
+    private Animator Animator;
     private BaseAttributeManager enemyAtm;
     private PlayerAttributeManager PlayerAtm;
+    public BoxCollider SwordCollider;
+    public GameObject Player;
 
 
     public void Attack(InputAction.CallbackContext context)
@@ -22,11 +24,13 @@ public class PlayerCombatMelee : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-        PlayerAtm = GetComponent<PlayerAttributeManager>();
+        Animator = Player.GetComponent<Animator>();
+        PlayerAtm = Player.GetComponent<PlayerAttributeManager>();
 
         Damage = PlayerAtm.MeleeDamage;
         attackCooldown = PlayerAtm.MeleeAttackCooldown;
+
+        SwordCollider.enabled = false;
     }
 
     private void Update()
@@ -37,11 +41,12 @@ public class PlayerCombatMelee : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-            if (other.GetComponent<BaseAttributeManager>() != null)
+        Debug.Log(other.name);
+        if (other.GetComponent<BaseAttributeManager>() != null)
             {
                 enemyAtm = other.GetComponent<BaseAttributeManager>();
 
-                if (other.gameObject == this) return;
+                if (other.gameObject == Player) return;
 
                 if (enemyAtm != null)
                 {
@@ -55,15 +60,22 @@ public class PlayerCombatMelee : MonoBehaviour
 
     public void Attack()
     {
-            animator.SetTrigger("Attack");
-            StartCoroutine(AttackCooldown());
+        Animator.SetInteger("Attack", Animator.GetInteger("Attack") + 1);
+        StartCoroutine(AttackCooldown());
     }
 
     private IEnumerator AttackCooldown()
     {
         canAttack = false;
-        // Zde mùžeš aktivovat Collider pro detekci zásahu
+
+        SwordCollider.enabled = true;
+
         yield return new WaitForSeconds(attackCooldown);
+
+        SwordCollider.enabled = false;
+
+        Animator.SetInteger("Attack", 0);
+
         canAttack = true;
     }
 }

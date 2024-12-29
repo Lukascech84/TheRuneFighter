@@ -26,8 +26,6 @@ public class PlayerMainCombatScript : MonoBehaviour
     {
         PlayerAtm = GetComponent<PlayerAttributeManager>();
 
-        MeleeScript = GetComponent<PlayerCombatMelee>();
-        RangedScript = GetComponent<PlayerCombatRanged>();
         SwitchToRanged();
     }
 
