@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerCombatRanged: MonoBehaviour
 {
     public GameObject bullet; // Prefab støely
+    private PlayerAttributeManager PlayerAtm;
     public float bulletLife = 1.5f; // Doba životnosti støely
     public float bulletSpeed = 6.5f; // Rychlost støely
     [SerializeField] private float firingRate = 0.04f; // Interval mezi støelami
@@ -31,12 +32,13 @@ public class PlayerCombatRanged: MonoBehaviour
     private void Start()
     {
         currentAmmo = magazineSize; // Na zaèátku má zásobník plný poèet nábojù
+        PlayerAtm = GetComponent<PlayerAttributeManager>();
     }
 
 
     private void Update()
     {
-        if (isReloading || Time.timeScale == 0) return; // Pokud pøebíjíme, zastavíme všechny ostatní akce
+        if (isReloading || Time.timeScale == 0 || PlayerAtm.isDead) return; // Pokud pøebíjíme, zastavíme všechny ostatní akce
 
         timer += Time.deltaTime;
 

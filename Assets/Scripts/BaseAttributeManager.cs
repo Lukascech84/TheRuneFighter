@@ -8,6 +8,7 @@ public class BaseAttributeManager : MonoBehaviour
     [HideInInspector] public float Damage;
     [HideInInspector] public float CurrentHealth;
     [HideInInspector] public bool isInvincible = false;
+    [HideInInspector] public bool isDead = false;
 
     public virtual void Start()
     {
@@ -35,6 +36,7 @@ public class BaseAttributeManager : MonoBehaviour
 
     protected virtual void Die()
     {
+        isDead = true;
         Destroy(gameObject);
     }
 }

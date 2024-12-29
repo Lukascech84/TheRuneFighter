@@ -31,6 +31,7 @@ public class PlayerCombatMelee : MonoBehaviour
 
     private void Update()
     {
+        if (PlayerAtm.isDead) return;
         if (isAttacking && canAttack) Attack();
     }
 

@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 joystickLook;
     private Vector3 rotationTarget, playerVelocity;
     private bool isJumping;
-    private bool isDashing = false;
+    [HideInInspector] public bool isDashing = false;
     private float dashCooldownTimer = 0f;
     private Vector3 dashDirection;
     private Camera mainCamera;
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0 || PlayerAtm.isDead) return;
 
         if (isDashing)
             return; // Skip regular movement updates during dash

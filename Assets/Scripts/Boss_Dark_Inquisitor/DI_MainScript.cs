@@ -64,7 +64,7 @@ public class DI_MainScript : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0 || Player.GetComponent<PlayerAttributeManager>().isDead) return;
         CurrentHealth = BossAtm.CurrentHealth;
         if (!hasAllMinionsDied)
         {
