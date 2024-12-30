@@ -25,14 +25,16 @@
 - [x] Hlavní menu hry
 - [x] Menu nastavení
 - [W.I.P] Vylepšené rozhraní
-- [ ] Hotový model postavy
+    - [x] Indikátor pro enemy mimo cameru
+- [x] Hotový model postavy
     - [x] Hotový model postavy
-    - [ ] Animace
+    - [x] Animace
+    - [x] Dash efekt
 - [ ] Hotové modely enemy
 - [ ] Combat systém s mečem
     - [x] Přepínání na meč
-    - [ ] Hitboxy
-    - [ ] Scripty
+    - [x] Hitboxy
+    - [W.I.P] Scripty
 - [ ] Více druhů enemy, long-range, close-range
 - [ ] Dokončit level0
 - [ ] Dokončit level1
