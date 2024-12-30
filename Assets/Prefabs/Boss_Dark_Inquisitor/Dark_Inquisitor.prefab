@@ -473,10 +473,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.6600888
-  m_Height: 10.287806
+  m_Radius: 2.87
+  m_Height: 12.45607
   m_Direction: 1
-  m_Center: {x: 0, y: 5.605727, z: 0}
+  m_Center: {x: 0, y: 4.521592, z: -0}
 --- !u!114 &2479921501232418626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +493,7 @@ MonoBehaviour:
   Damage: 0
   CurrentHealth: 200
   isInvincible: 0
+  isDead: 0
   ArenaBounds: {fileID: 0}
   PhaseTwoHpPercentage: 66.66
   PhaseThreeHpPercentage: 33.33
