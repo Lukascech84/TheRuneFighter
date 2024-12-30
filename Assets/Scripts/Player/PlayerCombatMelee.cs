@@ -31,9 +31,12 @@ public class PlayerCombatMelee : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.performed && canAttack)
+        if (enabled == true)
         {
-            ExecuteAttack();
+            if (context.performed && canAttack)
+            {
+                ExecuteAttack();
+            }
         }
     }
 
