@@ -92,12 +92,15 @@ public class PlayerCombatMelee : MonoBehaviour
         {
             enemyAttributes = other.GetComponent<BaseAttributeManager>();
 
-            if (enemyAttributes == null || other.gameObject == playerObject) return;
+            if (other.gameObject == playerObject) return;
 
-            if (enemyAttributes.CurrentHealth > 0f)
+            if (enemyAttributes != null)
             {
-                playerAttributes.DealDamage(enemyAttributes.gameObject, damage);
-                // Optionálnì: Pøidat vizuální/akustickou zpìtnou vazbu
+                if (enemyAttributes.CurrentHealth > 0f)
+                {
+                    playerAttributes.DealDamage(enemyAttributes.gameObject, damage);
+                    // Optionálnì: Pøidat vizuální/akustickou zpìtnou vazbu
+                }
             }
         }
     }
