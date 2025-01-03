@@ -699,22 +699,6 @@ PrefabInstance:
       propertyPath: HealingPerSecond
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 8227556920010806341, guid: 72bb1685ee003f74dbdf798db526f6fc, type: 3}
-      propertyPath: m_Height
-      value: 12.45607
-      objectReference: {fileID: 0}
-    - target: {fileID: 8227556920010806341, guid: 72bb1685ee003f74dbdf798db526f6fc, type: 3}
-      propertyPath: m_Radius
-      value: 2.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 8227556920010806341, guid: 72bb1685ee003f74dbdf798db526f6fc, type: 3}
-      propertyPath: m_Center.y
-      value: 4.521592
-      objectReference: {fileID: 0}
-    - target: {fileID: 8227556920010806341, guid: 72bb1685ee003f74dbdf798db526f6fc, type: 3}
-      propertyPath: m_Center.z
-      value: -0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
