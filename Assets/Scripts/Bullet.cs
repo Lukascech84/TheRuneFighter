@@ -57,7 +57,7 @@ public class Bullet : MonoBehaviour
         {
             spawnerAtm = spawner.GetComponent<BaseAttributeManager>();
 
-            if (other.GetComponent<BaseAttributeManager>() != null)
+            if (other.GetComponent<BaseAttributeManager>() != null && other.GetComponent<TrapAttributeManager>() == null)
             {   
                 enemyAtm = other.GetComponent<BaseAttributeManager>();
 
@@ -76,6 +76,7 @@ public class Bullet : MonoBehaviour
         if (((1 << other.gameObject.layer) & subObjectsLayer.value) != 0) return;
         if (other.CompareTag("Weapon_Player")) return;
         if (other.CompareTag("room")) return;
+        if (other.CompareTag("trap")) return;
         if (other.gameObject.GetComponent<DI_MagicProjectile>() != null) return;
 
         if (hitPrefab != null)
