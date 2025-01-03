@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float bulletLife = 1f; // Doba životnosti støely
     public float speed = 1f; // Rychlost støely
+    public LayerMask subObjectsLayer;
 
     private Vector3 direction; // Smìr støely
     private Vector3 spawnPoint; // Poèáteèní bod støely
@@ -72,6 +73,7 @@ public class Bullet : MonoBehaviour
             }
         }
 
+        if (((1 << other.gameObject.layer) & subObjectsLayer.value) != 0) return;
         if (other.CompareTag("Weapon_Player")) return;
         if (other.CompareTag("room")) return;
         if (other.gameObject.GetComponent<DI_MagicProjectile>() != null) return;
