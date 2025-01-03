@@ -6,65 +6,73 @@ public class RaycastTransparency : MonoBehaviour
     public Transform origin;
     public Transform target;
     public float TransparencyLevel = 0f;
+    public int TemporaryLayer = 8; // Nastavte zde doèasný layer (napø. 8)
 
     private HashSet<GameObject> affectedObjects = new HashSet<GameObject>();
+    private Dictionary<GameObject, int> originalLayers = new Dictionary<GameObject, int>();
 
     void Update()
     {
-        // Vzdálenost a smìr paprsku
         if (target != null)
         {
             Vector3 direction = (target.position - origin.position).normalized;
             float distance = Vector3.Distance(origin.position, target.position);
-        
-        // Provádíme Raycast
-        RaycastHit[] hits = Physics.RaycastAll(origin.position, direction, distance);
 
-        // Nová množina aktuálnì zasažených objektù
-        HashSet<GameObject> currentHits = new HashSet<GameObject>();
+            RaycastHit[] hits = Physics.RaycastAll(origin.position, direction, distance);
 
-        foreach (RaycastHit hit in hits)
-        {
-            GameObject obj = hit.collider.gameObject;
-            currentHits.Add(obj);
+            HashSet<GameObject> currentHits = new HashSet<GameObject>();
 
-            // Pokud objekt ještì nebyl ovlivnìn, nastavíme prùhlednost
-            if (!affectedObjects.Contains(obj))
+            foreach (RaycastHit hit in hits)
             {
-                Renderer renderer = obj.GetComponent<Renderer>();
-                if (renderer != null)
+                GameObject obj = hit.collider.gameObject;
+                currentHits.Add(obj);
+
+                if (!affectedObjects.Contains(obj))
                 {
-                    foreach (Material mat in renderer.materials)
+                    // Uložení pùvodního layeru, pokud není uložen
+                    if (!originalLayers.ContainsKey(obj))
                     {
-                        SetMaterialTransparent(mat, TransparencyLevel);
+                        originalLayers[obj] = obj.layer;
+                    }
+
+                    // Nastavení doèasného layeru
+                    obj.layer = TemporaryLayer;
+
+                    // Nastavení prùhlednosti
+                    Renderer renderer = obj.GetComponent<Renderer>();
+                    if (renderer != null)
+                    {
+                        foreach (Material mat in renderer.materials)
+                        {
+                            SetMaterialTransparent(mat, TransparencyLevel);
+                        }
                     }
                 }
             }
-        }
 
-        // Obnovujeme viditelnost pro objekty, které nejsou aktuálnì zasaženy
-        foreach (GameObject obj in affectedObjects)
-        {
-            if (obj != null) {
-            if (!currentHits.Contains(obj))
+            // Obnovujeme layer a viditelnost pro objekty, které již nejsou zasaženy
+            foreach (GameObject obj in affectedObjects)
             {
-                Renderer renderer = obj.GetComponent<Renderer>();
-                if (renderer != null)
+                if (!currentHits.Contains(obj))
                 {
-                    foreach (Material mat in renderer.materials)
+                    if (originalLayers.ContainsKey(obj))
                     {
-                        ResetMaterialVisibility(mat);
+                        obj.layer = originalLayers[obj]; // Obnovení pùvodního layeru
+                        originalLayers.Remove(obj);
+                    }
+
+                    Renderer renderer = obj.GetComponent<Renderer>();
+                    if (renderer != null)
+                    {
+                        foreach (Material mat in renderer.materials)
+                        {
+                            ResetMaterialVisibility(mat);
+                        }
                     }
                 }
-                }
             }
-        }
 
-        // Aktualizujeme seznam ovlivnìných objektù
-        affectedObjects = currentHits;
-
-        // Debug vizualizace
-        //Debug.DrawLine(origin.position, target.position, Color.red);
+            affectedObjects = currentHits;
         }
     }
 
@@ -72,16 +80,13 @@ public class RaycastTransparency : MonoBehaviour
     {
         if (material == null) return;
 
-        // Pøepnutí na Opaque mód
         material.SetFloat("_Surface", 0); // Opaque
-        material.SetFloat("_ZWrite", 1); // Povolit zápis do Z-bufferu
+        material.SetFloat("_ZWrite", 1);
         material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
 
-        // Aktivace klíèových slov pro neprùhledný mód
         material.EnableKeyword("_SURFACE_TYPE_OPAQUE");
         material.DisableKeyword("_SURFACE_TYPE_TRANSPARENT");
 
-        // Obnovíme alpha kanál na plnou viditelnost
         Color color = material.color;
         color.a = 1f;
         material.color = color;
@@ -98,25 +103,21 @@ public class RaycastTransparency : MonoBehaviour
 
         if (material.shader == null)
         {
-            //Debug.LogError("Shader 'Universal Render Pipeline/Lit' not found. Make sure URP is correctly set up.");
             return;
         }
 
-        // Pøepnutí na transparentní režim
-        material.SetFloat("_Surface", 1); // Transparent (0 = Opaque, 1 = Transparent)
-        material.SetFloat("_Blend", 0);   // Alpha blending
-        material.SetFloat("_ZWrite", 0);  // Zakázat zápis do Z-bufferu
+        material.SetFloat("_Surface", 1); // Transparent
+        material.SetFloat("_Blend", 0);
+        material.SetFloat("_ZWrite", 0);
         material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
 
-        // Aktivujeme prùhlednost a deaktivujeme nepoužívané vlastnosti
         material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
         material.DisableKeyword("_SURFACE_TYPE_OPAQUE");
         material.DisableKeyword("_ALPHATEST_ON");
         material.EnableKeyword("_BLENDMODE_ALPHA");
 
-        // Nastavení alpha kanálu na prùhlednost
         Color color = material.color;
-        color.a = Mathf.Clamp01(transparencyLevel); // Plnì prùhledný
+        color.a = Mathf.Clamp01(transparencyLevel);
         material.color = color;
 
         material.SetOverrideTag("RenderType", "Transparent");
@@ -125,69 +126,3 @@ public class RaycastTransparency : MonoBehaviour
         material.SetInt("_ZWrite", 0);
     }
 }
-
-/* using UnityEngine;
-
-public class ObjectFader : MonoBehaviour
-{
-    public Transform origin;
-    public Transform target;
-
-    void Update()
-    {
-        float distance = Vector3.Distance(origin.position, target.position);
-
-        Vector3 direction = (target.position - origin.position).normalized;
-
-        RaycastHit[] hits = Physics.RaycastAll(origin.position, direction, distance);
-
-        foreach (RaycastHit hit in hits)
-        {
-            Renderer renderer = hit.collider.GetComponent<Renderer>();
-
-            if (renderer != null)
-            {
-                foreach (Material mat in renderer.materials)
-                {
-                    SetMaterialTransparent(mat);
-                }
-            }
-        }
-
-        //Debug.DrawLine(origin.position, target.position, Color.red);
-    }
-
-    void SetMaterialTransparent(Material material)
-    {
-        if (material == null) return;
-
-        if (material.shader.name != "Universal Render Pipeline/Lit")
-        {
-            material.shader = Shader.Find("Universal Render Pipeline/Lit");
-        }
-
-        if (material.shader == null)
-        {
-            //Debug.LogError("Shader 'Universal Render Pipeline/Lit' not found. Make sure URP is correctly set up.");
-            return;
-        }
-
-        // Pøepnutí na transparentní režim
-        material.SetFloat("_Surface", 1); // Transparent (0 = Opaque, 1 = Transparent)
-        material.SetFloat("_Blend", 0);   // Alpha blending
-        material.SetFloat("_ZWrite", 0);  // Zakázat zápis do Z-bufferu
-        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
-
-        // Aktivujeme prùhlednost a deaktivujeme nepoužívané vlastnosti
-        material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
-        material.DisableKeyword("_SURFACE_TYPE_OPAQUE");
-        material.DisableKeyword("_ALPHATEST_ON");
-        material.EnableKeyword("_BLENDMODE_ALPHA");
-
-        // Nastavení alpha kanálu na prùhlednost
-        Color color = material.color;
-        color.a = 0f; // Plnì prùhledný
-        material.color = color;
-    }
-}
-*/
