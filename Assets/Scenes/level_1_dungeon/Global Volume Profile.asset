@@ -87,6 +87,34 @@ MonoBehaviour:
   maxNits:
     m_OverrideState: 0
     m_Value: 1000
+--- !u!114 &-1207526839069295578
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  postExposure:
+    m_OverrideState: 1
+    m_Value: 0.7
+  contrast:
+    m_OverrideState: 0
+    m_Value: 0
+  colorFilter:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  hueShift:
+    m_OverrideState: 0
+    m_Value: 7
+  saturation:
+    m_OverrideState: 0
+    m_Value: -31
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +133,7 @@ MonoBehaviour:
   - {fileID: 687729674261292114}
   - {fileID: 444615616267862309}
   - {fileID: -8983350194058835669}
+  - {fileID: -1207526839069295578}
 --- !u!114 &444615616267862309
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -119,26 +148,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   shadows:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.9775341, z: 0.7565828, w: 0.48846677}
   midtones:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.9533325, y: 0.98908174, z: 1, w: 1}
   highlights:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0, y: 1, z: 0.2703147, w: 1}
   shadowsStart:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   shadowsEnd:
-    m_OverrideState: 0
-    m_Value: 0.3
+    m_OverrideState: 1
+    m_Value: 0.03
   highlightsStart:
     m_OverrideState: 0
-    m_Value: 0.55
+    m_Value: 0.21
   highlightsEnd:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 1.33
 --- !u!114 &687729674261292114
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -153,14 +182,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   lift:
-    m_OverrideState: 1
-    m_Value: {x: 0.99577034, y: 0.9968277, z: 1, w: -0.000000004249032}
+    m_OverrideState: 0
+    m_Value: {x: 0.9100438, y: 0.9178056, z: 1, w: 0.012936612}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 0.9866272, y: 0.9940789, z: 1, w: -0.000000117717455}
+    m_Value: {x: 1, y: 0.99089515, z: 0.7255622, w: 0.37516186}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 0.98389333, y: 1, z: 0.99414843, w: 0}
+    m_Value: {x: 1, y: 0.6137411, z: 0.86546254, w: 1}
 --- !u!114 &3676046774564914244
 MonoBehaviour:
   m_ObjectHideFlags: 3
