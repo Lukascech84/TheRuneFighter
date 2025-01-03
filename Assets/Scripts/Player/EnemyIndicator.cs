@@ -14,6 +14,12 @@ public class EnemyIndicator : MonoBehaviour
     private List<GameObject> enemyIndicators = new List<GameObject>();
     private List<GameObject> bossIndicators = new List<GameObject>();
 
+    private void Start()
+    {
+        player = GameObject.FindWithTag("player").transform;
+        mainCamera = Camera.main;
+    }
+
     void Update()
     {
         // Získání všech objektù na vrstvách Enemy a Boss

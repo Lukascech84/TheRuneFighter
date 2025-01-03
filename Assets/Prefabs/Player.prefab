@@ -354,6 +354,7 @@ MonoBehaviour:
   origin: {fileID: 4236076998728265475}
   target: {fileID: 523338835328851025}
   TransparencyLevel: 0.2
+  TemporaryLayer: 12
 --- !u!1001 &56854202739866554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1520,7 +1521,7 @@ MonoBehaviour:
   rotationSmoothTime: 0.15
   layersToInclude:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 25
   isDashing: 0
 --- !u!143 &5608072341264184833
 CharacterController:

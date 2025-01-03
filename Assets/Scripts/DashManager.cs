@@ -14,6 +14,7 @@ public class DashManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        character = GameObject.FindWithTag("player");
         PlayerAtm = character.GetComponent<PlayerAttributeManager>();
     }
 

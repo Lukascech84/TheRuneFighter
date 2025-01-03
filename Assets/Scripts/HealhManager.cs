@@ -16,7 +16,8 @@ public class HealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerAtm =  character.GetComponent<PlayerAttributeManager>();
+        character = GameObject.FindWithTag("player");
+        PlayerAtm = character.GetComponent<PlayerAttributeManager>();
     }
 
     // Update is called once per frame

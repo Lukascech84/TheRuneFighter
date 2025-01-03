@@ -14,6 +14,7 @@ public class AmmoManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        character = GameObject.FindWithTag("player");
         atm = character.GetComponent<PlayerCombatRanged>();
     }
 

@@ -3014,6 +3014,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1612666170241352201, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: layersToInclude.m_Bits
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4295544703908518819, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
+      propertyPath: TemporaryLayer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5326594741311018396, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: m_Name
       value: Player
