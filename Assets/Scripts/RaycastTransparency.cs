@@ -7,6 +7,7 @@ public class RaycastTransparency : MonoBehaviour
     public Transform target;
     public float TransparencyLevel = 0f;
     public int TemporaryLayer = 8; // Nastavte zde doèasný layer (napø. 8)
+    public LayerMask ignoreLayers; // Vrstva (nebo vrstvy), které mají být ignorovány
 
     private HashSet<GameObject> affectedObjects = new HashSet<GameObject>();
     private Dictionary<GameObject, int> originalLayers = new Dictionary<GameObject, int>();
@@ -18,27 +19,27 @@ public class RaycastTransparency : MonoBehaviour
             Vector3 direction = (target.position - origin.position).normalized;
             float distance = Vector3.Distance(origin.position, target.position);
 
-            RaycastHit[] hits = Physics.RaycastAll(origin.position, direction, distance);
+            RaycastHit[] hits = Physics.RaycastAll(origin.position, direction, distance, ~ignoreLayers);
 
             HashSet<GameObject> currentHits = new HashSet<GameObject>();
 
             foreach (RaycastHit hit in hits)
             {
                 GameObject obj = hit.collider.gameObject;
+
+                if (obj == null) continue; // Pøeskoèíme, pokud je objekt null
+
                 currentHits.Add(obj);
 
                 if (!affectedObjects.Contains(obj))
                 {
-                    // Uložení pùvodního layeru, pokud není uložen
                     if (!originalLayers.ContainsKey(obj))
                     {
-                        originalLayers[obj] = obj.layer;
+                        originalLayers[obj] = obj.layer; // Uložit pùvodní layer
                     }
 
-                    // Nastavení doèasného layeru
-                    obj.layer = TemporaryLayer;
+                    obj.layer = TemporaryLayer; // Nastavit doèasný layer
 
-                    // Nastavení prùhlednosti
                     Renderer renderer = obj.GetComponent<Renderer>();
                     if (renderer != null)
                     {
@@ -53,6 +54,8 @@ public class RaycastTransparency : MonoBehaviour
             // Obnovujeme layer a viditelnost pro objekty, které již nejsou zasaženy
             foreach (GameObject obj in affectedObjects)
             {
+                if (obj == null) continue; // Pøeskoèíme, pokud je objekt null
+
                 if (!currentHits.Contains(obj))
                 {
                     if (originalLayers.ContainsKey(obj))
@@ -69,6 +72,15 @@ public class RaycastTransparency : MonoBehaviour
                             ResetMaterialVisibility(mat);
                         }
                     }
+                }
+            }
+
+            // Odstranìní znièených objektù z `originalLayers`
+            foreach (var entry in new List<GameObject>(originalLayers.Keys))
+            {
+                if (entry == null)
+                {
+                    originalLayers.Remove(entry);
                 }
             }
 

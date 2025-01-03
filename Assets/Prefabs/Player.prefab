@@ -355,6 +355,9 @@ MonoBehaviour:
   target: {fileID: 523338835328851025}
   TransparencyLevel: 0.2
   TemporaryLayer: 12
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 3968
 --- !u!1001 &56854202739866554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1065,7 +1068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5394693769120690257, guid: 0285b9d00490f874fb652198d414b6c8, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5470694928252452566, guid: 0285b9d00490f874fb652198d414b6c8, type: 3}
       propertyPath: m_Layer
