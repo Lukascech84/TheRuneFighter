@@ -131,11 +131,13 @@ public class AI_Range : MonoBehaviour
             // Vypočítáme nový směr střely
             Vector3 bulletDirection = adjustedRotation * Vector3.forward;
 
+            Bullet_enemy bulletScript = spawnedBullet.GetComponent<Bullet_enemy>();
+
             // Předáme směr a rychlost střely do komponenty Bullet
-            spawnedBullet.GetComponent<Bullet>().speed = speed;
-            spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
-            spawnedBullet.GetComponent<Bullet>().SetDirection(bulletDirection);
-            Bullet bulletScript = spawnedBullet.GetComponent<Bullet>();
+            bulletScript.speed = speed;
+            bulletScript.bulletLife = bulletLife;
+            bulletScript.SetDirection(bulletDirection);
+
             if (bulletScript != null)
             {
                 bulletScript.spawner = gameObject;

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class AI_Rat : MonoBehaviour
+public class AI_Ghost : MonoBehaviour
 {
     [Header("Settings")]
     public float sightRange = 10f;
-    public float meleeAttackRadius = 1f;
+    public float meleeAttackRadius = 2f;
     public float dealDamageRadius = 3f;
     public float walkPointRange = 5f;
     public float timeBetweenAttacks = 1.5f;
@@ -52,7 +52,7 @@ public class AI_Rat : MonoBehaviour
         {
             if (distanceToPlayer <= meleeAttackRadius)
             {
-                AttackPlayer();
+                AttackPlayer(); // Agent se zastaví zde
             }
             else
             {
@@ -97,7 +97,6 @@ public class AI_Rat : MonoBehaviour
 
     private void ChasePlayer()
     {
-        // Adjust player's position to be on the ground
         Vector3 targetPosition = GetGroundedPlayerPosition();
         agent.SetDestination(targetPosition);
     }
@@ -105,10 +104,9 @@ public class AI_Rat : MonoBehaviour
     private void AttackPlayer()
     {
         agent.isStopped = true; // Zastav agenta při útoku
-        // Stop moving and face the player
-        agent.SetDestination(transform.position);
+        agent.SetDestination(transform.position); // Zabraň pohybu
 
-        // Always face the player
+        // Otoč agenta směrem k hráči
         Vector3 lookAtPosition = new Vector3(GetGroundedPlayerPosition().x, transform.position.y, GetGroundedPlayerPosition().z);
         transform.LookAt(lookAtPosition);
 
@@ -116,10 +114,11 @@ public class AI_Rat : MonoBehaviour
         {
             Attack();
             alreadyAttacked = true;
+
+            // Naplánuj obnovení útoku a pohybu
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
-
 
     private void Attack()
     {

@@ -8,7 +8,7 @@ public class FlashRed : MonoBehaviour
     public float flashDuration = 0.05f;
 
     private List<Renderer> renderers = new List<Renderer>();
-    private Dictionary<Renderer, Material> originalMaterials = new Dictionary<Renderer, Material>();
+    private Dictionary<Renderer, Material[]> originalMaterials = new Dictionary<Renderer, Material[]>();
     private GameObject spawner;
 
     private void Start()
@@ -19,7 +19,7 @@ public class FlashRed : MonoBehaviour
         // Uloží originální materiály každého rendereru
         foreach (var rend in renderers)
         {
-            originalMaterials[rend] = rend.material;
+            originalMaterials[rend] = rend.materials;
         }
     }
 
@@ -41,7 +41,12 @@ public class FlashRed : MonoBehaviour
             // Nastaví èervený materiál na všechny renderery
             foreach (var rend in renderers)
             {
-                rend.material = flashRedMaterial;
+                var materials = rend.materials;
+                for (int i = 0; i < materials.Length; i++)
+                {
+                    materials[i] = flashRedMaterial;
+                }
+                rend.materials = materials;
             }
 
             yield return new WaitForSeconds(duration);
@@ -51,7 +56,7 @@ public class FlashRed : MonoBehaviour
             {
                 if (originalMaterials.ContainsKey(rend))
                 {
-                    rend.material = originalMaterials[rend];
+                    rend.materials = originalMaterials[rend];
                 }
             }
         }

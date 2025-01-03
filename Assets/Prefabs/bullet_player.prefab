@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 245301517880444571}
   - component: {fileID: 8394198893712957934}
   - component: {fileID: 7880992507376641920}
-  - component: {fileID: 7658009339853608330}
+  - component: {fileID: -1541902889861349347}
   m_Layer: 0
   m_Name: bullet_player
   m_TagString: Untagged
@@ -231,7 +231,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7658009339853608330
+--- !u!114 &-1541902889861349347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,15 +243,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a9ce9e2177ee945abc286f80428165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletLife: 100
+  bulletLife: 1
   speed: 1
   spawner: {fileID: 0}
-  playerAtm: {fileID: 0}
+  spawnerAtm: {fileID: 0}
   enemyAtm: {fileID: 0}
-  muzzlePrefab: {fileID: 7317980745708335596, guid: 19ab81416e19b1c4c93cfa307105aec8, type: 3}
-  hitPrefab: {fileID: 320921190554142508, guid: b005e3306d68363429278c3031be2046, type: 3}
-  flashRedMaterial: {fileID: 2100000, guid: fe154a1ae8b8d384883e8ee464eefc90, type: 2}
-  flashDuration: 0.05
+  muzzlePrefab: {fileID: 0}
+  hitPrefab: {fileID: 0}
 --- !u!1 &3441148672493603554
 GameObject:
   m_ObjectHideFlags: 0
