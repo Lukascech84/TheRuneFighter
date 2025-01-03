@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; // Pro práci s NavMesh
 
 public class DI_MainScript : MonoBehaviour
 {
@@ -106,7 +105,7 @@ public class DI_MainScript : MonoBehaviour
                 phase3FireRateTimer += Time.deltaTime;
                 if (phase3FireRateTimer >= phase3FireRate)
                 {
-                    StartCoroutine(FireBurst(3, 45f)); // Burst støelba ve tøetí fázi
+                    StartCoroutine(FireBurst(3, 45f)); // Burst stï¿½elba ve tï¿½etï¿½ fï¿½zi
                     phase3FireRateTimer = 0f;
                 }
             }
@@ -184,12 +183,12 @@ public class DI_MainScript : MonoBehaviour
         {
             Animator.SetTrigger("attack");
             yield return new WaitForSeconds(0.2f);
-            // Spoèítání smìru støely
+            // Spoï¿½ï¿½tï¿½nï¿½ smï¿½ru stï¿½ely
             if (Player != null)
             {
                 Vector3 bulletDirection = (Player.transform.position - transform.position).normalized;
 
-                // Výpoèet pozice pro spawn
+                // Vï¿½poï¿½et pozice pro spawn
                 Vector3 spawnPosition = transform.position + transform.forward * ProjectileSpawnOffset.z
                                         + transform.up * ProjectileSpawnOffset.y
                                         + transform.right * ProjectileSpawnOffset.x;
@@ -197,11 +196,11 @@ public class DI_MainScript : MonoBehaviour
                 // Spawn projektilu
                 GameObject spawnedProjectile = Instantiate(MagicProjectilePrefab, spawnPosition, Quaternion.identity);
 
-                // Manuální nastavení rotace projektilu
+                // Manuï¿½lnï¿½ nastavenï¿½ rotace projektilu
                 Quaternion customRotation = Quaternion.LookRotation(bulletDirection) * Quaternion.Euler(90, 0, -90);
                 spawnedProjectile.transform.rotation = customRotation;
 
-                // Nastavení smìru støely
+                // Nastavenï¿½ smï¿½ru stï¿½ely
                 DI_MagicProjectile projectileScript = spawnedProjectile.GetComponent<DI_MagicProjectile>();
                 if (projectileScript != null)
                 {
@@ -295,7 +294,7 @@ public class DI_MainScript : MonoBehaviour
 
     private Vector3 GetRandomPositionInArena(Bounds bounds)
     {
-        int maxAttempts = 10; // Kolikrát se pokusíme najít validní pozici
+        int maxAttempts = 10; // Kolikrï¿½t se pokusï¿½me najï¿½t validnï¿½ pozici
         for (int attempt = 0; attempt < maxAttempts; attempt++)
         {
             Vector3 randomPosition = new Vector3(
@@ -304,15 +303,15 @@ public class DI_MainScript : MonoBehaviour
                 Random.Range(bounds.min.z, bounds.max.z)
             );
 
-            // Zkontroluj, zda je pozice validní na NavMeshu
-            if (NavMesh.SamplePosition(randomPosition, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
+            // Zkontroluj, zda je pozice validnï¿½ na NavMeshu
+            if (UnityEngine.AI.NavMesh.SamplePosition(randomPosition, out UnityEngine.AI.NavMeshHit hit, 1.0f, UnityEngine.AI.NavMesh.AllAreas))
             {
-                return hit.position; // Vrátí validní pozici na NavMeshu
+                return hit.position; // Vrï¿½tï¿½ validnï¿½ pozici na NavMeshu
             }
         }
 
-        Debug.LogWarning("Nenalezl jsem validní pozici pro spawnování.");
-        return Vector3.zero; // Vrátí nulu, pokud žádná pozice není validní
+        Debug.LogWarning("Nenalezl jsem validnï¿½ pozici pro spawnovï¿½nï¿½.");
+        return Vector3.zero; // Vrï¿½tï¿½ nulu, pokud ï¿½ï¿½dnï¿½ pozice nenï¿½ validnï¿½
     }
 
     private void Teleport()
