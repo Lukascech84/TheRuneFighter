@@ -1,39 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAi : MonoBehaviour
+public class AI_Range : MonoBehaviour
 {
-    public NavMeshAgent agent;
-
-    public Transform player;
-
-    public LayerMask whatIsGround, whatIsPlayer;
-
-    private float health;
-
-    //Patroling
-    public Vector3 walkPoint;
-    private bool walkPointSet;
-    public float walkPointRange;
-
-    //Attacking
-    public float timeBetweenAttacks;
-    private bool alreadyAttacked;
-
-    //States
-    public float sightRange, attackRange;
-    private bool playerInSightRange, playerInAttackRange;
-    private EnemyAttributeManager atm;
-    public GameObject bullet;
+    [Header("Settings")]
+    public float sightRange = 10f;
+    public float attackRange = 5f;
+    public float walkPointRange = 5f;
+    public float timeBetweenAttacks = 1.5f;
     public float bulletLife = 1.5f;
     public float speed = 6.5f;
     [SerializeField] private float firingRate = 0.04f;
-    [SerializeField] private Vector3 spawnOffset = Vector3.zero; // Offset pro spawn střely
+    [SerializeField] private Vector3 spawnOffset = Vector3.zero;
+
+    [Header("References")]
+    public LayerMask whatIsGround, whatIsPlayer;
+    public GameObject bullet;
+
+    private Animator animator;
+    private NavMeshAgent agent;
+    private Transform player;
+    private Vector3 walkPoint;
+    private bool walkPointSet;
+    private bool alreadyAttacked;
+    private BaseAttributeManager enemyAttributes;
+    private EnemyAttributeManager atm;
+    private bool playerInSightRange, playerInAttackRange;
     private float timer = 0f;
+    private float health;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindWithTag("player").transform;
+        atm = GetComponent<EnemyAttributeManager>();
         if (atm != null) health = atm.BaseHealth;
     }
 
@@ -42,6 +43,17 @@ public class EnemyAi : MonoBehaviour
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (agent == null)
+        {
+            Debug.LogError("NavMeshAgent not attached!");
+            enabled = false;
+        }
+        if (player == null)
+        {
+            Debug.LogError("Player not found! Ensure there is a GameObject with the tag 'Player'.");
+            enabled = false;
+        }
 
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
@@ -75,15 +87,14 @@ public class EnemyAi : MonoBehaviour
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        agent.SetDestination(GetGroundedPlayerPosition());
     }
 
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
-        agent.SetDestination(transform.position);
-
-        transform.LookAt(player);
+        Vector3 lookAtPosition = new Vector3(GetGroundedPlayerPosition().x, transform.position.y, GetGroundedPlayerPosition().z);
+        transform.LookAt(lookAtPosition);
 
         timer += Time.deltaTime;
 
@@ -104,13 +115,6 @@ public class EnemyAi : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
-    }
     private void Fire()
     {
         if (bullet) // Zkontroluj, zda je přiřazen prefab střely
@@ -137,5 +141,35 @@ public class EnemyAi : MonoBehaviour
                 bulletScript.spawner = gameObject;
             }
         }
+    }
+
+    private Vector3 GetGroundedPlayerPosition()
+    {
+        CharacterController controller = player.GetComponent<CharacterController>();
+        if (controller != null)
+        {
+            Vector3 groundedPosition = new Vector3(controller.bounds.center.x, controller.bounds.min.y, controller.bounds.center.z);
+            return groundedPosition;
+        }
+        return player.position;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+
+        if (player == null) return;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(GetGroundedPlayerPosition(), player.position);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(GetGroundedPlayerPosition(), 0.2f);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(player.position, 0.2f);
     }
 }

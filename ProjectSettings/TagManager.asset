@@ -6,6 +6,7 @@ TagManager:
   tags:
   - room
   - Weapon_Player
+  - player
   layers:
   - Default
   - TransparentFX
