@@ -24,6 +24,11 @@ public class PlayerAttributeManager : BaseAttributeManager
     protected override void Die()
     {
         Animator.SetTrigger("dead");
+    }
+
+    private void StopTime()
+    {
+        Time.timeScale = 0f;
         isDead = true;
     }
 }

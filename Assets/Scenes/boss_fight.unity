@@ -614,6 +614,72 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 138b3947f0cc9f347ac301297424b4f1, type: 3}
+--- !u!1 &440476654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 440476657}
+  - component: {fileID: 440476656}
+  - component: {fileID: 440476655}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &440476655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440476654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e45c835c009fa4ba84481422870cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &440476656
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440476654}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 31.537249, y: 11.442776, z: 40.425728}
+  m_Center: {x: 0.28599262, y: -10.989075, z: 5.9462967}
+--- !u!4 &440476657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440476654}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.18, y: 9.067, z: 3.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &464481869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -831,6 +897,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 20914361240958326, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20914361240958326, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 634932348318117456, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
       propertyPath: Boss
       value: 
@@ -839,9 +913,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 2209354379388923421, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2209354379388923421, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2209354379388923421, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3073612920441829198, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108079520106540295, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4.4450684
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108079520106540295, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.81747437
       objectReference: {fileID: 0}
     - target: {fileID: 7121109523667350960, guid: 90aa1d5c243787445a809a66e6e27d98, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2237,3 +2331,4 @@ SceneRoots:
   - {fileID: 1268841151}
   - {fileID: 2055656447}
   - {fileID: 4518622}
+  - {fileID: 440476657}
