@@ -7,6 +7,7 @@ TagManager:
   - room
   - Weapon_Player
   - player
+  - trap
   layers:
   - Default
   - TransparentFX

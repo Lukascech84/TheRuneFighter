@@ -16,7 +16,11 @@ public class DI_HealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Boss == null) enabled = false;
+        if (Boss == null)
+        {
+            enabled = false;
+            return;
+        }
         BossAtm =  Boss.GetComponent<DI_BossAttributeManager>();
     }
 
