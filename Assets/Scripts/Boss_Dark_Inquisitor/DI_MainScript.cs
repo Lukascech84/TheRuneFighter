@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI; // Pro práci s NavMesh
 
 public class DI_MainScript : MonoBehaviour
 {
@@ -294,9 +295,24 @@ public class DI_MainScript : MonoBehaviour
 
     private Vector3 GetRandomPositionInArena(Bounds bounds)
     {
-        return new Vector3(
-            Random.Range(bounds.min.x, bounds.max.x), 0, Random.Range(bounds.min.z, bounds.max.z)
-        );
+        int maxAttempts = 10; // Kolikrát se pokusíme najít validní pozici
+        for (int attempt = 0; attempt < maxAttempts; attempt++)
+        {
+            Vector3 randomPosition = new Vector3(
+                Random.Range(bounds.min.x, bounds.max.x),
+                bounds.min.y,
+                Random.Range(bounds.min.z, bounds.max.z)
+            );
+
+            // Zkontroluj, zda je pozice validní na NavMeshu
+            if (NavMesh.SamplePosition(randomPosition, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
+            {
+                return hit.position; // Vrátí validní pozici na NavMeshu
+            }
+        }
+
+        Debug.LogWarning("Nenalezl jsem validní pozici pro spawnování.");
+        return Vector3.zero; // Vrátí nulu, pokud žádná pozice není validní
     }
 
     private void Teleport()
