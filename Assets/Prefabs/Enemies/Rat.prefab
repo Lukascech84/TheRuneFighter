@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f95c14a439e6d54d935225b7729560d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightRange: 10
+  sightRange: 30
   meleeAttackRadius: 1
   dealDamageRadius: 3
   walkPointRange: 5

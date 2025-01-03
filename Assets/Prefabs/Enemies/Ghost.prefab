@@ -74,8 +74,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8908606, y: 3.3316665, z: 1.9108799}
-  m_Center: {x: -0.0050053596, y: 0.24671459, z: 0.065063}
+  m_Size: {x: 1.8908606, y: 4.08368, z: 1.9108799}
+  m_Center: {x: -0.0050053406, y: 0.13323753, z: 0.06506303}
 --- !u!195 &8115611106968268610
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd65e036d817c24283d080f81af21e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightRange: 20
-  attackRange: 10
+  sightRange: 30
+  attackRange: 15
   walkPointRange: 5
   timeBetweenAttacks: 0
   bulletLife: 1.5
