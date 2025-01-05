@@ -17,7 +17,7 @@ public class DeadScreen : MonoBehaviour
 
     void Update()
     {
-        if (PlayerAtm.isDead)
+        if (PlayerAtm.deadScreen)
         {
             deadscreen.SetActive(true);
         }

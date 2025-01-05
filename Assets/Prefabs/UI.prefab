@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7121109523667350960}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,10 +366,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1226581341830266419}
-  - {fileID: 7209567511086340820}
-  - {fileID: 72984538960705994}
   - {fileID: 1720084649453066137}
   - {fileID: 4815811857787404550}
+  - {fileID: 7209567511086340820}
+  - {fileID: 72984538960705994}
   - {fileID: 2062135064425324100}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 2410194702506627698}
   - component: {fileID: 1913847563339356533}
   - component: {fileID: 3504756437416609212}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2048,7 +2048,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4388793081354083075}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BossHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2086,7 +2086,7 @@ GameObject:
   - component: {fileID: 8416238870798070903}
   - component: {fileID: 7385596608101574621}
   - component: {fileID: 2271920086041053068}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EnemyIndicators
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2129,11 +2129,11 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &7385596608101574621
 MonoBehaviour:
@@ -2482,7 +2482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 501387398406537962}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2720,11 +2720,11 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &6974799931729107018
 MonoBehaviour:
@@ -2814,10 +2814,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4050399352659288232}
   - component: {fileID: 2189100659873323694}
-  - component: {fileID: 4518822008276470834}
   - component: {fileID: 2991628439229697603}
   m_Layer: 5
-  m_Name: ResumeButton (1)
+  m_Name: Respawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2832,7 +2831,7 @@ RectTransform:
   m_GameObject: {fileID: 3855026209789422243}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6098039, y: 1.6098039, z: 1.6098039}
+  m_LocalScale: {x: 3.2171931, y: 3.2171931, z: 3.2171931}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7205806238274714701}
@@ -2851,36 +2850,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3855026209789422243}
   m_CullTransparentMesh: 1
---- !u!114 &4518822008276470834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3855026209789422243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &2991628439229697603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2900,7 +2869,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.4745098}
@@ -2921,7 +2890,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 4518822008276470834}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3000,7 +2969,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &4709851888321707887
 MonoBehaviour:
@@ -3672,7 +3641,7 @@ GameObject:
   - component: {fileID: 3108079520106540295}
   - component: {fileID: 8000474404467295458}
   - component: {fileID: 1952250930707360336}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: cerna
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3747,7 +3716,7 @@ GameObject:
   - component: {fileID: 7339176442541743733}
   - component: {fileID: 6932783276607973679}
   - component: {fileID: 3735175500027909339}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3958,7 +3927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1288976711699129778}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4082,7 +4051,7 @@ GameObject:
   - component: {fileID: 1131046772939388832}
   - component: {fileID: 6163963265366538739}
   - component: {fileID: 1539522718831592637}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4609,7 +4578,7 @@ GameObject:
   - component: {fileID: 5680772766250221999}
   - component: {fileID: 5282910281992531627}
   - component: {fileID: 3326419459416057789}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Max
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5222,7 +5191,7 @@ GameObject:
   - component: {fileID: 9190863292228177311}
   - component: {fileID: 6159764015641211660}
   - component: {fileID: 2031742283145826442}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Current
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5437,7 +5406,7 @@ GameObject:
   - component: {fileID: 634932348318117456}
   - component: {fileID: 7468490632732998671}
   - component: {fileID: 5485223230913455768}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5663,7 +5632,7 @@ GameObject:
   - component: {fileID: 1586361068558695435}
   - component: {fileID: 7333072662528439835}
   - component: {fileID: 6173402178099231783}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5707,11 +5676,11 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &7333072662528439835
 MonoBehaviour:
@@ -5765,8 +5734,8 @@ GameObject:
   - component: {fileID: 9025879537685803656}
   - component: {fileID: 8145426771027688905}
   - component: {fileID: 22204755845103464}
-  m_Layer: 0
-  m_Name: deadscreen
+  m_Layer: 5
+  m_Name: DeadScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5811,11 +5780,11 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &8145426771027688905
 MonoBehaviour:
@@ -6209,7 +6178,7 @@ GameObject:
   - component: {fileID: 8020366763672035774}
   - component: {fileID: 3647998296644122824}
   - component: {fileID: 7740203163967565190}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}

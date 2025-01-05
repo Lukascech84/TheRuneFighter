@@ -239,7 +239,7 @@ MonoBehaviour:
   TemporaryLayer: 12
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 3968
+    m_Bits: 4000
 --- !u!1001 &56854202739866554
 PrefabInstance:
   m_ObjectHideFlags: 0

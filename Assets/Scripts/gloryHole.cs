@@ -17,14 +17,11 @@ public class gloryHole : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
-            if (playerAtm != null)
+            if (playerAtm != null && playerAtm.CurrentHealth > 0f)
             {
-                if (playerAtm.CurrentHealth > 0f)
-                {
-                    playerAtm.CurrentHealth = 0;
-                }
+                // Zpùsobení maximálního poškození k vyvolání smrti
+                playerAtm.TakeDamage(playerAtm.CurrentHealth);
             }
         }
     }
-
 }
