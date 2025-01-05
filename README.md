@@ -30,14 +30,16 @@
     - [x] Hotový model postavy
     - [x] Animace
     - [x] Dash efekt
-- [ ] Hotové modely enemy
+- [x] Hotové modely enemy
 - [ ] Combat systém s mečem
     - [x] Přepínání na meč
     - [x] Hitboxy
     - [W.I.P] Scripty
-- [ ] Více druhů enemy, long-range, close-range
-- [ ] Dokončit level0
-- [ ] Dokončit level1
+- [x] Více druhů enemy, long-range, close-range
+- [x] Dokončit level1
+- [x] Dokončit level2
+- [x] Dokončit level3
+- [x] Dokončit level4
 
 ## Použité technologie:
 - Unity
