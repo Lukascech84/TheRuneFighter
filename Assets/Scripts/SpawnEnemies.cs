@@ -5,6 +5,7 @@ using UnityEngine.AI; // Pro práci s NavMesh
 
 public class SpawnEnemies : MonoBehaviour
 {
+    public GameObject doorToNextLevel;
     public GameObject[] enemyPrefab;
     private Collider ArenaBounds;
     public int numberOfEnemies = 0;
@@ -14,6 +15,7 @@ public class SpawnEnemies : MonoBehaviour
     private bool isFightActive = false;
     public int maxNumberOfWaves = 3;
     private int currentWave = 0;
+    private bool doorHasOpened = false;
 
     private void Start()
     {
@@ -64,7 +66,16 @@ public class SpawnEnemies : MonoBehaviour
                 currentWave++;
 
             }
-            else isFightActive = false;
+            else
+            {
+                isFightActive = false;
+                if (doorToNextLevel != null && !doorHasOpened)
+                {
+                    doorToNextLevel.GetComponent<BaseOpenDoor>().OpenDoor();
+                    doorHasOpened = true;
+                }
+
+            }
         }
         else hasAllMinionsDied = false;
     }

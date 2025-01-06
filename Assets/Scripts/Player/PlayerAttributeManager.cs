@@ -30,9 +30,9 @@ public class PlayerAttributeManager : BaseAttributeManager
 
     protected override void Die()
     {
-        Animator.SetTrigger("dead");
-
         audioSource.PlayOneShot(deathSound);
+
+        Animator.SetTrigger("dead");
 
         isDead = true;
     }
