@@ -11,12 +11,6 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void BossTest()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(2);
-    }
-
     public void QuitGame()
     {
         Application.Quit();
