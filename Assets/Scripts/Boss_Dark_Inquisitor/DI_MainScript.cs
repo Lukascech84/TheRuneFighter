@@ -105,7 +105,7 @@ public class DI_MainScript : MonoBehaviour
                 phase3FireRateTimer += Time.deltaTime;
                 if (phase3FireRateTimer >= phase3FireRate)
                 {
-                    StartCoroutine(FireBurst(3, 45f)); // Burst st�elba ve t�et� f�zi
+                    Animator.SetTrigger("attack");
                     phase3FireRateTimer = 0f;
                 }
             }
@@ -122,7 +122,7 @@ public class DI_MainScript : MonoBehaviour
         if (FireRateTimer >= firingRate && isShooting)
         {
             if (!Player) return;
-            StartCoroutine(Fire());
+            Animator.SetTrigger("attack");
             FireRateTimer = 0f;
         }
 
@@ -138,8 +138,8 @@ public class DI_MainScript : MonoBehaviour
     {
         if (!hasMinionsSpawned)
         {
-            SummonMinions();
             BossAtm.isInvincible = true;
+            Animator.SetTrigger("mimon");
         }
         hasMinionsSpawned = true;
 
@@ -149,7 +149,7 @@ public class DI_MainScript : MonoBehaviour
         if (FireRateTimer >= firingRate && isShooting)
         {
             if (!Player) return;
-            StartCoroutine(Fire());
+            Animator.SetTrigger("attack");
             FireRateTimer = 0f;
         }
 
@@ -177,13 +177,22 @@ public class DI_MainScript : MonoBehaviour
         }
     }
 
-    private IEnumerator Fire()
+    private void AttackAnim()
+    {
+        if(CurrentPhase == 3)
+        {
+            FireBurst(3, 45f);
+        }
+        else
+        {
+            Fire();
+        }
+    }
+
+    private void Fire()
     {
         if (MagicProjectilePrefab && Player)
         {
-            Animator.SetTrigger("attack");
-            yield return new WaitForSeconds(0.2f);
-            // Spo��t�n� sm�ru st�ely
             if (Player != null)
             {
                 Vector3 bulletDirection = (Player.transform.position - transform.position).normalized;
@@ -213,13 +222,10 @@ public class DI_MainScript : MonoBehaviour
     }
 
 
-    private IEnumerator FireBurst(int projectileCount, float spreadAngle)
+    private void FireBurst(int projectileCount, float spreadAngle)
     {
         if (MagicProjectilePrefab && Player)
         {
-            Animator.SetTrigger("attack");
-            yield return new WaitForSeconds(0.2f);
-
             Vector3 baseDirection = (Player.transform.position - transform.position).normalized;
             Vector3 spawnPosition = transform.position + transform.forward * ProjectileSpawnOffset.z
                                     + transform.up * ProjectileSpawnOffset.y
@@ -262,7 +268,6 @@ public class DI_MainScript : MonoBehaviour
 
     private void SummonMinions()
     {
-        Animator.SetTrigger("mimon");
         for (int i = 0; i < MinionsNumber; i++)
         {
             Vector3 spawnPosition = GetRandomPositionInArena(ArenaBounds.bounds);
@@ -280,9 +285,14 @@ public class DI_MainScript : MonoBehaviour
             hasAllMinionsDied = true;
             BossAtm.isInvincible = false;
         }
+        else
+        {
+            hasAllMinionsDied = false;
+            BossAtm.isInvincible = true;
+        }
     }
 
-    private void HealBoss()
+        private void HealBoss()
     {
         if (!hasAllMinionsDied)
         {

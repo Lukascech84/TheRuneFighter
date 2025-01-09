@@ -1167,6 +1167,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0285b9d00490f874fb652198d414b6c8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7476586574971988729}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0285b9d00490f874fb652198d414b6c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2357398870739175845}
     - targetCorrespondingSourceObject: {fileID: -1693546492923637869, guid: 0285b9d00490f874fb652198d414b6c8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4751023990235138480}
@@ -1494,6 +1497,10 @@ MonoBehaviour:
   dashDuration: 0.2
   dashTrailRefreshRate: 0.03
   TrailDestroyDelay: 2
+  deadScreen: 0
+  footstepSound: {fileID: 8300000, guid: 660ce1747757c1445a2b6206cc22b2df, type: 3}
+  attackSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: a3691bbe6eceac0478358e7c08ad79a1, type: 3}
 --- !u!114 &7476586574971988729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1520,6 +1527,102 @@ MonoBehaviour:
   - {fileID: 1839294890453409110}
   - {fileID: 5000495628939680178}
   - {fileID: 1186143942839108177}
+--- !u!82 &2357398870739175845
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867107071085053675}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 7bac779aa2cbd42298fa2a5f38220326, type: 2}
+  m_audioClip: {fileID: 8300000, guid: a3691bbe6eceac0478358e7c08ad79a1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!137 &1186143942839108177 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -8016412588606473749, guid: 0285b9d00490f874fb652198d414b6c8, type: 3}

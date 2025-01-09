@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level_1_OpenDoors : BaseOpenDoor
+public class Level_2_OpenDoors : BaseOpenDoor
 {
-    public float duration = 2f;
+    public float duration = 3f;
 
 
     public override void OpenDoor()
@@ -20,11 +20,11 @@ public class Level_1_OpenDoors : BaseOpenDoor
         {
             time += Time.deltaTime;
             // Interpolace mezi poèáteèní a cílovou rotací
-            door.transform.rotation = Quaternion.Lerp(Quaternion.Euler(0, 0, 0), Quaternion.Euler(0, 130, 0), time / duration);
+            door.transform.position = Vector3.Lerp(new Vector3(door.transform.position.x, door.transform.position.y, door.transform.position.z), new Vector3(door.transform.position.x, -1.5f, door.transform.position.z), time / duration);
             yield return null; // Poèkáme na další snímek
         }
 
         // Zajistíme pøesné nastavení cílové rotace
-        door.transform.rotation = Quaternion.Euler(0, 130, 0);
+        door.transform.position = new Vector3(door.transform.position.x, -1.5f, door.transform.position.z);
     }
 }
