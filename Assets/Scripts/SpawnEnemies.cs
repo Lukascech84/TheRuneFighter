@@ -72,6 +72,7 @@ public class SpawnEnemies : MonoBehaviour
                 if (doorToNextLevel != null && !doorHasOpened)
                 {
                     doorToNextLevel.GetComponent<BaseOpenDoor>().OpenDoor();
+
                     doorHasOpened = true;
                 }
 
@@ -79,6 +80,7 @@ public class SpawnEnemies : MonoBehaviour
         }
         else hasAllMinionsDied = false;
     }
+
 
     private Vector3 GetValidSpawnPosition(Bounds bounds)
     {
