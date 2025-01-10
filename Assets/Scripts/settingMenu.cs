@@ -16,7 +16,10 @@ public class settingMenu : MonoBehaviour
     {
         resolutions = Screen.resolutions;
 
-        resolutionDropdown.ClearOptions();
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.ClearOptions();
+        }
 
         List<string> options = new List<string>();
 
@@ -40,16 +43,16 @@ public class settingMenu : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
-        if (resolutionIndex < 0 || resolutionIndex >= resolutions.Length)
+        if (resolutionIndex >= 0 && resolutionIndex < resolutions.Length)
+        {
+            Resolution resolution = resolutions[resolutionIndex];
+            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        }
+        else
         {
             Debug.LogError("Invalid resolution index: " + resolutionIndex);
-            return;
         }
-
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
-
 
     public void SetVolume (float volume)
     {
@@ -61,4 +64,11 @@ public class settingMenu : MonoBehaviour
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
+    public void OnDisable()
+    {
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.onValueChanged.RemoveAllListeners();
+        }
+    }
 }

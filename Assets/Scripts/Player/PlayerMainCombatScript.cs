@@ -34,6 +34,7 @@ public class PlayerMainCombatScript : MonoBehaviour
         //RangedWeapon.SetActive(true);
         PlayerAtm.Damage = PlayerAtm.RangeDamage;
         RangedScript.enabled = true;
+        MeleeScript.animator.SetInteger("AttackLevel", 0);
         MeleeWeaponHolster.SetActive(true);
         MeleeWeaponOut.SetActive(false);
         MeleeScript.enabled = false;
