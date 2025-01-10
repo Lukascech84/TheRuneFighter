@@ -1201,6 +1201,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 5670784105149147771, guid: 812b1eb069c3edf48b529fcf24185a19, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17e482b91e01aa14cad2a8ab258d511e, type: 2}
     - target: {fileID: 6507901977716847365, guid: 812b1eb069c3edf48b529fcf24185a19, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -1319,6 +1323,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8153468022190502949, guid: 812b1eb069c3edf48b529fcf24185a19, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1854252452}
+    - targetCorrespondingSourceObject: {fileID: 921391927218321214, guid: 812b1eb069c3edf48b529fcf24185a19, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1171387160}
+    - targetCorrespondingSourceObject: {fileID: 921391927218321214, guid: 812b1eb069c3edf48b529fcf24185a19, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1171387159}
   m_SourcePrefab: {fileID: 100100000, guid: 812b1eb069c3edf48b529fcf24185a19, type: 3}
 --- !u!1 &833044452 stripped
 GameObject:
@@ -2264,6 +2274,46 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 876250949035742166, guid: 812b1eb069c3edf48b529fcf24185a19, type: 3}
+--- !u!1 &1171387155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 921391927218321214, guid: 812b1eb069c3edf48b529fcf24185a19, type: 3}
+  m_PrefabInstance: {fileID: 831154518}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1171387159
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171387155}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2.0000002, z: 0.42534554}
+  m_Center: {x: 0, y: 0.0000019376319, z: 0.034943387}
+--- !u!114 &1171387160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171387155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4edd34b5652b541a65f8b934b6a667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoadAsset: {fileID: 102900000, guid: d33b1cf7378e56e41916de16ee11e8e2, type: 3}
+  sceneToLoad: level_4_bossfight
 --- !u!1001 &1241241199
 PrefabInstance:
   m_ObjectHideFlags: 0

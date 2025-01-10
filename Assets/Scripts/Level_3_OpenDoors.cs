@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Level_3_OpenDoors : BaseOpenDoor
 {
-
-
     public override void OpenDoor()
     {
         Doors();
@@ -13,6 +11,6 @@ public class Level_3_OpenDoors : BaseOpenDoor
 
     private void Doors()
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 }
