@@ -73,6 +73,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.timeScale == 0 || PlayerAtm.isDead) return;
 
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("MeleeAttack1") || animator.GetCurrentAnimatorStateInfo(0).IsName("MeleeAttack2") || animator.GetCurrentAnimatorStateInfo(0).IsName("MeleeAttack3"))
+        {
+            return;
+        }
+
         if (isDashing)
             return; // Skip regular movement updates during dash
 

@@ -144,14 +144,6 @@ PrefabInstance:
       propertyPath: jumpSpeed
       value: 2.7
       objectReference: {fileID: 0}
-    - target: {fileID: 2108382657781044975, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
-      propertyPath: deathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: a3691bbe6eceac0478358e7c08ad79a1, type: 3}
-    - target: {fileID: 2108382657781044975, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
-      propertyPath: footstepSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 660ce1747757c1445a2b6206cc22b2df, type: 3}
     - target: {fileID: 5326594741311018396, guid: 2e114dc59251d2346a328c90557bd7ff, type: 3}
       propertyPath: m_Name
       value: Player

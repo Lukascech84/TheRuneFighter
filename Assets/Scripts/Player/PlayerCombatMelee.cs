@@ -7,18 +7,18 @@ public class PlayerCombatMelee : MonoBehaviour
     private float damage;
     private float attackCooldown;
     private bool canAttack = true;
-    private int comboLevel = 0;
+    [HideInInspector] public int comboLevel = 0;
     private float comboTimer = 0f;
     private const float ComboMaxTime = 1f; // Maximální èas na pokraèování v kombu
 
-    private Animator animator;
+    [HideInInspector] public Animator animator;
     private BaseAttributeManager enemyAttributes;
     private PlayerAttributeManager playerAttributes;
 
     public BoxCollider weaponHitbox;
     public GameObject playerObject;
 
-    private void Start()
+    private void Awake()
     {
         animator = playerObject.GetComponent<Animator>();
         playerAttributes = playerObject.GetComponent<PlayerAttributeManager>();
