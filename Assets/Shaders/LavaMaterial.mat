@@ -66,7 +66,7 @@ Material:
     m_Colors:
     - _FresnelColor: {r: 9.849155, g: 2.4519043, b: 0.5110411, a: 1}
     - _LavaColor: {r: 4.488243, g: 1.5353615, b: 0, a: 1}
-    - _LavaNormalsSpeed: {r: 0, g: 0.17, b: 0, a: 0}
+    - _LavaNormalsSpeed: {r: 0.02, g: 0, b: 0, a: 0}
     - _LavaScale: {r: 3, g: 3, b: 0, a: 0}
-    - _LavaSpeed: {r: 0.01, g: 0.02, b: 0, a: 0}
+    - _LavaSpeed: {r: 0.02, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
