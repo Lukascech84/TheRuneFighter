@@ -1208,7 +1208,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 8a451cc23e00002429cab17c011ee4dd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1400,7 +1400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.5
   gravity: -9.81
-  jumpSpeed: 3
+  jumpSpeed: 2.7
   isPc: 1
   controller: {fileID: 5608072341264184833}
   rotationSmoothTime: 0.15
