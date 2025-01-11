@@ -1187,7 +1187,7 @@ PrefabInstance:
     - target: {fileID: 5887045054036689207, guid: 14f326fa924590548a7a2dd535a89b46, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 4e174b992cf3264469241299efc1b665, type: 2}
+      objectReference: {fileID: 23800000, guid: d8376734eb816b7448a4857196a725b1, type: 2}
     - target: {fileID: 7985051301683345849, guid: 14f326fa924590548a7a2dd535a89b46, type: 3}
       propertyPath: m_Name
       value: NavMesh Surface
