@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DI_BossAttributeManager : BaseAttributeManager
 {
@@ -35,4 +36,16 @@ public class DI_BossAttributeManager : BaseAttributeManager
     public float timeBetweenTeleports;
     public float TeleportDistanceFromPlayer;
     public float phase3FireRate;
+
+    protected override void Die()
+    {
+        StartCoroutine(Credits());
+    }
+
+    private IEnumerator Credits()
+    {
+        yield return new WaitForSeconds(2);
+        base.Die();
+        SceneManager.LoadScene(5);
+    }
 }

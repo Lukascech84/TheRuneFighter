@@ -3,25 +3,14 @@ using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
 {
-    private float elapsedTime = 0f;
-    private bool isGameOver = false;
+    [HideInInspector] public static float elapsedTime;
 
     public Text timerText; // Připojte Textový UI element
-    public Text winScreenText; // Text na výherní obrazovce
 
-    void Update()
+    private void Start()
     {
-        if (!isGameOver)
-        {
-            elapsedTime += Time.deltaTime;
-            DisplayTime(timerText, elapsedTime);
-        }
-    }
-
-    public void GameOver()
-    {
-        isGameOver = true;
-        winScreenText.text = "Dokončeno za: " + FormatTime(elapsedTime);
+        elapsedTime += Time.time;
+        DisplayTime(timerText, elapsedTime);
     }
 
     private void DisplayTime(Text textElement, float time)

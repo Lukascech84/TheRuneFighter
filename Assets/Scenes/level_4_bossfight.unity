@@ -1675,6 +1675,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 683141802}
     - target: {fileID: 2479921501232418626, guid: 72bb1685ee003f74dbdf798db526f6fc, type: 3}
+      propertyPath: BaseHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479921501232418626, guid: 72bb1685ee003f74dbdf798db526f6fc, type: 3}
       propertyPath: ArenaBounds
       value: 
       objectReference: {fileID: 1660262018}

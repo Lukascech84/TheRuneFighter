@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
     public void PlayGame()
     {
         Time.timeScale = 1f;
+        GameTimer.elapsedTime -= Time.time;
         SceneManager.LoadScene(1);
     }
 
