@@ -1,0 +1,11 @@
+1, movement, mapa ostrov, bez gravitace
+
+2, gravitace, nový model postavy, skakani, nova mapa, strileni, bullet spawner, turret
+
+3, UI, enemy ai, objectfader, roomLoader, trigger, manager
+
+4, prvni build, destrukce objektu, update ui, ESC menu, lepsi healthbar, switching weapons
+
+5, model characteru, boss battle, rework attributeManageru, dynamicCamera, enemyIndicators, dashEffect
+
+Final, rat, ghost, spider, portal, nova mapa
