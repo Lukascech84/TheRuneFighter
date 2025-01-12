@@ -1676,7 +1676,7 @@ PrefabInstance:
       objectReference: {fileID: 683141802}
     - target: {fileID: 2479921501232418626, guid: 72bb1685ee003f74dbdf798db526f6fc, type: 3}
       propertyPath: BaseHealth
-      value: 200
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 2479921501232418626, guid: 72bb1685ee003f74dbdf798db526f6fc, type: 3}
       propertyPath: ArenaBounds
@@ -2374,7 +2374,6 @@ SceneRoots:
   - {fileID: 1651794271}
   - {fileID: 464481869}
   - {fileID: 1852145626}
-  - {fileID: 1234545654}
   - {fileID: 1344062163}
   - {fileID: 1824465563}
   - {fileID: 1152986929}
