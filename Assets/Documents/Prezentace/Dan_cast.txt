@@ -2,4 +2,3 @@ Objekty - popis základní tvorby objektů
 Animace - blender animace(tools),unity controler
 Stylizace - dungen, temné prostřední, vlnx nepřátel, inspirace
 Pause menu - ukázka kodu, co delá a jak funguje
-Problémy - blender unity
