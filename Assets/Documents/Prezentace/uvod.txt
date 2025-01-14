@@ -1,10 +1,8 @@
+Uvod
 predtaveni
 jak jsme hru vymysleli 
 rozdeleni práce
 cíle projektu
-
-Obsah
-co bude v pprezentaci
 
 1, movement, mapa ostrov, bez gravitace - lukas
 Objekty - popis základní tvorby objektů - Daniel
@@ -22,3 +20,4 @@ Gameplay - popis a funkce
 Co se povedlo 
 Co nam to dalo 
 Budoucnost hry 
+ 
