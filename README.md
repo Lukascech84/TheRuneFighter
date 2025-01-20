@@ -41,6 +41,8 @@
 - [x] Dokončit level3
 - [x] Dokončit level4
 
+- Závěrečné video: https://youtu.be/daEYeWqHfK4
+
 ## Použité technologie:
 - Unity
 - Blender
