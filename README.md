@@ -41,7 +41,7 @@
 - [x] Dokončit level3
 - [x] Dokončit level4
 
-- Závěrečné video: https://youtu.be/daEYeWqHfK4
+- Závěrečné video: [https://youtu.be/daEYeWqHfK4](https://youtu.be/gZuGgpFJiLA)
 
 ## Použité technologie:
 - Unity
