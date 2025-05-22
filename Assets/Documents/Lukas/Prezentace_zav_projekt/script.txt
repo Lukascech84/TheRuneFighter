@@ -1,0 +1,97 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public float speed = 5.0f;
+
+    void Update()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        
+        transform.position += new Vector3(horizontal, 0, vertical) * speed * Time.deltaTime;
+    }
+}
+
+
+
+
+
+V této části prezentace vám ukáži jak si vytvořit nový projekt v Unity,
+provedu vás v uživatelském rozhraní a taky jak vytvořit nejzákladnější script na pohyb.
+
+Vše začína v aplikaci Unity Hub, po tom co se přihlásíme si zde musíme nainstalovat libovolnou verzi enginu,
+pro nás to byla verze 2022.3.49, tento rok byla vydána také úplně nová verze Unity 6. 
+Pro náš projekt jsme zvolili starší verzi kvůli větší kompatibilitě a také když jsme s projektem začínali
+nebyla nová verze ještě oficiálně vydaná.
+
+Poté si v seznamu projektů vytvoříme projekt nový, zde nalezneme několik templatů a vybereme si ten,
+který nejvíc sedí naší hře. Na výběr jsou templaty 2D a 3D, kterými se budeme zaobírat my.
+U hry runefighter jsme vybrali Universal 3D častěji označovaný jako URP.
+Tento template nabízí scriptovatelnou renderovací pipeline a tak nabízí o dost více možností stylizace hry.
+
+A co je to vlastně ta render pipeline? obrázek wikipedie, eh no ve zkratce se jedná o to jak se převádí
+scéna v enginu na obraz našeho monitoru.
+
+Další 3D templaty jsou například High Definition, 
+který se spíše využívá na náročné rendery s hezkou grafikou než na hry.
+
+Pro dnešní ukázku zvolím základní 3D template pro zachování jednoduchosti.
+
+Dále už jenom vybereme název, lokaci a můžeme se pustit do nekonečného načítání.
+
+
+Až se nám konečně Unity spustí, uvidíme spoustu různých oken, kterými vás v rychlosti provedu.
+Největší okno, které se nachází uprostřed je okno scény. Zde uvidíme všechny objekty umístěné v naší scéně.
+Mužeme se pohybovat pomocí držení pravého tlačítka myši a kláves WASD.
+
+Na levé straně vidíme hierarchii scény. To znamená že všechny objekty, které zde umístíme se taky objeví ve scéně.
+Při vytvoření scény se zde vždy bude nacházet Kamera, to co vidí se nám promítá na monitor,
+a směrové světlo, které napodobuje slunce.
+
+Na pravé straně vidíme inspektor, tam jsou vždy všechny parametry a komponenty právě zvoleného objektu.
+
+A co jsou to ty komponenty? Jsou to moduly, které přidávají funkcionalitu herním objektům, 
+např. RigidBody na fyziku, nebo námi vyrobený script. Každý objekt má vždy základní komponentu Transform, 
+která určuje jeho pozici, rotaci a měřítko.
+
+Poslední základní okno rozhraní je File Exporer, který vidíme dole. Zde se nachází všechny scripty, modely, textury
+no prostě všechno co se týče projektu.
+
+Tak aby jsme vytvořili script na pohyb hráče tak by se nám hodilo něco po čem náš hráč bude chodit, 
+a samozřejmě hráč samotný, kterého tu představuje tato roztomilá kapsle.
+
+Pokud chceme aby kamera sledovala našeho hráče a tak nám neutekl z pohledu přiřadíme kameru našemu hráči.
+To uděláme tak že ji přetáhneme na naší Kapsli, od teď je hráč takzvanný rodič a kamera se bude pohybovat s ním.
+Teď už si ji jenom přesuneme tak aby jsme viděli našeho hráče.
+
+Tak a jde se na script samotný, ten vytvoříme tak že klikneme pravým do file Exploreru, dáme Create a C# script.
+Pojmenujeme si ho např. PlayerMovement a otevřeme si jej.
+
+Na vršku scriptu vidíme includy které jsou stejné jako v céčku. Dále je tam název aktuálního Scriptu PlayerMovement. 
+MonoBehaviour je třída ze které dědí všichny scirpty které vytvoříme a obsahuje základní funkce Unity.
+Dále jsou zde dvě funkce Start a Update, pokud jste to nepoznali z komentáře tak Start se spustí pouze jednou 
+a to při vyvolání scriptu a Update se spouští každý frame.
+
+Start pro tento script můžeme smazat. Teď si deklarujeme proměnnou na rychlost pohybu hráče. 
+Public znamená že ostatní scripty mužou do této proměnné zapisovat a taky z ní číst. Taky proměnnou označenou
+jako public vidíme přímo v inspektoru a můžeme ji měnit.
+
+Dále si vytvoříme dvě proměnné ve funkci update, takže se budou měnit s každým framem hry, nazveme je horizontal a vertical, 
+budeme do nich ukládat, v Unity už předém definované osy Horizontal a Vertical které vrací hodnotu od -1 do 1. 
+V unity jsou tyto osy nastavené na klávesy WASD nebo šipky.
+
+Teď už následuje poslední řádek kódu který aplikuje pohyb na naší postavu. this.transform.position získá pozici objektu
+v komponentě Transform na kterém je náš script umístěn a k ní přičte hodnoty z našich proměnných vynásobených rychlostí hráče a 
+časem od posledního snímku k zajištění plynulosti pohybu.
+
+Poslední krok už je jenom hru spustit a tadá, můžeme hráčem hýbat pomocí WASD nebo šipek.
+
+
+
+
+
+
+
